@@ -1,0 +1,3552 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Muhammad Zain | AWS Cloud & DevOps Engineer</title>
+
+<meta name="description"
+content="Muhammad Zain — AWS Cloud & DevOps Engineer specializing in AWS, Infrastructure as Code, CI/CD, Linux administration, cloud security and automation.">
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+:root{
+    --bg:#060910;
+    --bg2:#0a0f18;
+    --card:#0e1520;
+    --card2:#101925;
+
+    --border:rgba(255,255,255,.08);
+
+    --text:#f5f7fb;
+    --muted:#96a2b2;
+
+    --primary:#718fff;
+    --primary2:#9a72ff;
+
+    --cyan:#54d8ff;
+    --green:#36dc83;
+
+    --white:#fff;
+
+    --cursor-x:50%;
+    --cursor-y:50%;
+}
+
+body{
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+    color:var(--text);
+
+    background:
+        radial-gradient(
+            circle at var(--cursor-x) var(--cursor-y),
+            rgba(113,143,255,.11),
+            transparent 20%
+        ),
+        radial-gradient(
+            circle at 80% 5%,
+            rgba(113,143,255,.10),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 5% 35%,
+            rgba(154,114,255,.07),
+            transparent 28%
+        ),
+        var(--bg);
+
+    line-height:1.6;
+
+    overflow-x:hidden;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+button,
+a{
+    -webkit-tap-highlight-color:transparent;
+}
+
+.container{
+    width:min(1150px,90%);
+    margin:auto;
+}
+
+section{
+    padding:110px 0;
+}
+
+
+/* =========================================================
+   CURSOR GLOW
+========================================================= */
+
+.cursor-glow{
+    position:fixed;
+
+    width:420px;
+    height:420px;
+
+    left:0;
+    top:0;
+
+    pointer-events:none;
+
+    z-index:0;
+
+    transform:
+        translate(
+            calc(var(--cursor-x) - 210px),
+            calc(var(--cursor-y) - 210px)
+        );
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(113,143,255,.09),
+            transparent 65%
+        );
+
+    filter:blur(15px);
+
+    transition:
+        transform .08s linear;
+}
+
+.cursor-dot{
+    position:fixed;
+
+    width:5px;
+    height:5px;
+
+    left:0;
+    top:0;
+
+    border-radius:50%;
+
+    pointer-events:none;
+
+    z-index:9999;
+
+    background:white;
+
+    box-shadow:
+        0 0 15px rgba(113,143,255,.9),
+        0 0 35px rgba(113,143,255,.5);
+
+    transform:
+        translate(
+            calc(var(--cursor-x) - 2.5px),
+            calc(var(--cursor-y) - 2.5px)
+        );
+}
+
+
+/* =========================================================
+   BACKGROUND GRID
+========================================================= */
+
+.background-grid{
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:-2;
+
+    opacity:.20;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.035) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.035) 1px,
+            transparent 1px
+        );
+
+    background-size:55px 55px;
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            black,
+            transparent 85%
+        );
+}
+
+
+/* =========================================================
+   FLOATING PARTICLES
+========================================================= */
+
+.particles{
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:-1;
+
+    overflow:hidden;
+}
+
+.particle{
+    position:absolute;
+
+    width:3px;
+    height:3px;
+
+    border-radius:50%;
+
+    background:rgba(143,166,255,.65);
+
+    box-shadow:
+        0 0 10px rgba(113,143,255,.6);
+
+    animation:
+        particleFloat linear infinite;
+}
+
+@keyframes particleFloat{
+
+    from{
+        transform:
+            translateY(110vh)
+            translateX(0);
+        opacity:0;
+    }
+
+    10%{
+        opacity:1;
+    }
+
+    90%{
+        opacity:1;
+    }
+
+    to{
+        transform:
+            translateY(-10vh)
+            translateX(80px);
+        opacity:0;
+    }
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+nav{
+    position:fixed;
+
+    top:0;
+    left:0;
+    right:0;
+
+    height:76px;
+
+    z-index:1000;
+
+    background:
+        rgba(6,9,16,.72);
+
+    backdrop-filter:blur(20px);
+
+    border-bottom:
+        1px solid rgba(255,255,255,.06);
+}
+
+.nav-inner{
+    height:100%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+}
+
+.logo{
+    font-size:23px;
+
+    font-weight:800;
+
+    letter-spacing:-1px;
+}
+
+.logo span{
+    color:var(--primary);
+
+    text-shadow:
+        0 0 20px rgba(113,143,255,.6);
+}
+
+.nav-links{
+    display:flex;
+
+    gap:27px;
+
+    list-style:none;
+}
+
+.nav-links a{
+    position:relative;
+
+    color:var(--muted);
+
+    font-size:13px;
+
+    transition:.25s;
+}
+
+.nav-links a::after{
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    bottom:-7px;
+
+    width:0;
+    height:1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--primary),
+            var(--primary2)
+        );
+
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:white;
+}
+
+.nav-links a:hover::after{
+    width:100%;
+}
+
+.nav-contact{
+    padding:9px 16px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:9px;
+
+    font-size:12px;
+
+    transition:.3s;
+}
+
+.nav-contact:hover{
+    border-color:var(--primary);
+
+    background:
+        rgba(113,143,255,.09);
+
+    box-shadow:
+        0 0 25px rgba(113,143,255,.12);
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+    min-height:100vh;
+
+    display:flex;
+
+    align-items:center;
+
+    padding-top:100px;
+
+    position:relative;
+}
+
+.hero-grid{
+    display:grid;
+
+    grid-template-columns:
+        1.15fr .85fr;
+
+    gap:65px;
+
+    align-items:center;
+}
+
+
+/* HERO LEFT */
+
+.hero-left{
+    position:relative;
+
+    z-index:2;
+}
+
+.availability{
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:9px;
+
+    padding:7px 13px;
+
+    border-radius:50px;
+
+    color:#82e8af;
+
+    background:
+        rgba(54,220,131,.06);
+
+    border:
+        1px solid rgba(54,220,131,.18);
+
+    font-size:11px;
+
+    margin-bottom:22px;
+
+    animation:
+        badgePulse 3s ease-in-out infinite;
+}
+
+.status-dot{
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+
+    background:var(--green);
+
+    box-shadow:
+        0 0 12px var(--green);
+}
+
+@keyframes badgePulse{
+
+    0%,100%{
+        box-shadow:
+            0 0 0 rgba(54,220,131,0);
+    }
+
+    50%{
+        box-shadow:
+            0 0 22px rgba(54,220,131,.10);
+    }
+}
+
+.hero h1{
+    font-size:
+        clamp(50px,7vw,82px);
+
+    line-height:.94;
+
+    letter-spacing:-5px;
+
+    margin-bottom:24px;
+
+    animation:
+        heroTitle .9s ease both;
+}
+
+@keyframes heroTitle{
+
+    from{
+        opacity:0;
+        transform:
+            translateY(30px);
+        filter:blur(8px);
+    }
+
+    to{
+        opacity:1;
+        transform:
+            translateY(0);
+        filter:blur(0);
+    }
+}
+
+.gradient{
+    background:
+        linear-gradient(
+            100deg,
+            #fff 10%,
+            #91aaff 45%,
+            #b18cff 90%
+        );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    background-size:200% auto;
+
+    animation:
+        gradientMove 5s linear infinite;
+}
+
+@keyframes gradientMove{
+
+    to{
+        background-position:
+            200% center;
+    }
+}
+
+.hero-role{
+    font-size:19px;
+
+    font-weight:650;
+
+    color:#d0d7e2;
+
+    margin-bottom:13px;
+
+    animation:
+        fadeUp .9s .15s both;
+}
+
+.hero-description{
+    max-width:680px;
+
+    color:var(--muted);
+
+    font-size:15px;
+
+    line-height:1.9;
+
+    animation:
+        fadeUp .9s .25s both;
+}
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:
+            translateY(18px);
+    }
+
+    to{
+        opacity:1;
+        transform:
+            translateY(0);
+    }
+}
+
+.hero-buttons{
+    display:flex;
+
+    gap:11px;
+
+    margin-top:29px;
+
+    flex-wrap:wrap;
+
+    animation:
+        fadeUp .9s .35s both;
+}
+
+.btn{
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+    padding:12px 18px;
+
+    border-radius:10px;
+
+    font-size:12px;
+
+    font-weight:650;
+
+    border:
+        1px solid var(--border);
+
+    transition:
+        transform .25s,
+        box-shadow .25s,
+        border-color .25s,
+        background .25s;
+}
+
+.btn:hover{
+    transform:
+        translateY(-3px);
+}
+
+.btn-primary{
+    background:white;
+
+    color:#080b10;
+
+    box-shadow:
+        0 0 0 rgba(255,255,255,0);
+}
+
+.btn-primary:hover{
+    box-shadow:
+        0 15px 40px rgba(255,255,255,.10);
+}
+
+.btn-secondary:hover{
+    border-color:
+        rgba(113,143,255,.65);
+
+    background:
+        rgba(113,143,255,.08);
+
+    box-shadow:
+        0 10px 35px rgba(113,143,255,.08);
+}
+
+
+/* =========================================================
+   PROFILE PICTURE
+========================================================= */
+
+.profile-area{
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    min-height:450px;
+
+    transform: translateY(-35px);
+    animation:
+        profileEntrance 1s .2s both;
+}
+
+@keyframes profileEntrance{
+
+    from{
+        opacity:0;
+        transform:
+            translateX(40px)
+            scale(.92);
+    }
+
+    to{
+        opacity:1;
+        transform:
+            translateX(0)
+            scale(1);
+    }
+}
+
+.profile-orbit{
+    position:absolute;
+
+    width:440px;
+    height:440px;
+
+    border-radius:50%;
+
+    border:
+        1px dashed
+        rgba(113,143,255,.25);
+
+    animation:
+        orbitRotate 18s linear infinite;
+}
+
+.profile-orbit::before,
+.profile-orbit::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+
+    background:var(--primary);
+
+    box-shadow:
+        0 0 20px var(--primary);
+
+}
+
+.profile-orbit::before{
+    top:35px;
+    left:40px;
+}
+
+.profile-orbit::after{
+    right:35px;
+    bottom:65px;
+
+    background:var(--primary2);
+
+    box-shadow:
+        0 0 20px var(--primary2);
+}
+
+@keyframes orbitRotate{
+
+    to{
+        transform:
+            rotate(360deg);
+    }
+}
+
+.profile-glow{
+    position:absolute;
+
+    width:390px;
+    height:390px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(113,143,255,.23),
+            rgba(154,114,255,.10) 45%,
+            transparent 70%
+        );
+
+    filter:blur(12px);
+
+    animation:
+        profileGlow 4s ease-in-out infinite;
+}
+
+@keyframes profileGlow{
+
+    0%,100%{
+        transform:scale(.96);
+        opacity:.7;
+    }
+
+    50%{
+        transform:scale(1.06);
+        opacity:1;
+    }
+}
+
+.profile-ring{
+    position:relative;
+
+    width:340px;
+    height:340px;
+
+    border-radius:50%;
+
+    padding:5px;
+
+    background:
+        conic-gradient(
+            from 0deg,
+            var(--primary),
+            var(--cyan),
+            var(--primary2),
+            var(--primary)
+        );
+
+    animation:
+        ringRotate 8s linear infinite;
+
+    box-shadow:
+        0 0 35px rgba(113,143,255,.18),
+        0 0 100px rgba(113,143,255,.08);
+}
+
+@keyframes ringRotate{
+
+    to{
+        transform:
+            rotate(360deg);
+    }
+}
+
+.profile-image-wrap{
+    width:100%;
+    height:100%;
+
+    padding:5px;
+
+    border-radius:50%;
+
+    background:#080d15;
+
+    animation:
+        ringRotateReverse 8s linear infinite;
+}
+
+@keyframes ringRotateReverse{
+
+    to{
+        transform:
+            rotate(-360deg);
+    }
+}
+
+.profile-image{
+    width:100%;
+    height:100%;
+
+    display:block;
+
+    object-fit:cover;
+
+    object-position:center;
+
+    border-radius:50%;
+
+    filter:
+        saturate(.95)
+        contrast(1.04);
+
+    border:
+        1px solid rgba(255,255,255,.1);
+}
+
+
+/* =========================================================
+   DEVOPS FLOATING LABELS
+========================================================= */
+
+.tech-float{
+    position:absolute;
+
+    padding:8px 11px;
+
+    border:
+        1px solid rgba(255,255,255,.08);
+
+    border-radius:8px;
+
+    background:
+        rgba(10,15,24,.78);
+
+    backdrop-filter:blur(10px);
+
+    color:#aebbd0;
+
+    font-size:10px;
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,.25);
+
+    animation:
+        techFloat 4s ease-in-out infinite;
+}
+
+.tech-aws{
+    top:40px;
+    right:20px;
+}
+
+.tech-terraform{
+    bottom:55px;
+    left:10px;
+
+    animation-delay:1s;
+}
+
+.tech-cicd{
+    bottom:15px;
+    right:50px;
+
+    animation-delay:2s;
+}
+
+@keyframes techFloat{
+
+    0%,100%{
+        transform:
+            translateY(0);
+    }
+
+    50%{
+        transform:
+            translateY(-10px);
+    }
+}
+
+
+/* =========================================================
+   TERMINAL
+========================================================= */
+
+.terminal{
+    margin-top:35px;
+
+    background:#080c13;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 30px 90px rgba(0,0,0,.4);
+}
+
+.terminal-top{
+    padding:12px 15px;
+
+    display:flex;
+
+    gap:7px;
+
+    border-bottom:
+        1px solid var(--border);
+}
+
+.terminal-top i{
+    width:9px;
+    height:9px;
+
+    border-radius:50%;
+
+    background:#333b49;
+}
+
+.terminal-body{
+    padding:22px;
+
+    font-family:
+        "SFMono-Regular",
+        Consolas,
+        monospace;
+
+    font-size:11px;
+
+    line-height:2;
+}
+
+.green{
+    color:#4ade80;
+}
+
+.blue{
+    color:#7aa2ff;
+}
+
+.purple{
+    color:#c084fc;
+}
+
+.gray{
+    color:#64748b;
+}
+
+
+/* =========================================================
+   GENERAL SECTIONS
+========================================================= */
+
+.section-label{
+    color:var(--primary);
+
+    font-size:11px;
+
+    font-weight:750;
+
+    text-transform:uppercase;
+
+    letter-spacing:2px;
+
+    margin-bottom:12px;
+}
+
+.section-title{
+    font-size:
+        clamp(32px,4vw,48px);
+
+    line-height:1.05;
+
+    letter-spacing:-2px;
+
+    margin-bottom:16px;
+}
+
+.section-description{
+    max-width:700px;
+
+    color:var(--muted);
+
+    font-size:14px;
+}
+
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+.about-grid{
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:65px;
+
+    margin-top:47px;
+}
+
+.about-text{
+    color:var(--muted);
+
+    font-size:14px;
+
+    line-height:1.95;
+}
+
+.about-text p + p{
+    margin-top:17px;
+}
+
+.stats{
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:14px;
+}
+
+.stat{
+    position:relative;
+
+    overflow:hidden;
+
+    padding:24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.045),
+            rgba(255,255,255,.015)
+        );
+
+    border:
+        1px solid var(--border);
+
+    border-radius:14px;
+
+    transition:.35s;
+}
+
+.stat::before{
+    content:"";
+
+    position:absolute;
+
+    width:100px;
+    height:100px;
+
+    right:-50px;
+    top:-50px;
+
+    border-radius:50%;
+
+    background:
+        rgba(113,143,255,.10);
+
+    filter:blur(20px);
+
+    transition:.4s;
+}
+
+.stat:hover{
+    transform:
+        translateY(-6px);
+
+    border-color:
+        rgba(113,143,255,.3);
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.22);
+}
+
+.stat:hover::before{
+    transform:
+        scale(1.7);
+}
+
+.stat strong{
+    display:block;
+
+    font-size:27px;
+
+    margin-bottom:3px;
+}
+
+.stat span{
+    color:var(--muted);
+
+    font-size:11px;
+}
+
+
+/* =========================================================
+   SKILLS
+========================================================= */
+
+.skills-grid{
+    margin-top:45px;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:14px;
+}
+
+.skill{
+    position:relative;
+
+    overflow:hidden;
+
+    padding:21px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #101823,
+            #0c131c
+        );
+
+    border:
+        1px solid var(--border);
+
+    border-radius:13px;
+
+    transition:
+        transform .35s,
+        border-color .35s,
+        box-shadow .35s;
+}
+
+.skill::after{
+    content:"";
+
+    position:absolute;
+
+    width:130px;
+    height:130px;
+
+    right:-70px;
+    bottom:-70px;
+
+    border-radius:50%;
+
+    background:
+        rgba(113,143,255,.07);
+
+    filter:blur(15px);
+
+    transition:.4s;
+}
+
+.skill:hover{
+    transform:
+        translateY(-8px)
+        rotateX(2deg)
+        rotateY(-2deg);
+
+    border-color:
+        rgba(113,143,255,.35);
+
+    box-shadow:
+        0 18px 50px rgba(0,0,0,.25);
+}
+
+.skill:hover::after{
+    transform:
+        scale(1.7);
+}
+
+.skill-icon{
+    font-size:25px;
+
+    margin-bottom:11px;
+
+    display:inline-block;
+
+    transition:.35s;
+}
+
+.skill:hover .skill-icon{
+    transform:
+        translateY(-3px)
+        scale(1.1);
+}
+
+.skill h3{
+    font-size:14px;
+
+    margin-bottom:5px;
+}
+
+.skill p{
+    color:var(--muted);
+
+    font-size:10px;
+
+    line-height:1.65;
+}
+
+
+
+.project-link{
+    display:block;
+    color:inherit;
+    text-decoration:none;
+    cursor:pointer;
+}
+
+.project-link .project{
+    cursor:pointer;
+}
+
+
+/* =========================================================
+   PROJECTS
+========================================================= */
+
+.projects{
+    margin-top:45px;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:18px;
+}
+
+.project{
+    position:relative;
+
+    overflow:hidden;
+
+    padding:28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #111a25,
+            #0c131c
+        );
+
+    border:
+        1px solid var(--border);
+
+    border-radius:16px;
+
+    transition:
+        transform .35s,
+        border-color .35s,
+        box-shadow .35s;
+}
+
+.project::before{
+    content:"";
+
+    position:absolute;
+
+    top:-100px;
+    left:-100px;
+
+    width:200px;
+    height:200px;
+
+    border-radius:50%;
+
+    background:
+        rgba(113,143,255,.08);
+
+    filter:blur(30px);
+
+    transition:.5s;
+}
+
+.project:hover{
+    transform:
+        translateY(-8px);
+
+    border-color:
+        rgba(113,143,255,.35);
+
+    box-shadow:
+        0 25px 65px rgba(0,0,0,.28);
+}
+
+.project:hover::before{
+    transform:
+        translate(150px,100px)
+        scale(1.5);
+}
+
+.project-number{
+    position:relative;
+
+    color:var(--primary);
+
+    font-size:10px;
+
+    font-weight:750;
+
+    letter-spacing:1px;
+
+    margin-bottom:18px;
+}
+
+.project h3{
+    position:relative;
+
+    font-size:19px;
+
+    margin-bottom:10px;
+}
+
+.project p{
+    position:relative;
+
+    color:var(--muted);
+
+    font-size:12px;
+
+    line-height:1.85;
+}
+
+.tags{
+    position:relative;
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:6px;
+
+    margin-top:18px;
+}
+
+.tag{
+    padding:5px 8px;
+
+    border-radius:6px;
+
+    background:
+        rgba(113,143,255,.07);
+
+    color:#aebeff;
+
+    font-size:9px;
+
+    border:
+        1px solid rgba(113,143,255,.12);
+
+    transition:.25s;
+}
+
+.tag:hover{
+    background:
+        rgba(113,143,255,.16);
+
+    border-color:
+        rgba(113,143,255,.3);
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   EXPERIENCE
+========================================================= */
+
+.timeline{
+    margin-top:47px;
+
+    border-left:
+        1px solid var(--border);
+
+    padding-left:30px;
+}
+
+.experience{
+    position:relative;
+
+    padding-bottom:45px;
+}
+
+.experience:last-child{
+    padding-bottom:0;
+}
+
+.experience::before{
+    content:"";
+
+    position:absolute;
+
+    width:9px;
+    height:9px;
+
+    left:-35px;
+    top:7px;
+
+    border-radius:50%;
+
+    background:
+        var(--primary);
+
+    box-shadow:
+        0 0 16px rgba(113,143,255,.7);
+
+    animation:
+        timelinePulse 2.5s ease-in-out infinite;
+}
+
+@keyframes timelinePulse{
+
+    0%,100%{
+        box-shadow:
+            0 0 5px rgba(113,143,255,.3);
+    }
+
+    50%{
+        box-shadow:
+            0 0 22px rgba(113,143,255,.8);
+    }
+}
+
+.experience-date{
+    color:var(--primary);
+
+    font-size:10px;
+
+    font-weight:750;
+
+    letter-spacing:.7px;
+
+    margin-bottom:6px;
+}
+
+.experience h3{
+    font-size:19px;
+
+    margin-bottom:3px;
+}
+
+.experience-company{
+    color:#c4ccd8;
+
+    font-size:12px;
+
+    margin-bottom:12px;
+}
+
+.experience p,
+.experience ul{
+    color:var(--muted);
+
+    max-width:800px;
+
+    font-size:12px;
+
+    line-height:1.85;
+}
+
+.experience ul{
+    padding-left:18px;
+}
+
+.experience li{
+    margin-bottom:7px;
+}
+
+
+/* =========================================================
+   SERVICES
+========================================================= */
+
+.services{
+    margin-top:45px;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:15px;
+}
+
+.service{
+    padding:25px;
+
+    background:var(--card);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:14px;
+
+    transition:.35s;
+}
+
+.service:hover{
+    transform:
+        translateY(-7px);
+
+    border-color:
+        rgba(113,143,255,.3);
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.22);
+}
+
+.service .skill-icon{
+    margin-bottom:3px;
+}
+
+.service h3{
+    margin:9px 0 6px;
+
+    font-size:15px;
+}
+
+.service p{
+    color:var(--muted);
+
+    font-size:11px;
+
+    line-height:1.75;
+}
+
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.contact-box{
+    position:relative;
+
+    overflow:hidden;
+
+    margin-top:45px;
+
+    padding:60px 30px;
+
+    text-align:center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(113,143,255,.13),
+            transparent 60%
+        ),
+        var(--card);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:20px;
+}
+
+.contact-box::before{
+    content:"";
+
+    position:absolute;
+
+    width:250px;
+    height:250px;
+
+    left:-100px;
+    top:-100px;
+
+    border-radius:50%;
+
+    border:
+        1px solid rgba(113,143,255,.08);
+
+    animation:
+        contactOrbit 12s linear infinite;
+}
+
+@keyframes contactOrbit{
+
+    to{
+        transform:
+            rotate(360deg);
+    }
+}
+
+.contact-box h2{
+    position:relative;
+
+    font-size:
+        clamp(32px,5vw,50px);
+
+    letter-spacing:-2px;
+
+    margin-bottom:14px;
+}
+
+.contact-box p{
+    position:relative;
+
+    max-width:620px;
+
+    margin:auto;
+
+    color:var(--muted);
+
+    font-size:13px;
+}
+
+.contact-buttons{
+    position:relative;
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    margin-top:27px;
+}
+
+.contact-info{
+    position:relative;
+
+    margin-top:22px;
+
+    color:#788596;
+
+    font-size:11px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+    padding:29px 0;
+
+    border-top:
+        1px solid var(--border);
+
+    color:#718092;
+
+    font-size:10px;
+}
+
+.footer-inner{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+}
+
+.socials{
+    display:flex;
+
+    gap:18px;
+}
+
+.socials a{
+    transition:.25s;
+}
+
+.socials a:hover{
+    color:white;
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+.reveal{
+    opacity:0;
+
+    transform:
+        translateY(35px);
+
+    filter:blur(3px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease,
+        filter .8s ease;
+}
+
+.reveal.active{
+    opacity:1;
+
+    transform:
+        translateY(0);
+
+    filter:blur(0);
+}
+
+
+/* =========================================================
+   SCROLL PROGRESS
+========================================================= */
+
+.scroll-progress{
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    height:2px;
+
+    width:0%;
+
+    z-index:9999;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--primary),
+            var(--cyan),
+            var(--primary2)
+        );
+
+    box-shadow:
+        0 0 12px rgba(113,143,255,.6);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:900px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .hero{
+        padding-top:125px;
+    }
+
+    .hero-grid{
+        grid-template-columns:1fr;
+
+        gap:35px;
+    }
+
+    .profile-area{
+        min-height:390px;
+    }
+
+    .profile-orbit{
+        width:330px;
+        height:330px;
+    }
+
+    .profile-glow{
+        width:290px;
+        height:290px;
+    }
+
+    .profile-ring{
+        width:245px;
+        height:245px;
+    }
+
+    .skills-grid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .services{
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+}
+
+
+@media(max-width:650px){
+
+    section{
+        padding:80px 0;
+    }
+
+    .hero h1{
+        font-size:50px;
+
+        letter-spacing:-3px;
+    }
+
+    .hero-description{
+        font-size:13px;
+    }
+
+    .about-grid{
+        grid-template-columns:1fr;
+
+        gap:35px;
+    }
+
+    .projects{
+        grid-template-columns:1fr;
+    }
+
+    .services{
+        grid-template-columns:1fr;
+    }
+
+    .profile-area{
+        min-height:340px;
+    }
+
+    .profile-orbit{
+        width:285px;
+        height:285px;
+    }
+
+    .profile-glow{
+        width:250px;
+        height:250px;
+    }
+
+    .profile-ring{
+        width:210px;
+        height:210px;
+    }
+
+    .tech-aws{
+        right:0;
+        top:30px;
+    }
+
+    .tech-terraform{
+        left:0;
+        bottom:35px;
+    }
+
+    .tech-cicd{
+        right:10px;
+        bottom:0;
+    }
+
+    .terminal-body{
+        font-size:9px;
+    }
+
+    .footer-inner{
+        flex-direction:column;
+
+        text-align:center;
+    }
+
+}
+
+
+@media(max-width:430px){
+
+    .skills-grid{
+        grid-template-columns:1fr;
+    }
+
+    .stats{
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .hero h1{
+        font-size:45px;
+    }
+
+    .profile-orbit{
+        width:260px;
+        height:260px;
+    }
+
+    .profile-ring{
+        width:190px;
+        height:190px;
+    }
+
+    .profile-glow{
+        width:225px;
+        height:225px;
+    }
+
+    .tech-float{
+        font-size:8px;
+        padding:6px 8px;
+    }
+}
+
+
+/* Reduce animation for accessibility */
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+
+        animation-duration:.01ms !important;
+
+        animation-iteration-count:1 !important;
+
+        scroll-behavior:auto !important;
+
+        transition-duration:.01ms !important;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =======================================================
+     EFFECT LAYERS
+======================================================= -->
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<div class="background-grid"></div>
+
+<div class="particles" id="particles"></div>
+
+<div class="cursor-glow"></div>
+
+<div class="cursor-dot"></div>
+
+
+<!-- =======================================================
+     NAVIGATION
+======================================================= -->
+
+<nav>
+
+<div class="container nav-inner">
+
+<a href="#" class="logo">
+    M<span>Z</span>.
+</a>
+
+
+<ul class="nav-links">
+
+<li>
+<a href="#about">About</a>
+</li>
+
+<li>
+<a href="#skills">Skills</a>
+</li>
+
+<li>
+<a href="#projects">Projects</a>
+</li>
+
+<li>
+<a href="#experience">Experience</a>
+</li>
+
+<li>
+<a href="#contact">Contact</a>
+</li>
+
+</ul>
+
+
+<a href="#contact" class="nav-contact">
+    Let's Talk
+</a>
+
+</div>
+
+</nav>
+
+
+<!-- =======================================================
+     HERO
+======================================================= -->
+
+<header class="hero">
+
+<div class="container hero-grid">
+
+
+<!-- LEFT -->
+
+<div class="hero-left">
+
+<div class="availability">
+
+<span class="status-dot"></span>
+
+Open to Cloud & DevOps Opportunities
+
+</div>
+
+
+<h1>
+
+Muhammad<br>
+
+<span class="gradient">
+Zain.
+</span>
+
+</h1>
+
+
+<div class="hero-role">
+
+AWS Cloud & DevOps Engineer
+
+</div>
+
+
+<p class="hero-description">
+
+Bachelor of Computer Science graduate from UET Lahore
+with hands-on experience in AWS Cloud and DevOps practices.
+I build scalable, secure and automated cloud infrastructure
+while continuously improving deployment workflows.
+
+</p>
+
+
+<div class="hero-buttons">
+
+
+<a href="#projects" class="btn btn-primary">
+
+View My Work →
+
+</a>
+
+
+<a
+href="#contact"
+class="btn btn-secondary">
+
+Contact Me
+
+</a>
+
+
+<a
+href="https://drive.google.com/file/d/1w_EjtwCbVrt4lSX96WxYyMMvajr5WACa/view?usp=sharing"
+target="_blank"
+rel="noopener noreferrer"
+class="btn btn-secondary">
+
+📄 CV ↗
+
+</a>
+
+
+</div>
+
+
+<!-- TERMINAL -->
+
+<div class="terminal">
+
+<div class="terminal-top">
+
+<i></i>
+<i></i>
+<i></i>
+
+</div>
+
+
+<div class="terminal-body">
+
+<div>
+<span class="green">$</span>
+<span id="terminalCommand">
+whoami
+</span>
+</div>
+
+<div class="blue" id="terminalOutput">
+muhammad-zain
+</div>
+
+<br>
+
+
+<div>
+<span class="green">$</span>
+role
+</div>
+
+<div class="purple">
+AWS Cloud & DevOps Engineer
+</div>
+
+<br>
+
+
+<div>
+<span class="green">$</span>
+aws --services
+</div>
+
+<div class="gray">
+
+EC2 · ALB · RDS · S3<br>
+Route53 · CloudFront · ACM · IAM
+
+</div>
+
+<br>
+
+
+<div>
+<span class="green">$</span>
+devops --stack
+</div>
+
+<div class="gray">
+
+Terraform · CloudFormation<br>
+GitHub Actions · Jenkins<br>
+CodePipeline · CodeDeploy
+
+</div>
+
+<br>
+
+
+<div>
+<span class="green">$</span>
+status
+</div>
+
+<div class="green">
+
+● Ready to build & automate
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- RIGHT -->
+
+<div class="profile-area">
+
+
+<div class="profile-orbit"></div>
+
+<div class="profile-glow"></div>
+
+
+<!-- =====================================================
+     CHANGE THIS IMAGE URL LATER
+===================================================== -->
+
+<div class="profile-ring">
+
+<div class="profile-image-wrap">
+
+<img
+class="profile-image"
+src="images/my.png"
+alt="Muhammad Zain">
+
+</div>
+
+</div>
+
+
+<div class="tech-float tech-aws">
+    ☁ AWS
+</div>
+
+<div class="tech-float tech-terraform">
+    ⚙ Terraform
+</div>
+
+<div class="tech-float tech-cicd">
+    🚀 CI/CD
+</div>
+
+
+</div>
+
+</div>
+
+</header>
+
+
+<!-- =======================================================
+     ABOUT
+======================================================= -->
+
+<section id="about">
+
+<div class="container reveal">
+
+<div class="section-label">
+01 — About Me
+</div>
+
+<h2 class="section-title">
+
+Cloud infrastructure.<br>
+Automation. Reliability.
+
+</h2>
+
+
+<div class="about-grid">
+
+
+<div class="about-text">
+
+<p>
+
+I'm Muhammad Zain, an AWS Cloud & DevOps Engineer and
+Bachelor of Computer Science graduate from the
+University of Engineering and Technology (UET), Lahore.
+
+</p>
+
+
+<p>
+
+I have hands-on experience deploying and managing
+production-ready web applications on AWS using services
+such as EC2, Application Load Balancer, Route 53,
+CloudFront, ACM, IAM and RDS.
+
+</p>
+
+
+<p>
+
+My technical experience also includes Linux administration,
+Bash scripting, Infrastructure as Code using Terraform
+and AWS CloudFormation, and CI/CD automation using
+GitHub Actions, Jenkins, AWS CodePipeline and CodeDeploy.
+
+</p>
+
+
+<p>
+
+I'm passionate about building scalable, secure and automated
+cloud infrastructure and continuously improving deployment
+workflows.
+
+</p>
+
+</div>
+
+
+<div class="stats">
+
+
+<div class="stat">
+
+<strong>
+AWS
+</strong>
+
+<span>
+Cloud Infrastructure
+</span>
+
+</div>
+
+
+<div class="stat">
+
+<strong>
+IaC
+</strong>
+
+<span>
+Terraform & CloudFormation
+</span>
+
+</div>
+
+
+<div class="stat">
+
+<strong>
+CI/CD
+</strong>
+
+<span>
+Deployment Automation
+</span>
+
+</div>
+
+
+<div class="stat">
+
+<strong>
+Linux
+</strong>
+
+<span>
+Server Administration
+</span>
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     SKILLS
+======================================================= -->
+
+<section id="skills">
+
+<div class="container reveal">
+
+<div class="section-label">
+02 — Technical Skills
+</div>
+
+<h2 class="section-title">
+Tools I work with.
+</h2>
+
+<p class="section-description">
+
+A practical technical stack covering cloud infrastructure,
+automation, networking, server administration and deployment.
+
+</p>
+
+
+<div class="skills-grid">
+
+
+<div class="skill">
+
+<div class="skill-icon">
+☁️
+</div>
+
+<h3>AWS Cloud</h3>
+
+<p>
+EC2 · Route 53 · CloudFront · ALB ·
+ACM · IAM · RDS · VPC · S3
+</p>
+
+</div>
+
+
+<div class="skill">
+
+<div class="skill-icon">
+🏗️
+</div>
+
+<h3>Infrastructure as Code</h3>
+
+<p>
+Terraform · AWS CloudFormation
+</p>
+
+</div>
+
+
+<div class="skill">
+
+<div class="skill-icon">
+🔄
+</div>
+
+<h3>CI/CD</h3>
+
+<p>
+GitHub Actions · Jenkins ·
+AWS CodePipeline · CodeDeploy
+</p>
+
+</div>
+
+
+<div class="skill">
+
+<div class="skill-icon">
+🐧
+</div>
+
+<h3>Linux Administration</h3>
+
+<p>
+Amazon Linux · Apache · systemd ·
+SSH · Virtual Hosts
+</p>
+
+</div>
+
+
+<div class="skill">
+
+<div class="skill-icon">
+💻
+</div>
+
+<h3>Scripting</h3>
+
+<p>
+Bash Scripting · Python Scripting
+</p>
+
+</div>
+
+
+<div class="skill">
+
+<div class="skill-icon">
+🔐
+</div>
+
+<h3>Cloud Security</h3>
+
+<p>
+IAM · Security Groups ·
+Least-Privilege Permissions
+</p>
+
+</div>
+
+
+<div class="skill">
+
+<div class="skill-icon">
+🌐
+</div>
+
+<h3>Web Infrastructure</h3>
+
+<p>
+Apache · PHP · Node.js ·
+Composer · MySQL · SSL
+</p>
+
+</div>
+
+
+<div class="skill">
+
+<div class="skill-icon">
+📦
+</div>
+
+<h3>Version Control</h3>
+
+<p>
+Git · GitHub
+</p>
+
+</div>
+
+
+<div class="skill">
+
+<div class="skill-icon">
+🛡️
+</div>
+
+<h3>Networking</h3>
+
+<p>
+VPC · Subnets · Routing ·
+Security Groups · DNS
+</p>
+
+</div>
+
+
+<div class="skill">
+
+<div class="skill-icon">
+🗄️
+</div>
+
+<h3>Databases</h3>
+
+<p>
+MySQL · RDS · SQL · Neo4j
+</p>
+
+</div>
+
+
+<div class="skill">
+
+<div class="skill-icon">
+🪟
+</div>
+
+<h3>Operating Systems</h3>
+
+<p>
+Linux · Windows
+</p>
+
+</div>
+
+
+<div class="skill">
+
+<div class="skill-icon">
+✍️
+</div>
+
+<h3>Professional Skills</h3>
+
+<p>
+Technical Writing · Problem Solving
+</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     PROJECTS
+======================================================= -->
+
+<section id="projects">
+
+<div class="container reveal">
+
+<div class="section-label">
+03 — Projects
+</div>
+
+<h2 class="section-title">
+Things I've built.
+</h2>
+
+<p class="section-description">
+
+Selected projects demonstrating cloud infrastructure,
+Linux automation, CI/CD and AI application development.
+
+</p>
+
+
+<div class="projects">
+
+
+<!-- PROJECT 1 -->
+
+
+
+<a href="https://qiraa-h.web.app/" target="_blank" rel="noopener noreferrer" class="project-link">
+
+
+
+<article class="project">
+
+<div class="project-number">
+PROJECT 01
+</div>
+
+<h3>
+Qira'a — AI-Driven Arabic Qirat Learning Platform
+</h3>
+
+<p>
+
+Developed an AI-powered platform providing personalized
+Tajweed feedback using speech recognition and deep learning.
+
+Integrated OpenAI Whisper and custom Quranic speech models
+to detect and identify Tajweed pronunciation errors.
+
+Built features including real-time feedback,
+user authentication, progress tracking, subscriptions
+and online Quran teacher connectivity.
+
+</p>
+
+
+<div class="tags">
+
+<span class="tag">React JS</span>
+<span class="tag">Firebase</span>
+<span class="tag">JavaScript</span>
+<span class="tag">Whisper AI</span>
+<span class="tag">Speech Recognition</span>
+
+</div>
+
+</article>
+
+
+
+</a>
+
+
+<!-- PROJECT 2 -->
+
+
+
+<article class="project">
+
+<div class="project-number">
+PROJECT 02
+</div>
+
+<h3>
+AWS Cloud Infrastructure & Web Application Deployment
+</h3>
+
+<p>
+
+Provisioned and managed Amazon EC2 instances,
+configured Route 53 DNS records and custom domains,
+implemented SSL certificates through ACM and configured
+Application Load Balancer for high availability.
+
+Delivered content using CloudFront and configured
+Amazon RDS MySQL databases and IAM permissions.
+
+</p>
+
+
+<div class="tags">
+
+<span class="tag">AWS EC2</span>
+<span class="tag">ALB</span>
+<span class="tag">Route 53</span>
+<span class="tag">CloudFront</span>
+<span class="tag">ACM</span>
+<span class="tag">RDS</span>
+<span class="tag">IAM</span>
+<span class="tag">WAF</span>
+
+</div>
+
+</article>
+
+
+
+<!-- PROJECT 3 -->
+
+
+
+
+<article class="project">
+
+<div class="project-number">
+PROJECT 03
+</div>
+
+<h3>
+Linux Administration & Bash Automation
+</h3>
+
+<p>
+
+Administered Amazon Linux servers and configured
+Apache Virtual Hosts, PHP, Node.js, Composer and
+MySQL environments for web applications.
+
+Developed Bash scripts to automate deployment tasks,
+database backups, log archiving and routine server
+maintenance.
+
+Scheduled automated jobs using Cron and integrated
+backup workflows with Amazon S3.
+
+</p>
+
+
+<div class="tags">
+
+<span class="tag">Linux</span>
+<span class="tag">Amazon Linux</span>
+<span class="tag">Bash</span>
+<span class="tag">Apache</span>
+<span class="tag">Cron</span>
+<span class="tag">S3</span>
+<span class="tag">MySQL</span>
+
+</div>
+
+</article>
+
+
+
+<!-- PROJECT 4 -->
+
+
+
+
+<article class="project">
+
+<div class="project-number">
+PROJECT 04
+</div>
+
+<h3>
+CI/CD & Deployment Automation
+</h3>
+
+<p>
+
+Hands-on experience with modern CI/CD workflows using
+GitHub Actions, Jenkins, AWS CodePipeline and CodeDeploy
+to improve application delivery and deployment automation.
+
+</p>
+
+
+<div class="tags">
+
+<span class="tag">GitHub Actions</span>
+<span class="tag">Jenkins</span>
+<span class="tag">CodePipeline</span>
+<span class="tag">CodeDeploy</span>
+<span class="tag">Git</span>
+
+</div>
+
+</article>
+
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     EXPERIENCE
+======================================================= -->
+
+<section id="experience">
+
+<div class="container reveal">
+
+<div class="section-label">
+04 — Experience
+</div>
+
+<h2 class="section-title">
+Professional experience.
+</h2>
+
+
+<div class="timeline">
+
+
+<!-- XELENT -->
+
+<div class="experience">
+
+<div class="experience-date">
+APRIL 2026 — JULY 2026
+</div>
+
+<h3>
+Cloud & DevOps Intern
+</h3>
+
+<div class="experience-company">
+Xelent Solutions
+</div>
+
+
+<ul>
+
+<li>
+Deployed and managed Laravel applications on AWS using
+EC2, RDS, Route 53, IAM, CloudFront, ALB and ACM.
+</li>
+
+<li>
+Configured and administered Linux (Amazon Linux) servers,
+Apache HTTP Server, SSL certificates and web hosting
+environments.
+</li>
+
+<li>
+Monitored, troubleshot and optimized cloud infrastructure
+to ensure secure, reliable and high-performing deployments.
+</li>
+
+<li>
+Collaborated using Git & GitHub for version control and
+followed DevOps best practices during application deployment.
+</li>
+
+<li>
+Gained hands-on experience in cloud computing, DevOps,
+server administration, networking and infrastructure management.
+</li>
+
+</ul>
+
+</div>
+
+
+<!-- ALPHA -->
+
+<div class="experience">
+
+<div class="experience-date">
+2025 · 2 MONTHS
+</div>
+
+<h3>
+SEO Intern
+</h3>
+
+<div class="experience-company">
+Alpha-IT Software House
+</div>
+
+
+<ul>
+
+<li>
+Performed on-page SEO including meta tag optimization,
+keyword placement and content structuring.
+</li>
+
+<li>
+Conducted off-page SEO activities including backlink
+building and outreach.
+</li>
+
+<li>
+Performed keyword research and competitor analysis to
+identify opportunities for ranking improvement.
+</li>
+
+</ul>
+
+</div>
+
+
+<!-- SITARA -->
+
+<div class="experience">
+
+<div class="experience-date">
+2024 · 6 WEEKS
+</div>
+
+<h3>
+Database Intern
+</h3>
+
+<div class="experience-company">
+Sitara Textile Limited
+</div>
+
+
+<ul>
+
+<li>
+Assisted in managing and maintaining company databases
+to ensure data accuracy and consistency.
+</li>
+
+<li>
+Wrote and executed SQL queries to retrieve, update and
+organize business data.
+</li>
+
+<li>
+Handled data entry, validation and record-keeping tasks.
+</li>
+
+</ul>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     CERTIFICATIONS
+======================================================= -->
+
+<section>
+
+<div class="container reveal">
+
+<div class="section-label">
+05 — Certifications
+</div>
+
+<h2 class="section-title">
+Continuous learning.
+</h2>
+
+
+<div class="services">
+
+
+<a href="https://graphacademy.neo4j.com/c/4593b0d9-9f89-4786-a80f-7d5168b3b43f"
+   target="_blank"
+   rel="noopener noreferrer"
+   class="project-link">
+
+    <div class="service">
+
+        <div class="skill-icon">
+            ◈
+        </div>
+
+        <h3>
+            Neo4j Fundamentals
+        </h3>
+
+        <p>
+            Neo4j GraphAcademy · February 2025
+        </p>
+
+    </div>
+
+</a>
+
+
+<a href="https://graphacademy.neo4j.com/c/70ae1450-7b9f-4e06-8997-e86728f82718"
+   target="_blank"
+   rel="noopener noreferrer"
+   class="project-link">
+
+    <div class="service">
+
+        <div class="skill-icon">
+            ◈
+        </div>
+
+        <h3>
+            Cypher Fundamentals
+        </h3>
+
+        <p>
+            Neo4j GraphAcademy · February 2025
+        </p>
+
+    </div>
+
+</a>
+
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     EDUCATION
+======================================================= -->
+
+<section>
+
+<div class="container reveal">
+
+<div class="section-label">
+06 — Education
+</div>
+
+<h2 class="section-title">
+Academic background.
+</h2>
+
+
+<div class="services">
+
+
+<div class="service">
+
+<div class="skill-icon">
+🎓
+</div>
+
+<h3>
+Bachelor of Computer Science
+</h3>
+
+<p>
+
+University of Engineering and Technology (UET), Lahore
+
+<br><br>
+
+2022 — 2026
+
+<br>
+
+CGPA: 3.07
+
+</p>
+
+</div>
+
+
+<div class="service">
+
+<div class="skill-icon">
+📚
+</div>
+
+<h3>
+FSc. Pre-Engineering
+</h3>
+
+<p>
+
+KIPS College, Jail Road, Faisalabad
+
+<br><br>
+
+2020 — 2022
+
+<br>
+
+Percentage: 89.54%
+
+</p>
+
+</div>
+
+
+<div class="service">
+
+<div class="skill-icon">
+💻
+</div>
+
+<h3>
+Matriculation — Computer Science
+</h3>
+
+<p>
+
+Govt. M.C. Higher Secondary School,
+Faisalabad
+
+<br><br>
+
+2018 — 2020
+
+<br>
+
+Percentage: 88.45%
+
+</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     CONTACT
+======================================================= -->
+
+<section id="contact">
+
+<div class="container reveal">
+
+<div class="contact-box">
+
+
+<div class="section-label">
+08 — Contact
+</div>
+
+
+<h2>
+Let's build something reliable.
+</h2>
+
+
+<p>
+
+I'm open to Cloud & DevOps opportunities where I can
+contribute to cloud infrastructure, automation,
+deployment workflows and reliable systems.
+
+</p>
+
+
+<div class="contact-buttons">
+
+
+<a
+href="mailto:muhammadzain8489@gmail.com"
+class="btn btn-primary">
+
+✉ Email Me
+
+</a>
+
+
+<a
+href="https://www.linkedin.com/in/muhammadzaindevops/"
+target="_blank"
+rel="noopener noreferrer"
+class="btn btn-secondary">
+
+LinkedIn ↗
+
+</a>
+
+
+<a
+href="https://github.com/ZainCloud009"
+target="_blank"
+rel="noopener noreferrer"
+class="btn btn-secondary">
+
+GitHub ↗
+
+</a>
+
+
+<a
+href="tel:+923247474009"
+class="btn btn-secondary">
+
+☎ Call Me
+
+</a>
+
+
+</div>
+
+
+<div class="contact-info">
+
+muhammadzain8489@gmail.com
+&nbsp; · &nbsp;
++92 324 7474009
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     FOOTER
+======================================================= -->
+
+<footer>
+
+<div class="container footer-inner">
+
+
+<div>
+
+© <span id="year"></span>
+Muhammad Zain.
+All rights reserved.
+
+</div>
+
+
+<div class="socials">
+
+<a
+href="https://github.com/ZainCloud009"
+target="_blank"
+rel="noopener noreferrer">
+
+GitHub
+
+</a>
+
+
+<a
+href="https://www.linkedin.com/in/muhammadzaindevops/"
+target="_blank"
+rel="noopener noreferrer">
+
+LinkedIn
+
+</a>
+
+
+<a href="mailto:muhammadzain8489@gmail.com">
+
+Email
+
+</a>
+
+</div>
+
+
+</div>
+
+</footer>
+
+
+<!-- =======================================================
+     JAVASCRIPT
+======================================================= -->
+
+<script>
+
+
+/* =========================================================
+   CURRENT YEAR
+========================================================= */
+
+document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+
+/* =========================================================
+   CURSOR EFFECT
+========================================================= */
+
+document.addEventListener(
+    "mousemove",
+    function(event){
+
+        document.documentElement.style
+            .setProperty(
+                "--cursor-x",
+                event.clientX + "px"
+            );
+
+        document.documentElement.style
+            .setProperty(
+                "--cursor-y",
+                event.clientY + "px"
+            );
+
+    }
+);
+
+
+/* =========================================================
+   PARTICLES
+========================================================= */
+
+const particleContainer =
+    document.getElementById("particles");
+
+
+for(let i = 0; i < 35; i++){
+
+    const particle =
+        document.createElement("div");
+
+    particle.className = "particle";
+
+    particle.style.left =
+        Math.random() * 100 + "%";
+
+    particle.style.animationDuration =
+        (8 + Math.random() * 15) + "s";
+
+    particle.style.animationDelay =
+        (-Math.random() * 15) + "s";
+
+    particle.style.opacity =
+        Math.random();
+
+    particleContainer.appendChild(
+        particle
+    );
+}
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+const revealElements =
+    document.querySelectorAll(".reveal");
+
+
+const revealObserver =
+    new IntersectionObserver(
+
+        function(entries){
+
+            entries.forEach(
+                function(entry){
+
+                    if(entry.isIntersecting){
+
+                        entry.target
+                            .classList
+                            .add("active");
+
+                        revealObserver
+                            .unobserve(
+                                entry.target
+                            );
+
+                    }
+
+                }
+            );
+
+        },
+
+        {
+            threshold:.12
+        }
+
+    );
+
+
+revealElements.forEach(
+    function(element){
+
+        revealObserver.observe(
+            element
+        );
+
+    }
+);
+
+
+/* =========================================================
+   SCROLL PROGRESS
+========================================================= */
+
+const progress =
+    document.getElementById(
+        "scrollProgress"
+    );
+
+
+window.addEventListener(
+    "scroll",
+    function(){
+
+        const scrollTop =
+            window.scrollY;
+
+        const documentHeight =
+            document.documentElement
+                .scrollHeight -
+            window.innerHeight;
+
+        const percentage =
+            (scrollTop / documentHeight)
+            * 100;
+
+        progress.style.width =
+            percentage + "%";
+
+    }
+);
+
+
+/* =========================================================
+   TERMINAL TYPING EFFECT
+========================================================= */
+
+const commands = [
+
+    ["whoami", "muhammad-zain"],
+
+    ["aws --services", "EC2 · ALB · RDS · S3"],
+
+    ["devops --stack", "Terraform · GitHub Actions"],
+
+    ["status", "● Ready to build & automate"]
+
+];
+
+
+const commandElement =
+    document.getElementById(
+        "terminalCommand"
+    );
+
+const outputElement =
+    document.getElementById(
+        "terminalOutput"
+    );
+
+
+let commandIndex = 0;
+
+
+function terminalAnimation(){
+
+    const current =
+        commands[commandIndex];
+
+
+    commandElement.textContent =
+        current[0];
+
+    outputElement.textContent =
+        current[1];
+
+
+    commandIndex =
+        (commandIndex + 1)
+        % commands.length;
+
+}
+
+
+setInterval(
+    terminalAnimation,
+    3500
+);
+
+
+/* =========================================================
+   PROFILE PARALLAX
+========================================================= */
+
+const profile =
+    document.querySelector(
+        ".profile-area"
+    );
+
+
+document.addEventListener(
+    "mousemove",
+    function(event){
+
+        if(window.innerWidth <= 900){
+            return;
+        }
+
+        const x =
+            (window.innerWidth / 2 -
+            event.clientX) / 55;
+
+        const y =
+            (window.innerHeight / 2 -
+            event.clientY) / 55;
+
+
+        profile.style.transform =
+            `translate(${x}px, ${y}px)`;
+
+    }
+);
+
+
+</script>
+
+</body>
+</html>
+```
