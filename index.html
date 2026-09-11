@@ -21,6 +21,7 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#060910">
 
 <title>Muhammad Zain | AWS Cloud & DevOps Engineer</title>
 
@@ -65,9 +66,26 @@ html{
     --green:#36dc83;
 
     --white:#fff;
+    --nav-bg:rgba(6,9,16,.82);
 
     --cursor-x:50%;
     --cursor-y:50%;
+}
+
+html[data-theme="light"]{
+    --bg:#f5f7ff;
+    --bg2:#edf1fb;
+    --card:#ffffff;
+    --card2:#f7f9ff;
+    --border:rgba(31,48,81,.13);
+    --text:#172033;
+    --muted:#5f6c80;
+    --primary:#526ee8;
+    --primary2:#815ae8;
+    --cyan:#1589b8;
+    --green:#18995c;
+    --white:#fff;
+    --nav-bg:rgba(245,247,255,.84);
 }
 
 body{
@@ -245,7 +263,7 @@ nav{
     right:0;
     height:76px;
     z-index:1000;
-    background:rgba(6,9,16,.82);
+    background:var(--nav-bg);
     backdrop-filter:blur(20px);
     border-bottom:1px solid rgba(255,255,255,.06);
 }
@@ -313,6 +331,104 @@ nav{
     background:rgba(113,143,255,.09);
     box-shadow:0 0 25px rgba(113,143,255,.12);
 }
+
+.nav-actions{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.theme-toggle,
+.menu-toggle{
+    width:38px;
+    height:38px;
+    display:inline-grid;
+    place-items:center;
+    border:1px solid var(--border);
+    border-radius:10px;
+    color:var(--text);
+    background:transparent;
+    cursor:pointer;
+    transition:background .25s, border-color .25s, transform .25s;
+}
+
+.theme-toggle:hover,
+.menu-toggle:hover{
+    background:rgba(113,143,255,.12);
+    border-color:var(--primary);
+    transform:translateY(-2px);
+}
+
+.theme-toggle svg{
+    width:18px;
+    height:18px;
+    fill:none;
+    stroke:currentColor;
+    stroke-width:1.8;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+}
+
+.theme-toggle .moon-icon{ display:block; }
+.theme-toggle .sun-icon{ display:none; }
+html[data-theme="light"] .theme-toggle .moon-icon{ display:none; }
+html[data-theme="light"] .theme-toggle .sun-icon{ display:block; }
+
+.menu-toggle{
+    display:none;
+    font-size:21px;
+    font-weight:700;
+    line-height:1;
+    letter-spacing:1px;
+}
+
+html[data-theme="light"] body{
+    background:
+        radial-gradient(circle at var(--cursor-x) var(--cursor-y), rgba(82,110,232,.12), transparent 20%),
+        radial-gradient(circle at 80% 5%, rgba(82,110,232,.12), transparent 28%),
+        radial-gradient(circle at 5% 35%, rgba(129,90,232,.08), transparent 28%),
+        var(--bg);
+}
+
+html[data-theme="light"] .profile-image-wrap,
+html[data-theme="light"] .terminal{
+    background:#e9eef9;
+}
+
+html[data-theme="light"] .tech-float{
+    background:rgba(255,255,255,.88);
+    color:#45536a;
+    box-shadow:0 10px 35px rgba(48,66,105,.14);
+}
+
+html[data-theme="light"] .skill,
+html[data-theme="light"] .project{
+    background:linear-gradient(145deg, #fff, #f1f4fb);
+}
+
+html[data-theme="light"] .stat{
+    background:linear-gradient(145deg, #fff, #f4f6fc);
+}
+
+html[data-theme="light"] .experience{
+    background:rgba(255,255,255,.72);
+}
+
+html[data-theme="light"] .experience:hover,
+html[data-theme="light"] .stat:hover,
+html[data-theme="light"] .skill:hover,
+html[data-theme="light"] .project:hover,
+html[data-theme="light"] .service:hover{
+    background:linear-gradient(145deg, #fff, #eaf0ff) !important;
+    box-shadow:0 18px 45px rgba(84,116,216,.16) !important;
+}
+
+html[data-theme="light"] .hero-role,
+html[data-theme="light"] .experience-company{
+    color:#3e4b60;
+}
+
+html[data-theme="light"] .stat strong{ color:var(--text); }
 
 
 /* =========================================================
@@ -674,18 +790,42 @@ nav{
 
 .section-label{
     color:var(--primary);
-    font-size:11px;
-    font-weight:750;
+    font-size:clamp(15px,1.45vw,20px);
+    font-weight:800;
     text-transform:uppercase;
-    letter-spacing:2px;
-    margin-bottom:12px;
+    letter-spacing:1.1px;
+    margin-bottom:14px;
 }
 
 .section-title{
-    font-size:clamp(30px,4vw,48px);
+    font-size:clamp(38px,4.8vw,64px);
     line-height:1.08;
-    letter-spacing:-1.5px;
-    margin-bottom:16px;
+    letter-spacing:-2px;
+    margin-bottom:18px;
+}
+
+/* Larger, individually animated headings for sections 01–06. */
+.reveal .section-label,
+.reveal .section-title{
+    opacity:0;
+}
+
+.reveal.active .section-label{
+    animation:sectionLabelIn .65s .12s cubic-bezier(.16,1,.3,1) forwards;
+}
+
+.reveal.active .section-title{
+    animation:sectionTitleIn .8s .2s cubic-bezier(.16,1,.3,1) forwards;
+}
+
+@keyframes sectionLabelIn{
+    from{ opacity:0; transform:translateX(-24px); letter-spacing:5px; }
+    to{ opacity:1; transform:translateX(0); letter-spacing:1.1px; }
+}
+
+@keyframes sectionTitleIn{
+    from{ opacity:0; transform:translateY(28px) scale(.96); filter:blur(7px); }
+    to{ opacity:1; transform:translateY(0) scale(1); filter:blur(0); }
 }
 
 .section-description{
@@ -853,10 +993,292 @@ nav{
 }
 
 .project{
-    padding:28px;
+    padding:0 0 26px;
     background:linear-gradient(145deg, #111a25, #0c131c);
     border:1px solid var(--border);
-    border-radius:16px;
+    border-radius:18px;
+    transform-style:preserve-3d;
+    perspective:1200px;
+    min-height:100%;
+}
+
+.project::after{
+    display:none;
+}
+
+.project:hover{
+    transform:perspective(1200px) rotateX(3deg) rotateY(-2deg) translateY(-10px) !important;
+    background:linear-gradient(145deg, #16233a, #0d1625) !important;
+}
+
+.project-content{
+    padding:24px 26px 0;
+}
+
+.project-visual{
+    position:relative;
+    height:auto;
+    aspect-ratio:16 / 10;
+    overflow:hidden;
+    isolation:isolate;
+    border-radius:17px 17px 0 0;
+    border-bottom:1px solid var(--border);
+    background:#0a101b;
+    transform:translateZ(18px);
+}
+
+.project-image{
+    position:absolute;
+    inset:0;
+    z-index:1;
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+    object-position:center;
+    transition:transform .6s cubic-bezier(.16,1,.3,1), filter .4s ease;
+}
+
+.project:hover .project-image{
+    transform:scale(1.055);
+    filter:saturate(1.08) contrast(1.03);
+}
+
+.project-visual::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:-1;
+    background:radial-gradient(circle at 75% 20%, rgba(129,90,232,.42), transparent 34%), radial-gradient(circle at 22% 85%, rgba(21,137,184,.3), transparent 42%);
+}
+
+.mockup-window{
+    position:absolute;
+    inset:25px 23px 22px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:11px;
+    background:rgba(6,11,20,.9);
+    box-shadow:0 18px 38px rgba(0,0,0,.38), inset 0 1px rgba(255,255,255,.08);
+    transform:perspective(650px) rotateX(7deg) rotateY(-4deg);
+    transition:transform .45s cubic-bezier(.16,1,.3,1), box-shadow .45s;
+}
+
+.project:hover .mockup-window{
+    transform:perspective(650px) rotateX(1deg) rotateY(0) translateY(-5px);
+    box-shadow:0 25px 42px rgba(0,0,0,.45), 0 0 28px rgba(113,143,255,.26);
+}
+
+.mockup-bar{
+    display:flex;
+    align-items:center;
+    gap:5px;
+    height:25px;
+    padding:0 10px;
+    background:rgba(255,255,255,.055);
+    border-bottom:1px solid rgba(255,255,255,.07);
+}
+
+.mockup-bar i{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#f87171;
+}
+
+.mockup-bar i:nth-child(2){ background:#fbbf24; }
+.mockup-bar i:nth-child(3){ background:#4ade80; }
+
+.mockup-screen{
+    position:relative;
+    height:calc(100% - 25px);
+    overflow:hidden;
+}
+
+.mockup-screen::before,
+.mockup-screen::after{
+    content:"";
+    position:absolute;
+}
+
+.visual-qiraa .mockup-screen{
+    background:linear-gradient(145deg, #141136, #071b29);
+}
+
+.visual-qiraa .mockup-screen::before{
+    width:68%;
+    height:58%;
+    left:16%;
+    top:20%;
+    border-radius:12px;
+    border:1px solid rgba(174,137,255,.6);
+    background:repeating-linear-gradient(90deg, transparent 0 11px, rgba(91,219,255,.18) 12px 14px), linear-gradient(180deg, rgba(113,143,255,.25), rgba(129,90,232,.08));
+    box-shadow:0 0 32px rgba(137,97,255,.34);
+}
+
+.visual-qiraa .mockup-screen::after{
+    left:28%;
+    bottom:21%;
+    width:45%;
+    height:2px;
+    background:#74e0ff;
+    box-shadow:-12px -13px 0 #a182ff, 12px 10px 0 #74e0ff, 25px -8px 0 #a182ff, -27px 8px 0 #74e0ff;
+}
+
+.visual-devops .mockup-screen{
+    background:linear-gradient(135deg, #081b27, #12263d);
+}
+
+.visual-devops .mockup-screen::before{
+    inset:17% 13%;
+    border-radius:10px;
+    background:linear-gradient(90deg, rgba(71,214,255,.8) 0 19%, transparent 19% 24%, rgba(129,90,232,.84) 24% 46%, transparent 46% 51%, rgba(59,220,139,.82) 51% 75%, transparent 75% 80%, rgba(71,214,255,.65) 80% 100%);
+    opacity:.8;
+    filter:drop-shadow(0 0 14px rgba(84,216,255,.3));
+}
+
+.visual-devops .mockup-screen::after{
+    width:68%;
+    height:1px;
+    left:16%;
+    top:50%;
+    background:rgba(218,239,255,.7);
+    box-shadow:0 -18px 0 rgba(218,239,255,.25), 0 18px 0 rgba(218,239,255,.25);
+}
+
+.visual-laravel .mockup-screen{
+    background:linear-gradient(135deg, #17213b, #0b2c30);
+}
+
+.visual-laravel .mockup-screen::before{
+    left:12%;
+    top:15%;
+    width:35%;
+    height:71%;
+    border-radius:7px;
+    background:linear-gradient(#fb7185 0 18%, rgba(255,255,255,.16) 18% 27%, transparent 27% 40%, rgba(255,255,255,.1) 40% 47%, transparent 47% 62%, rgba(255,255,255,.1) 62% 69%, transparent 69%);
+}
+
+.visual-laravel .mockup-screen::after{
+    right:12%;
+    top:22%;
+    width:39%;
+    height:56%;
+    border-radius:9px;
+    background:linear-gradient(145deg, rgba(74,222,128,.8), rgba(21,137,184,.78));
+    box-shadow:0 0 0 8px rgba(255,255,255,.07), 0 0 26px rgba(74,222,128,.28);
+}
+
+.visual-linux .mockup-screen{
+    padding:15px;
+    background:#07120e;
+}
+
+.visual-linux .mockup-screen::before{
+    top:21%;
+    left:12%;
+    width:66%;
+    height:5px;
+    background:#65d891;
+    box-shadow:0 16px 0 #4a9fff, 0 32px 0 #65d891, 0 48px 0 #4a9fff, 42px 16px 0 #9f79ff, 24px 48px 0 #9f79ff;
+}
+
+.visual-linux .mockup-screen::after{
+    right:10%;
+    bottom:13%;
+    width:22%;
+    height:22%;
+    border:1px solid rgba(101,216,145,.68);
+    border-radius:5px;
+    box-shadow:0 0 19px rgba(101,216,145,.26);
+}
+
+.project-number{
+    margin-bottom:10px;
+}
+
+.project h3{
+    transform:translateZ(13px);
+}
+
+.project p{
+    min-height:67px;
+}
+
+.project-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:22px;
+    transform:translateZ(16px);
+}
+
+.project-action{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:7px;
+    min-height:39px;
+    padding:9px 13px;
+    border:1px solid var(--border);
+    border-radius:9px;
+    font-size:11px;
+    font-weight:750;
+    color:var(--text);
+    background:rgba(255,255,255,.04);
+    box-shadow:0 4px 0 rgba(0,0,0,.34), inset 0 1px rgba(255,255,255,.1);
+    transition:transform .22s ease, box-shadow .22s ease, background .22s ease;
+}
+
+.project-action.primary{
+    color:#fff;
+    border-color:transparent;
+    background:linear-gradient(135deg, var(--primary), var(--primary2));
+    box-shadow:0 5px 0 #4a56b5, 0 12px 24px rgba(113,143,255,.24);
+}
+
+.project-action:hover{
+    transform:translateY(-4px) translateZ(8px);
+    box-shadow:0 8px 0 rgba(0,0,0,.24), 0 15px 26px rgba(113,143,255,.24);
+}
+
+.project-action.primary:hover{
+    box-shadow:0 8px 0 #4a56b5, 0 17px 30px rgba(113,143,255,.34);
+}
+
+.project-action:active{
+    transform:translateY(3px);
+    box-shadow:0 1px 0 rgba(0,0,0,.3);
+}
+
+html[data-theme="light"] .project{
+    background:linear-gradient(145deg, #fff, #eef3fb);
+    box-shadow:0 10px 28px rgba(45,65,105,.08);
+}
+
+html[data-theme="light"] .project:hover{
+    background:linear-gradient(145deg, #fff, #e4edff) !important;
+    box-shadow:0 22px 42px rgba(70,96,163,.17) !important;
+}
+
+html[data-theme="light"] .project-action{
+    background:#fff;
+    box-shadow:0 4px 0 rgba(67,86,123,.18), inset 0 1px rgba(255,255,255,.9);
+}
+
+html[data-theme="light"] .project-action.primary{
+    color:#fff;
+    background:linear-gradient(135deg, var(--primary), var(--primary2));
+}
+
+.contact-box .section-label{
+    font-size:11px;
+    letter-spacing:2px;
+}
+
+.reveal.active .contact-box .section-label{
+    opacity:1;
+    animation:none;
 }
 
 .project-number{
@@ -1115,24 +1537,45 @@ footer{
 ========================================================= */
 
 @media(max-width:900px){
-    /* Clean horizontal scrollable menu for mobile */
-    .nav-links{
-        display:flex;
-        gap:14px;
-        overflow-x:auto;
-        white-space:nowrap;
-        padding:4px 0;
-        -webkit-overflow-scrolling:touch;
-        scrollbar-width:none;
+    .nav-inner{
+        position:relative;
     }
-    .nav-links::-webkit-scrollbar{
+
+    /* The links live inside the three-dots menu on smaller screens. */
+    .nav-links{
+        position:absolute;
+        top:calc(100% + 10px);
+        right:0;
+        width:min(240px, calc(100vw - 10%));
         display:none;
+        flex-direction:column;
+        gap:0;
+        padding:8px;
+        background:var(--card);
+        border:1px solid var(--border);
+        border-radius:14px;
+        box-shadow:0 18px 45px rgba(0,0,0,.22);
+    }
+    .nav-links.is-open{
+        display:flex;
     }
     .nav-links a{
-        font-size:11.5px;
+        display:block;
+        padding:11px 12px;
+        border-radius:8px;
+        font-size:13px;
+    }
+    .nav-links a:hover{
+        background:rgba(113,143,255,.10);
+    }
+    .nav-links a::after{
+        display:none;
     }
     .nav-contact{
         display:none;
+    }
+    .menu-toggle{
+        display:inline-grid;
     }
 
     .hero{
@@ -1180,6 +1623,23 @@ footer{
 
     .projects{
         grid-template-columns:1fr;
+    }
+
+    .project-visual{
+        aspect-ratio:16 / 10;
+    }
+
+    .project-content{
+        padding:21px 19px 0;
+    }
+
+    .project-actions{
+        gap:8px;
+    }
+
+    .project-action{
+        flex:1;
+        padding:9px 10px;
     }
 
     .services{
@@ -1323,7 +1783,7 @@ footer{
     M<span>Z</span>.
 </a>
 
-<ul class="nav-links">
+<ul class="nav-links" id="navLinks">
 <li><a href="#about">About</a></li>
 <li><a href="#skills">Skills</a></li>
 <li><a href="#projects">Projects</a></li>
@@ -1331,7 +1791,14 @@ footer{
 <li><a href="#contact">Contact</a></li>
 </ul>
 
-<a href="#contact" class="nav-contact">Let's Talk</a>
+<div class="nav-actions">
+    <a href="#contact" class="nav-contact">Let's Talk</a>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode" title="Switch to light mode">
+        <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"/></svg>
+        <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 2.5v2M12 19.5v2M21.5 12h-2M4.5 12h-2M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4M18.7 18.7l-1.4-1.4M6.7 6.7 5.3 5.3"/></svg>
+    </button>
+    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation menu" aria-controls="navLinks" aria-expanded="false">•••</button>
+</div>
 
 </div>
 </nav>
@@ -1552,77 +2019,67 @@ I'm passionate about building scalable, secure and automated cloud infrastructur
 
 <div class="projects">
 
-<a href="https://qiraa-h.web.app/" target="_blank" rel="noopener noreferrer" class="project-link">
 <article class="project">
-<div class="project-number">PROJECT 01</div>
-<h3>Qira'a — AI-Driven Arabic Qirat Learning Platform</h3>
-<p>
-Developed an AI-powered platform providing personalized Tajweed feedback using speech recognition and deep learning. Integrated OpenAI Whisper and custom Quranic speech models.
-</p>
-<div class="tags">
-<span class="tag">React JS</span>
-<span class="tag">Firebase</span>
-<span class="tag">JavaScript</span>
-<span class="tag">Whisper AI</span>
-<span class="tag">Speech Recognition</span>
-</div>
-</article>
-</a>
-
-
-
-<a href="https://github.com/zain5103/devops-assessments.git" target="_blank" rel="noopener noreferrer" class="project-link">
-    <article class="project">
-<div class="project-number">PROJECT 02</div>
-<h3>Enterprise DevOps Deployment: Terraform IaC & Jenkins CI/CD</h3>
-<p>
-Provisioned a 100% reusable AWS infrastructure (VPC, ALB, EC2, RDS) using modular Terraform with remote state management. Implemented an automated Jenkins CI/CD pipeline integrating PHPUnit testing, optimized Docker containerization, and instant health-check rollbacks. Configured automated S3 database disaster recovery runbooks and production-ready Kubernetes manifests for high availability
-</p>
-<div class="tags">
-<span class="tag">Terraform (IAC)</span>
-<span class="tag">AWS EC2</span>
-<span class="tag">ALB</span>
-<span class="tag">Route 53</span>
-<span class="tag">CloudFront</span>
-<span class="tag">ACM</span>
-<span class="tag">RDS</span>
-<span class="tag">IAM</span>
-</div>
+    <div class="project-visual visual-qiraa">
+        <img class="project-image" src="images/Project1.jpeg" alt="Qira'a AI-powered Quran recitation learning platform preview" loading="eager">
+    </div>
+    <div class="project-content">
+        <div class="project-number">PROJECT 01</div>
+        <h3>Qira'a — AI-Driven Arabic Qirat Learning Platform</h3>
+        <div class="tags"><span class="tag">React JS</span><span class="tag">Firebase</span><span class="tag">JavaScript</span><span class="tag">Whisper AI</span><span class="tag">Speech Recognition</span></div>
+        <p>AI-powered personalized Tajweed feedback using speech recognition, OpenAI Whisper and custom Quranic speech models.</p>
+        <div class="project-actions">
+            <a href="https://qiraa-h.web.app/" target="_blank" rel="noopener noreferrer" class="project-action primary">◉ Live Demo</a>
+            <a href="https://qiraa-h.web.app/" target="_blank" rel="noopener noreferrer" class="project-action">↗ View Project</a>
+        </div>
+    </div>
 </article>
 
-
-</a>
-
-
-
-
-<a href="https://github.com/ZainCloud009/IdeaProj.git" target="_blank" rel="noopener noreferrer" class="project-link">
-    <article class="project">
-<div class="project-number">PROJECT 03</div>
-<h3>Laravel Project Deployment on AWS</h3>
-<p>
-Deployed a Laravel application on an AWS EC2 server using Terraform for Infrastructure as Code and GitHub Actions for CI/CD automation.
-The infrastructure is fully reproducible, allowing DevOps engineers to recreate the AWS environment whenever required using the Terraform configuration.
-Technologies: Laravel, AWS EC2, Terraform, GitHub Actions, Linux, CI/CD
-</p>
-<div class="tags">
-<span class="tag">GitHub Actions</span>
-<span class="tag">CI/CD Pipeline</span>
-<span class="tag">AWS EC2</span>
-<span class="tag">Terraform</span>
-<span class="tag">Git</span>
-</div>
-</article>
-
-</a>
 
 
 <article class="project">
-<div class="project-number">PROJECT 03</div>
+    <div class="project-visual visual-devops">
+        <img class="project-image" src="images/Project2.jpeg" alt="Enterprise DevOps deployment architecture with Terraform and Jenkins preview" loading="lazy">
+    </div>
+    <div class="project-content">
+        <div class="project-number">PROJECT 02</div>
+        <h3>Enterprise DevOps Deployment: Terraform IaC & Jenkins CI/CD</h3>
+        <div class="tags"><span class="tag">Terraform</span><span class="tag">AWS EC2</span><span class="tag">ALB</span><span class="tag">RDS</span><span class="tag">Jenkins</span><span class="tag">Docker</span></div>
+        <p>Reusable AWS infrastructure with modular Terraform, Jenkins CI/CD, Docker, testing, automated rollbacks and S3 disaster recovery.</p>
+        <div class="project-actions">
+            <a href="https://github.com/zain5103/devops-assessments.git" target="_blank" rel="noopener noreferrer" class="project-action primary">⌘ Source Code</a>
+            <a href="https://github.com/zain5103/devops-assessments.git" target="_blank" rel="noopener noreferrer" class="project-action">↗ View Architecture</a>
+        </div>
+    </div>
+</article>
+
+
+
+
+<article class="project">
+    <div class="project-visual visual-laravel">
+        <img class="project-image" src="images/Project3.jpeg" alt="Laravel application deployment on AWS preview" loading="lazy">
+    </div>
+    <div class="project-content">
+        <div class="project-number">PROJECT 03</div>
+        <h3>Laravel Project Deployment on AWS</h3>
+        <div class="tags"><span class="tag">GitHub Actions</span><span class="tag">CI/CD Pipeline</span><span class="tag">AWS EC2</span><span class="tag">Terraform</span><span class="tag">Git</span></div>
+        <p>Laravel deployed on AWS EC2 with reproducible Terraform infrastructure and a GitHub Actions CI/CD delivery workflow.</p>
+        <div class="project-actions">
+            <a href="https://github.com/ZainCloud009/IdeaProj.git" target="_blank" rel="noopener noreferrer" class="project-action primary">⌘ Source Code</a>
+            <a href="https://github.com/ZainCloud009/IdeaProj.git" target="_blank" rel="noopener noreferrer" class="project-action">↗ View Deployment</a>
+        </div>
+    </div>
+</article>
+
+
+<article class="project">
+<div class="project-visual visual-linux" role="img" aria-label="Linux administration and Bash automation preview">
+    <div class="mockup-window"><div class="mockup-bar"><i></i><i></i><i></i></div><div class="mockup-screen"></div></div>
+</div>
+<div class="project-content">
+<div class="project-number">PROJECT 04</div>
 <h3>Linux Administration & Bash Automation</h3>
-<p>
-Administered Amazon Linux servers and configured Apache Virtual Hosts, PHP, Node.js, and MySQL. Developed automated Bash scripts for DB backups, log archiving, and S3 sync via Cron.
-</p>
 <div class="tags">
 <span class="tag">Linux</span>
 <span class="tag">Amazon Linux</span>
@@ -1631,6 +2088,12 @@ Administered Amazon Linux servers and configured Apache Virtual Hosts, PHP, Node
 <span class="tag">Cron</span>
 <span class="tag">S3</span>
 <span class="tag">MySQL</span>
+</div>
+<p>Automated Amazon Linux administration, database backups, log archiving and scheduled S3 synchronization with Bash and Cron.</p>
+<div class="project-actions">
+    <a href="#contact" class="project-action primary">✦ Discuss Project</a>
+    <a href="#skills" class="project-action">↗ View Skills</a>
+</div>
 </div>
 </article>
 
@@ -1784,6 +2247,67 @@ muhammadzain8489@gmail.com &nbsp; · &nbsp; +92 324 7474009
 <script>
 // CURRENT YEAR
 document.getElementById("year").textContent = new Date().getFullYear();
+
+// THEME TOGGLE
+const themeToggle = document.getElementById("themeToggle");
+const themeColor = document.querySelector('meta[name="theme-color"]');
+
+function setTheme(theme){
+    document.documentElement.dataset.theme = theme;
+    const isLight = theme === "light";
+    themeToggle.setAttribute("aria-label", isLight ? "Switch to dark mode" : "Switch to light mode");
+    themeToggle.title = isLight ? "Switch to dark mode" : "Switch to light mode";
+    themeColor.setAttribute("content", isLight ? "#f5f7ff" : "#060910");
+}
+
+try{
+    const savedTheme = localStorage.getItem("portfolio-theme");
+    if(savedTheme === "light" || savedTheme === "dark"){
+        setTheme(savedTheme);
+    }
+}catch(error){
+    // The site still works when browser storage is unavailable.
+}
+
+themeToggle.addEventListener("click", function(){
+    const nextTheme = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+    setTheme(nextTheme);
+    try{
+        localStorage.setItem("portfolio-theme", nextTheme);
+    }catch(error){}
+});
+
+// MOBILE THREE-DOTS NAVIGATION
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+function closeMobileMenu(){
+    navLinks.classList.remove("is-open");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Open navigation menu");
+}
+
+menuToggle.addEventListener("click", function(){
+    const isOpen = navLinks.classList.toggle("is-open");
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+    menuToggle.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
+});
+
+navLinks.addEventListener("click", function(event){
+    if(event.target.closest("a")) closeMobileMenu();
+});
+
+document.addEventListener("click", function(event){
+    if(!event.target.closest(".nav-inner")) closeMobileMenu();
+});
+
+document.addEventListener("keydown", function(event){
+    if(event.key === "Escape") closeMobileMenu();
+});
+
+window.addEventListener("resize", function(){
+    if(window.innerWidth > 900) closeMobileMenu();
+});
 
 // CURSOR GLOW (DESKTOP ONLY)
 document.addEventListener("mousemove", function(event){
