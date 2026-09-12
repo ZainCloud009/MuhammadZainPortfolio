@@ -791,3 +791,58 @@ footer {
         text-align: center;
     }
 }
+
+/* =========================================================
+   SEO ANIMATED BACKLINKS
+========================================================= */
+.seo-backlink {
+    font-weight: 800;
+    color: var(--cyan);
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    padding: 1px 6px;
+    margin: 0 2px;
+    border-radius: 5px;
+    background: linear-gradient(90deg, rgba(84,216,255,.14), rgba(113,143,255,.22), rgba(84,216,255,.14));
+    background-size: 200% auto;
+    border-bottom: 2px solid var(--cyan);
+    animation: backlinkShimmer 3.5s ease infinite, backlinkPulse 2.5s ease-in-out infinite alternate;
+    transition: all .25s ease;
+}
+
+.seo-backlink:hover {
+    color: #fff;
+    border-bottom-color: var(--primary2);
+    box-shadow: 0 0 12px rgba(84,216,255,.45), 0 0 22px rgba(113,143,255,.25);
+    transform: translateY(-2px) scale(1.02);
+}
+
+html[data-theme="light"] .seo-backlink {
+    color: var(--primary);
+    background: linear-gradient(90deg, rgba(82,110,232,.12), rgba(21,137,184,.18), rgba(82,110,232,.12));
+    background-size: 200% auto;
+    border-bottom: 2px solid var(--primary);
+}
+
+html[data-theme="light"] .seo-backlink:hover {
+    color: #0c1424;
+    box-shadow: 0 2px 14px rgba(82,110,232,.25);
+}
+
+@keyframes backlinkShimmer {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes backlinkPulse {
+    0% {
+        border-bottom-color: var(--cyan);
+        box-shadow: 0 0 0px transparent;
+    }
+    100% {
+        border-bottom-color: var(--primary2);
+        box-shadow: 0 0 8px rgba(113,143,255,.25);
+    }
+}
