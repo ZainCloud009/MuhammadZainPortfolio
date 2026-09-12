@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#060910">
+    <title>Cloud Fundamentals: Hands-on AWS Exploration | Muhammad Zain</title>
+    <meta name="description" content="From cloud service models to scalable infrastructure: core AWS takeaways and hands-on explorations by Muhammad Zain.">
+    <link rel="canonical" href="https://zaincloud009.github.io/MuhammadZainPortfolio/blog-cloud-fundamentals.html">
+    <link rel="stylesheet" href="blog.css">
+</head>
+<body>
+
+<div class="background-grid"></div>
+
+<!-- NAVBAR -->
+<nav>
+<div class="container nav-inner">
+    <a href="index.html" class="logo">M<span>Z</span>.</a>
+
+    <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#skills">Skills</a></li>
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="index.html#experience">Experience</a></li>
+        <li><a href="index.html#blogs" class="active">Blogs</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+
+    <div class="nav-actions">
+        <a href="index.html#contact" class="nav-contact">Let's Talk</a>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode" title="Switch to light mode">
+            <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"/></svg>
+            <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 2.5v2M12 19.5v2M21.5 12h-2M4.5 12h-2M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4M18.7 18.7l-1.4-1.4M6.7 6.7 5.3 5.3"/></svg>
+        </button>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation menu" aria-controls="navLinks" aria-expanded="false">•••</button>
+    </div>
+</div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main>
+<div class="container">
+    
+    <div class="blog-nav-bar">
+        <a href="index.html#blogs" class="back-link">← Back to all blogs</a>
+    </div>
+
+    <article class="blog-article">
+        <div class="article-hero-badge-wrap">
+            <div class="article-eyebrow">☁ AWS Cloud Fundamentals</div>
+            <span class="article-category-tag">Cloud Architecture</span>
+        </div>
+        
+        <h1>From cloud concepts to hands-on AWS exploration.</h1>
+        <p class="article-lead">Cloud computing becomes much easier to understand when the definitions are connected to real services. In this article, I break down the foundations of cloud computing and share the key takeaways from exploring AWS through a Free Tier sandbox.</p>
+        
+        <div class="article-byline">
+            <span>By Muhammad Zain</span>
+            <span>Module 1 · Cloud Computing Foundations</span>
+            <span>8 min read</span>
+            <span>AWS EC2 · S3 · VPC · IAM</span>
+        </div>
+        
+        <div class="article-divider"></div>
+
+        <section class="article-section">
+            <h2>What cloud computing changes</h2>
+            <p>Cloud computing delivers servers, storage, databases, networking and software over the internet on demand. Instead of purchasing and maintaining physical hardware, teams can rent the capacity they need from a cloud provider and pay for what they use.</p>
+            <p>This model gives organizations the freedom to launch resources quickly, scale them when demand changes and avoid maintaining infrastructure that is no longer needed. AWS was the cloud provider explored in this module.</p>
+            <div class="article-callout">
+                <strong>Key Takeaway:</strong> Cloud platforms turn infrastructure into an on-demand programmable service, allowing technical teams to focus on shipping software and improving applications rather than managing server hardware.
+            </div>
+        </section>
+
+        <section class="article-section">
+            <h2>The three cloud service models</h2>
+            <p>Cloud services are commonly grouped by how much of the technology stack is managed by the provider versus the customer.</p>
+            <div class="service-models">
+                <div class="service-model">
+                    <div class="model-icon">I</div>
+                    <h4>IaaS</h4>
+                    <p>Infrastructure as a Service provides virtual servers, storage and networking. The customer manages the operating system, middleware and application. Examples: Amazon EC2 and EBS.</p>
+                </div>
+                <div class="service-model">
+                    <div class="model-icon">P</div>
+                    <h4>PaaS</h4>
+                    <p>Platform as a Service provides a managed environment for building and running applications without managing the lower-level infrastructure. Examples: Elastic Beanstalk and Lambda.</p>
+                </div>
+                <div class="service-model">
+                    <div class="model-icon">S</div>
+                    <h4>SaaS</h4>
+                    <p>Software as a Service delivers ready-to-use software through the internet. Examples include Gmail, Salesforce, Amazon Chime and Amazon WorkMail.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="article-section">
+            <h2>Regions, Availability Zones and virtualization</h2>
+            <p>A cloud Region is a geographic area that contains multiple isolated Availability Zones (AZs). Each Availability Zone consists of one or more discrete data centers with independent power, cooling and networking. This architectural separation makes it possible to design applications for high availability and fault tolerance.</p>
+            <p>Virtualization is the core technology behind much of Infrastructure as a Service. A hypervisor lets one physical host run multiple isolated virtual machines, enabling providers to share compute resources efficiently while keeping customer workloads securely separated.</p>
+        </section>
+
+        <section class="article-section">
+            <h2>The four building blocks I explored</h2>
+            <div class="cloud-map">
+                <div class="cloud-map-item">
+                    <span>Compute</span>
+                    <p>Processing power for workloads. Core AWS examples: Amazon EC2 virtual servers, AWS Lambda serverless functions and AWS Elastic Beanstalk managed hosting.</p>
+                </div>
+                <div class="cloud-map-item">
+                    <span>Storage</span>
+                    <p>Data persistence through Amazon S3 scalable object storage, EBS persistent block storage for EC2, and S3 Glacier for compliance archiving.</p>
+                </div>
+                <div class="cloud-map-item">
+                    <span>Networking</span>
+                    <p>Securely isolating and connecting cloud resources with Virtual Private Clouds (VPC), public and private subnets, internet gateways, route tables and Route 53 DNS.</p>
+                </div>
+                <div class="cloud-map-item">
+                    <span>Security</span>
+                    <p>Protecting identities, data and infrastructure with AWS Identity and Access Management (IAM), Security Groups, Network ACLs and encryption at rest and in transit.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="article-section">
+            <h2>Scalability, elasticity and cloud pricing</h2>
+            <p>Scalability is the planned ability to increase capacity for a growing workload, for example by using larger servers (vertical) or adding more instances (horizontal). Elasticity goes further by automatically scaling resources up and down in response to real-time traffic demand. AWS Auto Scaling is a practical example of elasticity in action.</p>
+            <ul class="article-list">
+                <li><strong>Pay-as-you-go:</strong> Pay only for the resources consumed per second or hour, without upfront capital commitment.</li>
+                <li><strong>Reserved Instances &amp; Savings Plans:</strong> Commit to a one- or three-year period to significantly reduce costs compared with on-demand pricing.</li>
+                <li><strong>Spot Instances:</strong> Take advantage of spare AWS compute capacity at up to 90% discount for fault-tolerant workloads.</li>
+                <li><strong>Free Tier:</strong> Access selected learning and light-use services without charge during the first 12 months, subject to monthly limits.</li>
+            </ul>
+        </section>
+
+        <section class="article-section">
+            <h2>Translating services across major cloud providers</h2>
+            <p>Different providers use different brand names, but the underlying cloud capabilities are often equivalent. This table helped me connect AWS terminology with Microsoft Azure and Google Cloud.</p>
+            <div class="article-table-wrap">
+                <table class="article-table">
+                    <thead>
+                        <tr>
+                            <th>Capability</th>
+                            <th>AWS</th>
+                            <th>Microsoft Azure</th>
+                            <th>Google Cloud</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Compute</strong></td>
+                            <td>Amazon EC2</td>
+                            <td>Virtual Machines</td>
+                            <td>Compute Engine</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Object storage</strong></td>
+                            <td>Amazon S3</td>
+                            <td>Blob Storage</td>
+                            <td>Cloud Storage</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Serverless</strong></td>
+                            <td>AWS Lambda</td>
+                            <td>Azure Functions</td>
+                            <td>Cloud Functions</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Identity &amp; access</strong></td>
+                            <td>AWS IAM</td>
+                            <td>Entra ID (Azure AD)</td>
+                            <td>Cloud IAM</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Free tier</strong></td>
+                            <td>12 months + always-free tier</td>
+                            <td>$200 credit / 12 months</td>
+                            <td>$300 credit / 90 days</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="article-section">
+            <h2>What I did in the AWS Free Tier sandbox</h2>
+            <p>The hands-on part of the module focused on navigating the AWS Management Console and connecting theoretical concepts with actual infrastructure configurations:</p>
+            <ul class="article-list">
+                <li><strong>EC2:</strong> Configured security groups, key pairs, and launched Linux instances within Free Tier limits.</li>
+                <li><strong>S3:</strong> Created S3 buckets, configured bucket policies, versioning, and explored life-cycle rules.</li>
+                <li><strong>VPC:</strong> Inspected default VPC configurations, routing tables, and subnets across availability zones.</li>
+                <li><strong>IAM:</strong> Created non-root IAM users with least-privilege policies, enforced MFA, and reviewed security best practices.</li>
+                <li><strong>Billing &amp; Budgets:</strong> Configured zero-spend budget alerts to actively monitor Free Tier limits and prevent unexpected costs.</li>
+            </ul>
+        </section>
+
+        <section class="article-section">
+            <h2>My biggest takeaway</h2>
+            <p>Opening the AWS Console made the relationship between cloud concepts much more concrete. EC2 clarified the IaaS model because it exposes configurable virtual infrastructure. Managed services such as Elastic Beanstalk showed how a platform approach reduces operational work, while SaaS demonstrated the experience of consuming a complete application.</p>
+            <p>At first, the sheer number of AWS services and settings felt overwhelming. Exploring EC2, S3, VPC and IAM one at a time made their individual roles clear and demonstrated how they seamlessly connect to form reliable, scalable cloud infrastructure.</p>
+        </section>
+
+        <div style="margin-top: 36px;">
+            <a href="index.html#blogs" class="back-link">← Back to all blogs</a>
+        </div>
+
+        <!-- MORE ARTICLES -->
+        <div class="more-articles-section">
+            <h3 class="more-articles-title">More articles to read</h3>
+            <div class="more-articles-grid">
+                <div class="mini-card">
+                    <div>
+                        <div class="mini-card-tag">Automation</div>
+                        <h4>Simple Bash scripts that save hours every week</h4>
+                        <p>How small, repeatable automation scripts can manage backups, logs and routine Linux administration.</p>
+                    </div>
+                    <a href="blog-bash-automation.html" class="mini-card-link">Read article <span>→</span></a>
+                </div>
+
+                <div class="mini-card">
+                    <div>
+                        <div class="mini-card-tag">CI/CD</div>
+                        <h4>Designing a CI/CD pipeline your team can trust</h4>
+                        <p>A practical overview of build checks, deployment gates and rollbacks for safer software delivery.</p>
+                    </div>
+                    <a href="blog-cicd-pipeline.html" class="mini-card-link">Read article <span>→</span></a>
+                </div>
+            </div>
+        </div>
+
+    </article>
+</div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+<div class="container footer-inner">
+    <div>© <span id="year"></span> Muhammad Zain. All rights reserved.</div>
+    <div class="socials">
+        <a href="https://github.com/ZainCloud009" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/muhammadzaindevops/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="mailto:muhammadzain8489@gmail.com">Email</a>
+    </div>
+</div>
+</footer>
+
+<script>
+// CURRENT YEAR
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// THEME TOGGLE
+const themeToggle = document.getElementById("themeToggle");
+const themeColor = document.querySelector('meta[name="theme-color"]');
+
+function setTheme(theme){
+    document.documentElement.dataset.theme = theme;
+    const isLight = theme === "light";
+    themeToggle.setAttribute("aria-label", isLight ? "Switch to dark mode" : "Switch to light mode");
+    themeToggle.title = isLight ? "Switch to dark mode" : "Switch to light mode";
+    if(themeColor) themeColor.setAttribute("content", isLight ? "#f5f7ff" : "#060910");
+}
+
+try{
+    const savedTheme = localStorage.getItem("portfolio-theme");
+    if(savedTheme === "light" || savedTheme === "dark"){
+        setTheme(savedTheme);
+    }
+}catch(e){}
+
+themeToggle.addEventListener("click", function(){
+    const nextTheme = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+    setTheme(nextTheme);
+    try{
+        localStorage.setItem("portfolio-theme", nextTheme);
+    }catch(e){}
+});
+
+// MOBILE MENU
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+function closeMobileMenu(){
+    navLinks.classList.remove("is-open");
+    menuToggle.setAttribute("aria-expanded", "false");
+}
+
+menuToggle.addEventListener("click", function(){
+    const isOpen = navLinks.classList.toggle("is-open");
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+});
+
+navLinks.addEventListener("click", function(e){
+    if(e.target.closest("a")) closeMobileMenu();
+});
+</script>
+
+</body>
+</html>

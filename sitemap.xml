@@ -8,4 +8,13 @@
       <image:title>Muhammad Zain</image:title>
     </image:image>
   </url>
+  <url>
+    <loc>https://zaincloud009.github.io/MuhammadZainPortfolio/blog-cloud-fundamentals.html</loc>
+  </url>
+  <url>
+    <loc>https://zaincloud009.github.io/MuhammadZainPortfolio/blog-bash-automation.html</loc>
+  </url>
+  <url>
+    <loc>https://zaincloud009.github.io/MuhammadZainPortfolio/blog-cicd-pipeline.html</loc>
+  </url>
 </urlset>

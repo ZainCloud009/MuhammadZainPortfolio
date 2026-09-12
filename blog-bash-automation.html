@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#060910">
+    <title>Simple Bash Scripts That Save Hours Every Week | Muhammad Zain</title>
+    <meta name="description" content="Production-ready Bash scripts for Linux administration, automated MySQL S3 backups, log rotation, and system health monitoring by Muhammad Zain.">
+    <link rel="canonical" href="https://zaincloud009.github.io/MuhammadZainPortfolio/blog-bash-automation.html">
+    <link rel="stylesheet" href="blog.css">
+</head>
+<body>
+
+<div class="background-grid"></div>
+
+<!-- NAVBAR -->
+<nav>
+<div class="container nav-inner">
+    <a href="index.html" class="logo">M<span>Z</span>.</a>
+
+    <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#skills">Skills</a></li>
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="index.html#experience">Experience</a></li>
+        <li><a href="index.html#blogs" class="active">Blogs</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+
+    <div class="nav-actions">
+        <a href="index.html#contact" class="nav-contact">Let's Talk</a>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode" title="Switch to light mode">
+            <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"/></svg>
+            <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 2.5v2M12 19.5v2M21.5 12h-2M4.5 12h-2M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4M18.7 18.7l-1.4-1.4M6.7 6.7 5.3 5.3"/></svg>
+        </button>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation menu" aria-controls="navLinks" aria-expanded="false">•••</button>
+    </div>
+</div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main>
+<div class="container">
+    
+    <div class="blog-nav-bar">
+        <a href="index.html#blogs" class="back-link">← Back to all blogs</a>
+    </div>
+
+    <article class="blog-article">
+        <div class="article-hero-badge-wrap">
+            <div class="article-eyebrow">⚡ Linux &amp; Automation</div>
+            <span class="article-category-tag">DevOps Automation</span>
+        </div>
+        
+        <h1>Simple Bash scripts that save hours every week.</h1>
+        <p class="article-lead">How small, repeatable automation scripts can help manage database backups, log cleanup, disk threshold warnings, and routine Linux server administration on AWS EC2.</p>
+        
+        <div class="article-byline">
+            <span>By Muhammad Zain</span>
+            <span>Linux Administration &amp; Automation</span>
+            <span>5 min read</span>
+            <span>Bash · AWS CLI · Cron · Linux</span>
+        </div>
+        
+        <div class="article-divider"></div>
+
+        <section class="article-section">
+            <h2>The DevOps Swiss Army Knife</h2>
+            <p>While modern tools like Ansible, Terraform, and Kubernetes get the headlines, a solid understanding of shell scripting remains one of the highest-leverage skills in cloud and DevOps engineering. When you manage Linux virtual machines on AWS EC2 or Amazon Linux, you inevitably face repetitive operational tasks: rotating bloated log files, backing up database dumps, and syncing files to remote storage.</p>
+            <p>Writing compact, robust Bash scripts and delegating them to cron jobs frees up valuable engineering hours and eliminates human error.</p>
+            <div class="article-callout">
+                <strong>Rule of thumb:</strong> If you find yourself typing the exact same sequence of terminal commands more than twice a week, wrap it in a tested Bash script.
+            </div>
+        </section>
+
+        <section class="article-section">
+            <h2>Script 1: Automated MySQL Backup with S3 Sync</h2>
+            <p>Database backups are only useful if they run consistently and are copied off the host machine immediately. This script generates a compressed database dump with a precise timestamp, uploads it directly to an Amazon S3 bucket using the AWS CLI, and deletes local dumps older than 7 days.</p>
+
+            <div class="code-box">
+                <div class="code-header">
+                    <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+                    <span>backup-mysql-s3.sh</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+                </div>
+                <pre class="code-content"><code><span class="code-comment">#!/usr/bin/env bash</span>
+<span class="code-keyword">set</span> -euo pipefail
+
+<span class="code-comment"># Configurations</span>
+<span class="code-var">TIMESTAMP</span>=$(date +<span class="code-string">"%Y%m%d_%H%M%S"</span>)
+<span class="code-var">BACKUP_DIR</span>=<span class="code-string">"/var/backups/mysql"</span>
+<span class="code-var">DB_NAME</span>=<span class="code-string">"app_production"</span>
+<span class="code-var">S3_BUCKET</span>=<span class="code-string">"s3://my-company-db-backups-secure/mysql"</span>
+<span class="code-var">BACKUP_FILE</span>=<span class="code-string">"${BACKUP_DIR}/${DB_NAME}_${TIMESTAMP}.sql.gz"</span>
+
+mkdir -p <span class="code-string">"${BACKUP_DIR}"</span>
+
+echo <span class="code-string">"==> Starting backup for ${DB_NAME} at $(date)..."</span>
+
+<span class="code-comment"># Dump database and compress on the fly</span>
+mysqldump --single-transaction --quick --routines <span class="code-string">"${DB_NAME}"</span> | gzip > <span class="code-string">"${BACKUP_FILE}"</span>
+
+echo <span class="code-string">"==> Database dump completed: ${BACKUP_FILE}"</span>
+
+<span class="code-comment"># Sync file to AWS S3 bucket</span>
+aws s3 cp <span class="code-string">"${BACKUP_FILE}"</span> <span class="code-string">"${S3_BUCKET}/${DB_NAME}_${TIMESTAMP}.sql.gz"</span> --sse AES256
+
+echo <span class="code-string">"==> Uploaded successfully to S3."</span>
+
+<span class="code-comment"># Cleanup local backups older than 7 days to preserve disk space</span>
+find <span class="code-string">"${BACKUP_DIR}"</span> -type f -name <span class="code-string">"*.sql.gz"</span> -mtime +7 -delete
+echo <span class="code-string">"==> Local retention cleaned up."</span></code></pre>
+            </div>
+        </section>
+
+        <section class="article-section">
+            <h2>Script 2: Log Archival &amp; Disk Out-of-Space Prevention</h2>
+            <p>One of the most frequent causes of unannounced server downtime is an application filling up the root partition (<code>/var/log</code> or <code>/</code>) with debug logs. The following script scans application log directories, compresses logs older than 3 days, and purges archives older than 14 days.</p>
+
+            <div class="code-box">
+                <div class="code-header">
+                    <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+                    <span>cleanup-logs.sh</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+                </div>
+                <pre class="code-content"><code><span class="code-comment">#!/usr/bin/env bash</span>
+<span class="code-keyword">set</span> -euo pipefail
+
+<span class="code-var">LOG_DIR</span>=<span class="code-string">"/var/log/application"</span>
+<span class="code-var">ARCHIVE_DIR</span>=<span class="code-string">"/var/log/application/archive"</span>
+
+mkdir -p <span class="code-string">"${ARCHIVE_DIR}"</span>
+
+echo <span class="code-string">"==> Compressing uncompressed logs older than 3 days..."</span>
+find <span class="code-string">"${LOG_DIR}"</span> -maxdepth 1 -type f -name <span class="code-string">"*.log"</span> -mtime +3 -exec gzip {} \;
+
+echo <span class="code-string">"==> Moving compressed archives..."</span>
+find <span class="code-string">"${LOG_DIR}"</span> -maxdepth 1 -type f -name <span class="code-string">"*.gz"</span> -exec mv {} <span class="code-string">"${ARCHIVE_DIR}"</span> \;
+
+echo <span class="code-string">"==> Removing archives older than 14 days..."</span>
+find <span class="code-string">"${ARCHIVE_DIR}"</span> -type f -name <span class="code-string">"*.gz"</span> -mtime +14 -delete
+
+echo <span class="code-string">"==> Disk maintenance complete. Current disk usage:"</span>
+df -h <span class="code-string">"${LOG_DIR}"</span></code></pre>
+            </div>
+        </section>
+
+        <section class="article-section">
+            <h2>Script 3: Proactive Disk &amp; Memory Health Watchdog</h2>
+            <p>Before an incident escalates to users, a lightweight Bash watchdog can evaluate disk utilization and free RAM percentage, logging an alert or triggering an automated notification if usage exceeds safe thresholds (e.g., 85%).</p>
+
+            <div class="code-box">
+                <div class="code-header">
+                    <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+                    <span>system-watchdog.sh</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+                </div>
+                <pre class="code-content"><code><span class="code-comment">#!/usr/bin/env bash</span>
+
+<span class="code-var">DISK_THRESHOLD</span>=85
+<span class="code-var">CURRENT_DISK</span>=$(df -h / | awk <span class="code-string">'NR==2 {print $5}'</span> | tr -d <span class="code-string">'%'</span>)
+
+if [ <span class="code-string">"${CURRENT_DISK}"</span> -ge <span class="code-string">"${DISK_THRESHOLD}"</span> ]; then
+    echo <span class="code-string">"[CRITICAL] Root partition disk usage is at ${CURRENT_DISK}%!"</span>
+    <span class="code-comment"># You can trigger a curl webhook to Slack or send an AWS SNS email here</span>
+else
+    echo <span class="code-string">"[HEALTHY] Disk usage is at ${CURRENT_DISK}%."</span>
+fi</code></pre>
+            </div>
+        </section>
+
+        <section class="article-section">
+            <h2>Best Practices for Production Scripts</h2>
+            <p>Writing scripts that run unsupervised at 3:00 AM requires defensive programming. Here are the core habits I incorporate into every production script:</p>
+            <ul class="article-list">
+                <li><strong><code>set -euo pipefail</code>:</strong> Exit immediately if any command returns a non-zero code (<code>-e</code>), treat uninitialized variables as errors (<code>-u</code>), and catch failures inside pipes (<code>-o pipefail</code>).</li>
+                <li><strong>Always quote variables:</strong> Wrap variables in double quotes (<code>"${MY_VAR}"</code>) to prevent unexpected word splitting and wildcard expansions.</li>
+                <li><strong>Explicit absolute paths:</strong> When running from cron, never rely on standard <code>$PATH</code>. Specify explicit binary paths (e.g. <code>/usr/bin/aws</code>) or declare <code>PATH=/usr/local/bin:/usr/bin:/bin</code> at the top.</li>
+                <li><strong>Structured logging:</strong> Pipe script output with timestamps to dedicated log files so failed executions leave an audit trail.</li>
+            </ul>
+        </section>
+
+        <section class="article-section">
+            <h2>Automating with Crontab</h2>
+            <p>To run these scripts automatically on an Amazon Linux EC2 instance, install them into <code>/usr/local/bin/</code> and register entries in the crontab:</p>
+            <div class="code-box">
+                <div class="code-header">
+                    <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+                    <span>crontab -e</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+                </div>
+                <pre class="code-content"><code><span class="code-comment"># Daily MySQL backup to AWS S3 at 02:00 AM</span>
+0 2 * * * /usr/local/bin/backup-mysql-s3.sh >> /var/log/backup-mysql.log 2>&1
+
+<span class="code-comment"># Daily log cleanup at 03:30 AM</span>
+30 3 * * * /usr/local/bin/cleanup-logs.sh >> /var/log/cleanup-logs.log 2>&1
+
+<span class="code-comment"># Hourly system health watchdog check</span>
+0 * * * * /usr/local/bin/system-watchdog.sh >> /var/log/system-watchdog.log 2>&1</code></pre>
+            </div>
+        </section>
+
+        <section class="article-section">
+            <h2>Summary</h2>
+            <p>Automating repetitive maintenance tasks with clean, error-tolerant Bash scripts dramatically improves server stability and frees you to work on higher-impact cloud architecture tasks. Start small, write defensively, and test every edge case.</p>
+        </section>
+
+        <div style="margin-top: 36px;">
+            <a href="index.html#blogs" class="back-link">← Back to all blogs</a>
+        </div>
+
+        <!-- MORE ARTICLES -->
+        <div class="more-articles-section">
+            <h3 class="more-articles-title">More articles to read</h3>
+            <div class="more-articles-grid">
+                <div class="mini-card">
+                    <div>
+                        <div class="mini-card-tag">AWS Cloud</div>
+                        <h4>Cloud fundamentals: a practical AWS Free Tier exploration</h4>
+                        <p>From service models to scalable infrastructure: what I learned while exploring core AWS services hands-on.</p>
+                    </div>
+                    <a href="blog-cloud-fundamentals.html" class="mini-card-link">Read article <span>→</span></a>
+                </div>
+
+                <div class="mini-card">
+                    <div>
+                        <div class="mini-card-tag">CI/CD</div>
+                        <h4>Designing a CI/CD pipeline your team can trust</h4>
+                        <p>A practical overview of build checks, deployment gates and rollbacks for safer software delivery.</p>
+                    </div>
+                    <a href="blog-cicd-pipeline.html" class="mini-card-link">Read article <span>→</span></a>
+                </div>
+            </div>
+        </div>
+
+    </article>
+</div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+<div class="container footer-inner">
+    <div>© <span id="year"></span> Muhammad Zain. All rights reserved.</div>
+    <div class="socials">
+        <a href="https://github.com/ZainCloud009" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/muhammadzaindevops/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="mailto:muhammadzain8489@gmail.com">Email</a>
+    </div>
+</div>
+</footer>
+
+<script>
+// CURRENT YEAR
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// THEME TOGGLE
+const themeToggle = document.getElementById("themeToggle");
+const themeColor = document.querySelector('meta[name="theme-color"]');
+
+function setTheme(theme){
+    document.documentElement.dataset.theme = theme;
+    const isLight = theme === "light";
+    themeToggle.setAttribute("aria-label", isLight ? "Switch to dark mode" : "Switch to light mode");
+    themeToggle.title = isLight ? "Switch to dark mode" : "Switch to light mode";
+    if(themeColor) themeColor.setAttribute("content", isLight ? "#f5f7ff" : "#060910");
+}
+
+try{
+    const savedTheme = localStorage.getItem("portfolio-theme");
+    if(savedTheme === "light" || savedTheme === "dark"){
+        setTheme(savedTheme);
+    }
+}catch(e){}
+
+themeToggle.addEventListener("click", function(){
+    const nextTheme = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+    setTheme(nextTheme);
+    try{
+        localStorage.setItem("portfolio-theme", nextTheme);
+    }catch(e){}
+});
+
+// MOBILE MENU
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+function closeMobileMenu(){
+    navLinks.classList.remove("is-open");
+    menuToggle.setAttribute("aria-expanded", "false");
+}
+
+menuToggle.addEventListener("click", function(){
+    const isOpen = navLinks.classList.toggle("is-open");
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+});
+
+navLinks.addEventListener("click", function(e){
+    if(e.target.closest("a")) closeMobileMenu();
+});
+
+// COPY CODE
+function copyCode(button){
+    const pre = button.closest(".code-box").querySelector("pre code");
+    navigator.clipboard.writeText(pre.innerText).then(() => {
+        const originalText = button.textContent;
+        button.textContent = "Copied!";
+        button.style.borderColor = "var(--green)";
+        button.style.color = "var(--green)";
+        setTimeout(() => {
+            button.textContent = originalText;
+            button.style.borderColor = "";
+            button.style.color = "";
+        }, 2000);
+    });
+}
+</script>
+
+</body>
+</html>

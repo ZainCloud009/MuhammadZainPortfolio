@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#060910">
+    <title>Designing a CI/CD Pipeline Your Team Can Trust | Muhammad Zain</title>
+    <meta name="description" content="A practical guide to building reliable CI/CD pipelines with GitHub Actions, Docker, Terraform, security gates, and automated rollbacks by Muhammad Zain.">
+    <link rel="canonical" href="https://zaincloud009.github.io/MuhammadZainPortfolio/blog-cicd-pipeline.html">
+    <link rel="stylesheet" href="blog.css">
+</head>
+<body>
+
+<div class="background-grid"></div>
+
+<!-- NAVBAR -->
+<nav>
+<div class="container nav-inner">
+    <a href="index.html" class="logo">M<span>Z</span>.</a>
+
+    <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#skills">Skills</a></li>
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="index.html#experience">Experience</a></li>
+        <li><a href="index.html#blogs" class="active">Blogs</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+
+    <div class="nav-actions">
+        <a href="index.html#contact" class="nav-contact">Let's Talk</a>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode" title="Switch to light mode">
+            <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"/></svg>
+            <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 2.5v2M12 19.5v2M21.5 12h-2M4.5 12h-2M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4M18.7 18.7l-1.4-1.4M6.7 6.7 5.3 5.3"/></svg>
+        </button>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation menu" aria-controls="navLinks" aria-expanded="false">•••</button>
+    </div>
+</div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main>
+<div class="container">
+    
+    <div class="blog-nav-bar">
+        <a href="index.html#blogs" class="back-link">← Back to all blogs</a>
+    </div>
+
+    <article class="blog-article">
+        <div class="article-hero-badge-wrap">
+            <div class="article-eyebrow">🚀 CI/CD &amp; DevOps</div>
+            <span class="article-category-tag">Pipeline Architecture</span>
+        </div>
+        
+        <h1>Designing a CI/CD pipeline your team can trust.</h1>
+        <p class="article-lead">A practical overview of build checks, deployment gates, security scanning, container packaging, and automated rollbacks for safer software delivery.</p>
+        
+        <div class="article-byline">
+            <span>By Muhammad Zain</span>
+            <span>CI/CD &amp; Cloud Delivery</span>
+            <span>6 min read</span>
+            <span>GitHub Actions · Docker · Terraform · AWS</span>
+        </div>
+        
+        <div class="article-divider"></div>
+
+        <section class="article-section">
+            <h2>The Anatomy of an Untrusted Pipeline</h2>
+            <p>Every engineering team wants to release fast, but when deployment pipelines fail intermittently, ignore test failures, or take 45 minutes to run, developers stop trusting them. A broken deployment culture leads to manual SSH deployments on Friday afternoon, which inevitably cause outages.</p>
+            <p>A reliable Continuous Integration and Continuous Deployment (CI/CD) workflow acts as a predictable quality filter: catching syntax errors early, guaranteeing consistent Docker artifacts, and providing instant rollbacks when production health checks fail.</p>
+            <div class="article-callout">
+                <strong>Core Philosophy:</strong> Pipelines should fail fast, run in parallel wherever possible, and produce immutable artifacts (Docker images) that are promoted from staging to production without rebuilding.
+            </div>
+        </section>
+
+        <section class="article-section">
+            <h2>The Six Essential Pipeline Stages</h2>
+            <div class="cloud-map">
+                <div class="cloud-map-item">
+                    <span>Stage 1: Lint &amp; Syntax</span>
+                    <p>Static analysis, format enforcement, and Git commit hook validation to catch simple flaws before spinning up heavier test runners.</p>
+                </div>
+                <div class="cloud-map-item">
+                    <span>Stage 2: Unit &amp; Integration Tests</span>
+                    <p>Automated test suites running against disposable ephemeral database containers (e.g., MySQL or Redis services in GitHub Actions).</p>
+                </div>
+                <div class="cloud-map-item">
+                    <span>Stage 3: Vulnerability Scanning</span>
+                    <p>Docker container image scanning using Trivy or Snyk to prevent pushing known CVE vulnerabilities or insecure OS packages.</p>
+                </div>
+                <div class="cloud-map-item">
+                    <span>Stage 4: IaC Verification</span>
+                    <p>Terraform format validation, linting (tflint), and <code>terraform plan</code> verification against target AWS infrastructure.</p>
+                </div>
+                <div class="cloud-map-item">
+                    <span>Stage 5: Staging Smoke Tests</span>
+                    <p>Deploying to a staging mirror environment, validating database migrations, and executing automated API smoke tests.</p>
+                </div>
+                <div class="cloud-map-item">
+                    <span>Stage 6: Zero-Downtime Rollout</span>
+                    <p>Automated deployment using rolling updates or Blue/Green environments behind an AWS Application Load Balancer.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="article-section">
+            <h2>Production GitHub Actions Workflow</h2>
+            <p>Below is a production-tested GitHub Actions workflow configuration demonstrating parallel test execution, Docker build caching, and automated deployment:</p>
+
+            <div class="code-box">
+                <div class="code-header">
+                    <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+                    <span>.github/workflows/deploy.yml</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+                </div>
+                <pre class="code-content"><code><span class="code-keyword">name</span>: <span class="code-string">Production CI/CD Delivery</span>
+
+<span class="code-keyword">on</span>:
+  <span class="code-keyword">push</span>:
+    <span class="code-keyword">branches</span>: [ <span class="code-string">"main"</span> ]
+
+<span class="code-keyword">jobs</span>:
+  <span class="code-comment"># JOB 1: Test & Code Quality</span>
+  <span class="code-func">test</span>:
+    <span class="code-keyword">runs-on</span>: ubuntu-latest
+    <span class="code-keyword">steps</span>:
+      - <span class="code-keyword">name</span>: Checkout repository
+        <span class="code-keyword">uses</span>: actions/checkout@v4
+
+      - <span class="code-keyword">name</span>: Run Linters & Tests
+        <span class="code-keyword">run</span>: |
+          echo "Running unit test suite..."
+          npm ci && npm test
+
+  <span class="code-comment"># JOB 2: Build & Push Docker Image</span>
+  <span class="code-func">build-and-scan</span>:
+    <span class="code-keyword">needs</span>: test
+    <span class="code-keyword">runs-on</span>: ubuntu-latest
+    <span class="code-keyword">steps</span>:
+      - <span class="code-keyword">name</span>: Checkout code
+        <span class="code-keyword">uses</span>: actions/checkout@v4
+
+      - <span class="code-keyword">name</span>: Configure AWS credentials
+        <span class="code-keyword">uses</span>: aws-actions/configure-aws-credentials@v4
+        <span class="code-keyword">with</span>:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - <span class="code-keyword">name</span>: Build Docker Image
+        <span class="code-keyword">run</span>: |
+          IMAGE_TAG=${{ github.sha }}
+          docker build -t app:${IMAGE_TAG} .
+
+      - <span class="code-keyword">name</span>: Scan Docker image for vulnerabilities with Trivy
+        <span class="code-keyword">uses</span>: aquasecurity/trivy-action@master
+        <span class="code-keyword">with</span>:
+          image-ref: 'app:${{ github.sha }}'
+          severity: 'CRITICAL,HIGH'
+          exit-code: '1'
+
+  <span class="code-comment"># JOB 3: Deploy to AWS EC2 / ECS</span>
+  <span class="code-func">deploy</span>:
+    <span class="code-keyword">needs</span>: build-and-scan
+    <span class="code-keyword">runs-on</span>: ubuntu-latest
+    <span class="code-keyword">steps</span>:
+      - <span class="code-keyword">name</span>: Deploy Application
+        <span class="code-keyword">run</span>: |
+          echo "Triggering zero-downtime deployment on AWS EC2..."</code></pre>
+            </div>
+        </section>
+
+        <section class="article-section">
+            <h2>Deployment Strategies: Choosing the Right Model</h2>
+            <p>Depending on your architecture and budget, several deployment methods can eliminate downtime:</p>
+            <ul class="article-list">
+                <li><strong>Rolling Updates:</strong> Incrementally replaces running instance containers with the new version behind an Application Load Balancer (ALB). Zero downtime and cost-effective.</li>
+                <li><strong>Blue/Green Deployments:</strong> Provisions an entire identical production environment (Green) alongside the current live version (Blue). Once green passes health checks, ALB traffic is switched instantly. Perfect for instant rollbacks.</li>
+                <li><strong>Canary Releases:</strong> Routes 5% of user traffic to the newly deployed version. If error rates remain normal for 15 minutes, traffic is scaled up to 100%.</li>
+            </ul>
+        </section>
+
+        <section class="article-section">
+            <h2>Automated Rollbacks: The Ultimate Safety Net</h2>
+            <p>Deployments must never require a panicky engineer to manually revert code at midnight. By setting up AWS CloudWatch alarms connected to ALB HTTP 5xx error codes and response latency, you can configure automatic rollbacks:</p>
+            <div class="article-callout">
+                <strong>Automation trigger:</strong> If target group health checks fail or the 5XX error rate exceeds 1% within 3 minutes of deployment, the pipeline triggers an automatic rollback to the previous known good Docker image tag.
+            </div>
+        </section>
+
+        <section class="article-section">
+            <h2>Key Takeaways</h2>
+            <p>Building a trusted pipeline is an iterative process. Focus on speed, automated safety checks, and immutable container artifacts. When developers know the pipeline will catch flaws and can safely deploy without breaking production, release frequency skyrockets.</p>
+        </section>
+
+        <div style="margin-top: 36px;">
+            <a href="index.html#blogs" class="back-link">← Back to all blogs</a>
+        </div>
+
+        <!-- MORE ARTICLES -->
+        <div class="more-articles-section">
+            <h3 class="more-articles-title">More articles to read</h3>
+            <div class="more-articles-grid">
+                <div class="mini-card">
+                    <div>
+                        <div class="mini-card-tag">AWS Cloud</div>
+                        <h4>Cloud fundamentals: a practical AWS Free Tier exploration</h4>
+                        <p>From service models to scalable infrastructure: what I learned while exploring core AWS services hands-on.</p>
+                    </div>
+                    <a href="blog-cloud-fundamentals.html" class="mini-card-link">Read article <span>→</span></a>
+                </div>
+
+                <div class="mini-card">
+                    <div>
+                        <div class="mini-card-tag">Automation</div>
+                        <h4>Simple Bash scripts that save hours every week</h4>
+                        <p>How small, repeatable automation scripts can manage backups, logs and routine Linux administration.</p>
+                    </div>
+                    <a href="blog-bash-automation.html" class="mini-card-link">Read article <span>→</span></a>
+                </div>
+            </div>
+        </div>
+
+    </article>
+</div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+<div class="container footer-inner">
+    <div>© <span id="year"></span> Muhammad Zain. All rights reserved.</div>
+    <div class="socials">
+        <a href="https://github.com/ZainCloud009" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/muhammadzaindevops/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="mailto:muhammadzain8489@gmail.com">Email</a>
+    </div>
+</div>
+</footer>
+
+<script>
+// CURRENT YEAR
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// THEME TOGGLE
+const themeToggle = document.getElementById("themeToggle");
+const themeColor = document.querySelector('meta[name="theme-color"]');
+
+function setTheme(theme){
+    document.documentElement.dataset.theme = theme;
+    const isLight = theme === "light";
+    themeToggle.setAttribute("aria-label", isLight ? "Switch to dark mode" : "Switch to light mode");
+    themeToggle.title = isLight ? "Switch to dark mode" : "Switch to light mode";
+    if(themeColor) themeColor.setAttribute("content", isLight ? "#f5f7ff" : "#060910");
+}
+
+try{
+    const savedTheme = localStorage.getItem("portfolio-theme");
+    if(savedTheme === "light" || savedTheme === "dark"){
+        setTheme(savedTheme);
+    }
+}catch(e){}
+
+themeToggle.addEventListener("click", function(){
+    const nextTheme = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+    setTheme(nextTheme);
+    try{
+        localStorage.setItem("portfolio-theme", nextTheme);
+    }catch(e){}
+});
+
+// MOBILE MENU
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+function closeMobileMenu(){
+    navLinks.classList.remove("is-open");
+    menuToggle.setAttribute("aria-expanded", "false");
+}
+
+menuToggle.addEventListener("click", function(){
+    const isOpen = navLinks.classList.toggle("is-open");
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+});
+
+navLinks.addEventListener("click", function(e){
+    if(e.target.closest("a")) closeMobileMenu();
+});
+
+// COPY CODE
+function copyCode(button){
+    const pre = button.closest(".code-box").querySelector("pre code");
+    navigator.clipboard.writeText(pre.innerText).then(() => {
+        const originalText = button.textContent;
+        button.textContent = "Copied!";
+        button.style.borderColor = "var(--green)";
+        button.style.color = "var(--green)";
+        setTimeout(() => {
+            button.textContent = originalText;
+            button.style.borderColor = "";
+            button.style.color = "";
+        }, 2000);
+    });
+}
+</script>
+
+</body>
+</html>
