@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#060910">
+    <title>Linux Administration & Bash Automation | Muhammad Zain</title>
+    <meta name="description" content="Automated Amazon Linux administration, database backups, log archiving and scheduled S3 synchronization with Bash and Cron by Muhammad Zain.">
+    <link rel="canonical" href="https://zaincloud009.github.io/MuhammadZainPortfolio/project-linux-automation.html">
+    <link rel="stylesheet" href="blog.css">
+</head>
+<body>
+
+<div class="background-grid"></div>
+
+<!-- NAVBAR -->
+<nav>
+<div class="container nav-inner">
+    <a href="index.html" class="logo">M<span>Z</span>.</a>
+
+    <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#projects" class="active">Projects</a></li>
+        <li><a href="index.html#skills">Skills</a></li>
+        <li><a href="index.html#experience">Experience</a></li>
+        <li><a href="index.html#blogs">Blogs</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+
+    <div class="nav-actions">
+        <a href="index.html#contact" class="nav-contact">Let's Talk</a>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode" title="Switch to light mode">
+            <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"/></svg>
+            <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 2.5v2M12 19.5v2M21.5 12h-2M4.5 12h-2M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4M18.7 18.7l-1.4-1.4M6.7 6.7 5.3 5.3"/></svg>
+        </button>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation menu" aria-controls="navLinks" aria-expanded="false">•••</button>
+    </div>
+</div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main>
+<div class="container">
+    
+    <div class="blog-nav-bar">
+        <a href="index.html#projects" class="back-link">← Back to all projects</a>
+    </div>
+
+    <article class="blog-article">
+        <div class="article-hero-badge-wrap">
+            <div class="article-eyebrow">PROJECT 04 · LINUX &amp; BASH AUTOMATION</div>
+            <span class="article-category-tag">Systems Administration</span>
+        </div>
+        
+        <h1>Linux Administration &amp; Bash Automation</h1>
+        <p class="article-lead">Automated Amazon Linux administration, proactive log management, database disaster recovery, and scheduled AWS S3 offsite synchronization powered by Bash scripting and Cron daemons.</p>
+
+        <!-- TOP ACTION BUTTONS -->
+        <div class="project-top-actions">
+            <a href="index.html#contact" class="project-action-btn primary">✦ Discuss Project</a>
+            <a href="index.html#skills" class="project-action-btn">↗ View Skills</a>
+            <a href="blog-bash-automation.html" class="project-action-btn">📖 Read Automation Blog</a>
+        </div>
+
+        <!-- TERMINAL PREVIEW VISUAL -->
+        <div class="code-box" style="margin: 28px 0 34px;">
+            <div class="code-header">
+                <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+                <span>bash-automation-suite.sh — Amazon Linux (Production)</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy Script</button>
+            </div>
+            <pre class="code-content"><code><span class="code-comment">#!/usr/bin/env bash</span>
+<span class="code-comment"># Production Backup & S3 Offsite Sync Automation</span>
+<span class="code-keyword">set</span> -euo pipefail
+
+<span class="code-var">TIMESTAMP</span>=$(date +<span class="code-string">"%Y%m%d_%H%M%S"</span>)
+<span class="code-var">BACKUP_DIR</span>=<span class="code-string">"/var/backups/production"</span>
+<span class="code-var">S3_TARGET</span>=<span class="code-string">"s3://mz-enterprise-backup-vault/daily-dumps"</span>
+
+echo <span class="code-string">"[$(date '+%T')] Initiating automated system maintenance..."</span>
+
+<span class="code-comment"># Step 1: Export compressed MySQL database</span>
+mysqldump --single-transaction --quick app_db | gzip > <span class="code-string">"${BACKUP_DIR}/app_${TIMESTAMP}.sql.gz"</span>
+
+<span class="code-comment"># Step 2: Encrypted sync to Amazon S3</span>
+aws s3 cp <span class="code-string">"${BACKUP_DIR}/app_${TIMESTAMP}.sql.gz"</span> <span class="code-string">"${S3_TARGET}/"</span> --sse AES256
+
+<span class="code-comment"># Step 3: Rotate logs and purge old archives</span>
+find /var/log/app -name <span class="code-string">"*.log"</span> -mtime +3 -exec gzip {} \;
+find /var/log/app -name <span class="code-string">"*.gz"</span> -mtime +14 -delete
+
+echo <span class="code-string">"[$(date '+%T')] System maintenance finished with 0 errors. ● Ready"</span></code></pre>
+        </div>
+
+        <!-- SPECIFICATION GRID -->
+        <div class="project-spec-grid">
+            <div class="project-spec-item">
+                <span>Role</span>
+                <strong>Linux Administrator &amp; Automation Engineer</strong>
+            </div>
+            <div class="project-spec-item">
+                <span>Platform</span>
+                <strong>Amazon Linux / Ubuntu Server</strong>
+            </div>
+            <div class="project-spec-item">
+                <span>Core Toolset</span>
+                <strong>Bash · Cron · AWS CLI · systemd · Apache</strong>
+            </div>
+        </div>
+
+        <div class="project-tags-list">
+            <span class="project-tag-pill">Linux</span>
+            <span class="project-tag-pill">Amazon Linux</span>
+            <span class="project-tag-pill">Bash Scripting</span>
+            <span class="project-tag-pill">Apache HTTP</span>
+            <span class="project-tag-pill">Cron Jobs</span>
+            <span class="project-tag-pill">AWS S3</span>
+            <span class="project-tag-pill">MySQL</span>
+            <span class="project-tag-pill">SSH Hardening</span>
+            <span class="project-tag-pill">systemd</span>
+        </div>
+
+        <div class="article-divider"></div>
+
+        <!-- DESCRIPTION SECTIONS (250-300 words) -->
+        <section class="article-section">
+            <h2>Project Overview &amp; Operational Goals</h2>
+            <p>Routine systems administration often suffers from human error when maintenance chores are executed manually. This project implements a comprehensive Linux automation suite for Amazon Linux instances, replacing manual administrative interventions with error-trapped, self-healing Bash scripts scheduled through cron daemons.</p>
+        </section>
+
+        <section class="article-section">
+            <h2>Core Automation Workflows Developed</h2>
+            <p>Three mission-critical administrative workflows were created and deployed into production:</p>
+            <ul class="article-list">
+                <li><strong>Database Backup &amp; S3 Synchronization:</strong> Scheduled nightly cron jobs dump production MySQL databases using <code>--single-transaction</code> flags, compress archives with <code>gzip</code>, and stream them directly into encrypted Amazon S3 buckets via the AWS CLI with retention lifecycle policies.</li>
+                <li><strong>Proactive Log Archival Daemon:</strong> Automatically scans <code>/var/log</code> and web application log directories, compresses logs older than 3 days, and purges archives exceeding 14 days to prevent server outages caused by full root partitions.</li>
+                <li><strong>Disk &amp; Memory Health Watchdog:</strong> Hourly scripts inspect partition utilization and available RAM, sending alerts if storage usage surpasses safe operational thresholds (85%).</li>
+            </ul>
+
+            <div class="article-callout">
+                <strong>Defensive Scripting Standard:</strong> All shell scripts enforce <code>set -euo pipefail</code>, parameter expansion validation, and trapped cleanup signals to ensure scripts fail safely without leaving orphaned lock files or incomplete archives.
+            </div>
+        </section>
+
+        <section class="article-section">
+            <h2>Server Administration &amp; Hardening</h2>
+            <p>In addition to automation scripts, complete Linux instance administration was configured:</p>
+            <ul class="article-list">
+                <li><strong>Security Hardening:</strong> Enforced SSH key-based authentication with root login disabled, non-standard port configuration, and firewall rules configured via iptables.</li>
+                <li><strong>Web Server Configuration:</strong> Installed and managed Apache HTTP Server (httpd), configuring Virtual Hosts, custom error pages, and mod_rewrite rules.</li>
+                <li><strong>Service Reliability:</strong> Created custom <code>systemd</code> service unit files with auto-restart policies on failure to ensure continuous service uptime.</li>
+            </ul>
+        </section>
+
+        <section class="article-section">
+            <h2>Key Results &amp; Efficiency Gains</h2>
+            <p>The automation suite eliminated over 6 hours of manual maintenance weekly, maintained 99.9% database backup consistency, and successfully prevented disk full alerts across all monitored Amazon Linux servers.</p>
+        </section>
+
+        <!-- BOTTOM ACTION BUTTONS -->
+        <div class="project-top-actions" style="margin-top: 40px;">
+            <a href="index.html#contact" class="project-action-btn primary">✦ Discuss Linux &amp; DevOps Opportunities</a>
+            <a href="index.html#skills" class="project-action-btn">↗ Explore Technical Skills</a>
+            <a href="index.html#projects" class="project-action-btn">← Back to All Projects</a>
+        </div>
+
+        <!-- MORE PROJECTS -->
+        <div class="more-articles-section">
+            <h3 class="more-articles-title">Explore other projects</h3>
+            <div class="more-articles-grid">
+                <div class="mini-card">
+                    <div>
+                        <div class="mini-card-tag">PROJECT 02 · CLOUD INFRASTRUCTURE</div>
+                        <h4>Enterprise DevOps Deployment: Terraform IaC &amp; Jenkins CI/CD</h4>
+                        <p>Reusable AWS infrastructure with modular Terraform, Jenkins CI/CD, Docker, and S3 disaster recovery.</p>
+                    </div>
+                    <a href="project-enterprise-devops.html" class="mini-card-link">View Project Details <span>→</span></a>
+                </div>
+
+                <div class="mini-card">
+                    <div>
+                        <div class="mini-card-tag">PROJECT 03 · WEB DEPLOYMENT</div>
+                        <h4>Laravel Project Deployment on AWS</h4>
+                        <p>Laravel deployed on AWS EC2 with reproducible Terraform IaC and GitHub Actions CI/CD pipeline.</p>
+                    </div>
+                    <a href="project-laravel-aws.html" class="mini-card-link">View Project Details <span>→</span></a>
+                </div>
+            </div>
+        </div>
+
+    </article>
+</div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+<div class="container footer-inner">
+    <div>© <span id="year"></span> Muhammad Zain. All rights reserved.</div>
+    <div class="socials">
+        <a href="https://github.com/ZainCloud009" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/muhammadzaindevops/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="mailto:muhammadzain8489@gmail.com">Email</a>
+    </div>
+</div>
+</footer>
+
+<script>
+// CURRENT YEAR
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// THEME TOGGLE
+const themeToggle = document.getElementById("themeToggle");
+const themeColor = document.querySelector('meta[name="theme-color"]');
+
+function setTheme(theme){
+    document.documentElement.dataset.theme = theme;
+    const isLight = theme === "light";
+    themeToggle.setAttribute("aria-label", isLight ? "Switch to dark mode" : "Switch to light mode");
+    themeToggle.title = isLight ? "Switch to dark mode" : "Switch to light mode";
+    if(themeColor) themeColor.setAttribute("content", isLight ? "#f5f7ff" : "#060910");
+}
+
+try{
+    const savedTheme = localStorage.getItem("portfolio-theme");
+    if(savedTheme === "light" || savedTheme === "dark"){
+        setTheme(savedTheme);
+    }
+}catch(e){}
+
+themeToggle.addEventListener("click", function(){
+    const nextTheme = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+    setTheme(nextTheme);
+    try{
+        localStorage.setItem("portfolio-theme", nextTheme);
+    }catch(e){}
+});
+
+// MOBILE MENU
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+function closeMobileMenu(){
+    navLinks.classList.remove("is-open");
+    menuToggle.setAttribute("aria-expanded", "false");
+}
+
+menuToggle.addEventListener("click", function(){
+    const isOpen = navLinks.classList.toggle("is-open");
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+});
+
+navLinks.addEventListener("click", function(e){
+    if(e.target.closest("a")) closeMobileMenu();
+});
+
+// COPY CODE
+function copyCode(button){
+    const pre = button.closest(".code-box").querySelector("pre code");
+    navigator.clipboard.writeText(pre.innerText).then(() => {
+        const originalText = button.textContent;
+        button.textContent = "Copied!";
+        button.style.borderColor = "var(--green)";
+        button.style.color = "var(--green)";
+        setTimeout(() => {
+            button.textContent = originalText;
+            button.style.borderColor = "";
+            button.style.color = "";
+        }, 2000);
+    });
+}
+</script>
+
+</body>
+</html>

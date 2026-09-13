@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#060910">
+    <title>Laravel Project Deployment on AWS | Muhammad Zain</title>
+    <meta name="description" content="Production deployment of a full-stack Laravel application on AWS EC2 with Terraform and GitHub Actions CI/CD pipeline by Muhammad Zain.">
+    <link rel="canonical" href="https://zaincloud009.github.io/MuhammadZainPortfolio/project-laravel-aws.html">
+    <link rel="stylesheet" href="blog.css">
+</head>
+<body>
+
+<div class="background-grid"></div>
+
+<!-- NAVBAR -->
+<nav>
+<div class="container nav-inner">
+    <a href="index.html" class="logo">M<span>Z</span>.</a>
+
+    <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#projects" class="active">Projects</a></li>
+        <li><a href="index.html#skills">Skills</a></li>
+        <li><a href="index.html#experience">Experience</a></li>
+        <li><a href="index.html#blogs">Blogs</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+
+    <div class="nav-actions">
+        <a href="index.html#contact" class="nav-contact">Let's Talk</a>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode" title="Switch to light mode">
+            <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"/></svg>
+            <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 2.5v2M12 19.5v2M21.5 12h-2M4.5 12h-2M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4M18.7 18.7l-1.4-1.4M6.7 6.7 5.3 5.3"/></svg>
+        </button>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation menu" aria-controls="navLinks" aria-expanded="false">•••</button>
+    </div>
+</div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main>
+<div class="container">
+    
+    <div class="blog-nav-bar">
+        <a href="index.html#projects" class="back-link">← Back to all projects</a>
+    </div>
+
+    <article class="blog-article">
+        <div class="article-hero-badge-wrap">
+            <div class="article-eyebrow">PROJECT 03 · CLOUD WEB DEPLOYMENT</div>
+            <span class="article-category-tag">Laravel &amp; AWS Infrastructure</span>
+        </div>
+        
+        <h1>Laravel Project Deployment on AWS</h1>
+        <p class="article-lead">Full-stack production deployment of a Laravel enterprise application on AWS EC2, automated through Terraform Infrastructure as Code and continuous delivery pipelines with GitHub Actions.</p>
+
+        <!-- TOP ACTION BUTTONS -->
+        <div class="project-top-actions">
+            <a href="https://github.com/ZainCloud009/IdeaProj.git" target="_blank" rel="noopener noreferrer" class="project-action-btn primary">⌘ Source Code</a>
+            <a href="https://github.com/ZainCloud009/IdeaProj.git" target="_blank" rel="noopener noreferrer" class="project-action-btn">↗ View Deployment</a>
+            <a href="index.html#contact" class="project-action-btn">✦ Discuss Project</a>
+        </div>
+
+        <!-- HERO IMAGE -->
+        <div class="project-detail-visual">
+            <img src="images/Project3.jpeg" alt="Laravel application deployment on AWS preview" loading="eager">
+        </div>
+
+        <!-- SPECIFICATION GRID -->
+        <div class="project-spec-grid">
+            <div class="project-spec-item">
+                <span>Role</span>
+                <strong>Cloud &amp; DevOps Engineer</strong>
+            </div>
+            <div class="project-spec-item">
+                <span>Cloud Platform</span>
+                <strong>AWS EC2 &amp; Linux Server</strong>
+            </div>
+            <div class="project-spec-item">
+                <span>Pipeline</span>
+                <strong>GitHub Actions &amp; Terraform</strong>
+            </div>
+        </div>
+
+        <div class="project-tags-list">
+            <span class="project-tag-pill">Laravel</span>
+            <span class="project-tag-pill">GitHub Actions</span>
+            <span class="project-tag-pill">CI/CD Pipeline</span>
+            <span class="project-tag-pill">AWS EC2</span>
+            <span class="project-tag-pill">Terraform</span>
+            <span class="project-tag-pill">Apache HTTP</span>
+            <span class="project-tag-pill">PHP 8.2</span>
+            <span class="project-tag-pill">MySQL</span>
+        </div>
+
+        <div class="article-divider"></div>
+
+        <!-- DESCRIPTION SECTIONS (250-300 words) -->
+        <section class="article-section">
+            <h2>Project Overview &amp; Deployment Scope</h2>
+            <p>Deploying dynamic PHP/Laravel applications into high-reliability cloud environments requires careful handling of web server virtualization, database connection security, automated dependency installation, and zero-downtime release workflows. This project establishes a streamlined, reproducible deployment architecture for Laravel on Amazon Web Services (AWS).</p>
+        </section>
+
+        <section class="article-section">
+            <h2>Infrastructure as Code with Terraform</h2>
+            <p>Rather than manually configuring cloud resources through the AWS web console, the entire target hosting environment was scripted with reusable Terraform manifests:</p>
+            <ul class="article-list">
+                <li><strong>Virtual Private Cloud (VPC):</strong> Dedicated public subnets with internet gateway routing and DNS hostnames enabled.</li>
+                <li><strong>Security Groups:</strong> Strict perimeter security isolating SSH access (port 22) to designated administrator IP blocks, while routing HTTP (port 80) and HTTPS (port 443) traffic through SSL certificates.</li>
+                <li><strong>Amazon EC2 Instance:</strong> Compute instance provisioned with Amazon Linux, configured with user-data bootstrap scripts to install Apache HTTP Server, PHP runtime, Composer, and MySQL dependencies automatically on first boot.</li>
+            </ul>
+        </section>
+
+        <section class="article-section">
+            <h2>Automated CI/CD Delivery with GitHub Actions</h2>
+            <p>A declarative GitHub Actions workflow triggers on every push to the <code>main</code> branch, eliminating manual server logins and ensuring continuous deployment integrity:</p>
+            <ul class="article-list">
+                <li><strong>Automated Testing:</strong> Runs code quality linters and PHPUnit test suites before initiating the server deployment stage.</li>
+                <li><strong>Secure Deployment via SSH:</strong> Authenticates securely to the EC2 instance using GitHub repository secrets and encrypted SSH private keys.</li>
+                <li><strong>Atomic Release Management:</strong> Deploys releases into timestamped directories and switches a symbolic link to the current build, allowing instant zero-downtime rollbacks if errors occur.</li>
+                <li><strong>Laravel Optimization:</strong> Automates Composer package installation, runs database migrations safely, and executes <code>php artisan config:cache</code>, <code>route:cache</code>, and <code>view:cache</code> for production speed.</li>
+            </ul>
+
+            <div class="article-callout">
+                <strong>Reliability Highlight:</strong> Atomic symlink deployments guarantee that users never experience broken page renders or missing assets while files are being uploaded to the server during updates.
+            </div>
+        </section>
+
+        <section class="article-section">
+            <h2>Security &amp; Web Server Hardening</h2>
+            <p>The Apache web server was configured with strict security headers (X-Frame-Options, Content-Security-Policy), disabled directory indexing, optimized OPcache settings for rapid PHP execution, and Let's Encrypt automated SSL certificate renewal.</p>
+        </section>
+
+        <!-- BOTTOM ACTION BUTTONS -->
+        <div class="project-top-actions" style="margin-top: 40px;">
+            <a href="https://github.com/ZainCloud009/IdeaProj.git" target="_blank" rel="noopener noreferrer" class="project-action-btn primary">⌘ View Code on GitHub</a>
+            <a href="https://github.com/ZainCloud009/IdeaProj.git" target="_blank" rel="noopener noreferrer" class="project-action-btn">↗ View Deployment Configuration</a>
+            <a href="index.html#projects" class="project-action-btn">← Back to All Projects</a>
+        </div>
+
+        <!-- MORE PROJECTS -->
+        <div class="more-articles-section">
+            <h3 class="more-articles-title">Explore other projects</h3>
+            <div class="more-articles-grid">
+                <div class="mini-card">
+                    <div>
+                        <div class="mini-card-tag">PROJECT 01 · AI APPLICATION</div>
+                        <h4>Qira'a — AI-Driven Arabic Qirat Learning Platform</h4>
+                        <p>AI-powered personalized Tajweed recitation feedback using speech recognition and OpenAI Whisper.</p>
+                    </div>
+                    <a href="project-qiraa-ai.html" class="mini-card-link">View Project Details <span>→</span></a>
+                </div>
+
+                <div class="mini-card">
+                    <div>
+                        <div class="mini-card-tag">PROJECT 02 · CLOUD INFRASTRUCTURE</div>
+                        <h4>Enterprise DevOps Deployment: Terraform IaC &amp; Jenkins CI/CD</h4>
+                        <p>Reusable AWS infrastructure with modular Terraform, Jenkins CI/CD, Docker, and S3 disaster recovery.</p>
+                    </div>
+                    <a href="project-enterprise-devops.html" class="mini-card-link">View Project Details <span>→</span></a>
+                </div>
+            </div>
+        </div>
+
+    </article>
+</div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+<div class="container footer-inner">
+    <div>© <span id="year"></span> Muhammad Zain. All rights reserved.</div>
+    <div class="socials">
+        <a href="https://github.com/ZainCloud009" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/muhammadzaindevops/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="mailto:muhammadzain8489@gmail.com">Email</a>
+    </div>
+</div>
+</footer>
+
+<script>
+// CURRENT YEAR
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// THEME TOGGLE
+const themeToggle = document.getElementById("themeToggle");
+const themeColor = document.querySelector('meta[name="theme-color"]');
+
+function setTheme(theme){
+    document.documentElement.dataset.theme = theme;
+    const isLight = theme === "light";
+    themeToggle.setAttribute("aria-label", isLight ? "Switch to dark mode" : "Switch to light mode");
+    themeToggle.title = isLight ? "Switch to dark mode" : "Switch to light mode";
+    if(themeColor) themeColor.setAttribute("content", isLight ? "#f5f7ff" : "#060910");
+}
+
+try{
+    const savedTheme = localStorage.getItem("portfolio-theme");
+    if(savedTheme === "light" || savedTheme === "dark"){
+        setTheme(savedTheme);
+    }
+}catch(e){}
+
+themeToggle.addEventListener("click", function(){
+    const nextTheme = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+    setTheme(nextTheme);
+    try{
+        localStorage.setItem("portfolio-theme", nextTheme);
+    }catch(e){}
+});
+
+// MOBILE MENU
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+function closeMobileMenu(){
+    navLinks.classList.remove("is-open");
+    menuToggle.setAttribute("aria-expanded", "false");
+}
+
+menuToggle.addEventListener("click", function(){
+    const isOpen = navLinks.classList.toggle("is-open");
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+});
+
+navLinks.addEventListener("click", function(e){
+    if(e.target.closest("a")) closeMobileMenu();
+});
+</script>
+
+</body>
+</html>

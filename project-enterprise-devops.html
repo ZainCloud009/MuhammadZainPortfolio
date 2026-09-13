@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#060910">
+    <title>Enterprise DevOps Deployment: Terraform IaC & Jenkins CI/CD | Muhammad Zain</title>
+    <meta name="description" content="Reusable AWS infrastructure with modular Terraform, Jenkins CI/CD, Docker, automated rollbacks and S3 disaster recovery by Muhammad Zain.">
+    <link rel="canonical" href="https://zaincloud009.github.io/MuhammadZainPortfolio/project-enterprise-devops.html">
+    <link rel="stylesheet" href="blog.css">
+</head>
+<body>
+
+<div class="background-grid"></div>
+
+<!-- NAVBAR -->
+<nav>
+<div class="container nav-inner">
+    <a href="index.html" class="logo">M<span>Z</span>.</a>
+
+    <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#projects" class="active">Projects</a></li>
+        <li><a href="index.html#skills">Skills</a></li>
+        <li><a href="index.html#experience">Experience</a></li>
+        <li><a href="index.html#blogs">Blogs</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+
+    <div class="nav-actions">
+        <a href="index.html#contact" class="nav-contact">Let's Talk</a>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode" title="Switch to light mode">
+            <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"/></svg>
+            <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 2.5v2M12 19.5v2M21.5 12h-2M4.5 12h-2M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4M18.7 18.7l-1.4-1.4M6.7 6.7 5.3 5.3"/></svg>
+        </button>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation menu" aria-controls="navLinks" aria-expanded="false">•••</button>
+    </div>
+</div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main>
+<div class="container">
+    
+    <div class="blog-nav-bar">
+        <a href="index.html#projects" class="back-link">← Back to all projects</a>
+    </div>
+
+    <article class="blog-article">
+        <div class="article-hero-badge-wrap">
+            <div class="article-eyebrow">PROJECT 02 · CLOUD INFRASTRUCTURE &amp; CI/CD</div>
+            <span class="article-category-tag">Enterprise DevOps Architecture</span>
+        </div>
+        
+        <h1>Enterprise DevOps Deployment: Terraform IaC &amp; Jenkins CI/CD</h1>
+        <p class="article-lead">Production-grade multi-tier AWS infrastructure provisioned with modular Terraform, automated through a robust Jenkins CI/CD pipeline with Docker containerization, automated testing, and zero-downtime rollbacks.</p>
+
+        <!-- TOP ACTION BUTTONS -->
+        <div class="project-top-actions">
+            <a href="https://github.com/zain5103/devops-assessments.git" target="_blank" rel="noopener noreferrer" class="project-action-btn primary">⌘ Source Code</a>
+            <a href="https://github.com/zain5103/devops-assessments.git" target="_blank" rel="noopener noreferrer" class="project-action-btn">↗ View Architecture</a>
+            <a href="index.html#contact" class="project-action-btn">✦ Discuss Project</a>
+        </div>
+
+        <!-- HERO IMAGE -->
+        <div class="project-detail-visual">
+            <img src="images/Project2.jpeg" alt="Enterprise DevOps deployment architecture preview" loading="eager">
+        </div>
+
+        <!-- SPECIFICATION GRID -->
+        <div class="project-spec-grid">
+            <div class="project-spec-item">
+                <span>Role</span>
+                <strong>DevOps &amp; Infrastructure Engineer</strong>
+            </div>
+            <div class="project-spec-item">
+                <span>Platform</span>
+                <strong>Amazon Web Services (AWS)</strong>
+            </div>
+            <div class="project-spec-item">
+                <span>Core Tooling</span>
+                <strong>Terraform · Jenkins · Docker · ALB</strong>
+            </div>
+        </div>
+
+        <div class="project-tags-list">
+            <span class="project-tag-pill">Terraform</span>
+            <span class="project-tag-pill">AWS EC2</span>
+            <span class="project-tag-pill">ALB</span>
+            <span class="project-tag-pill">RDS MySQL</span>
+            <span class="project-tag-pill">Jenkins</span>
+            <span class="project-tag-pill">Docker</span>
+            <span class="project-tag-pill">Amazon S3</span>
+            <span class="project-tag-pill">VPC</span>
+        </div>
+
+        <div class="article-divider"></div>
+
+        <!-- DESCRIPTION SECTIONS (250-300 words) -->
+        <section class="article-section">
+            <h2>Project Overview &amp; Architectural Goals</h2>
+            <p>Enterprise applications demand high availability, reproducible environments, and secure delivery cycles. This project implements a full production architecture on AWS designed to eliminate deployment bottlenecks and infrastructure drift by combining modular Infrastructure as Code (IaC) with automated Jenkins delivery pipelines.</p>
+        </section>
+
+        <section class="article-section">
+            <h2>Modular Infrastructure as Code with Terraform</h2>
+            <p>All AWS resources are defined declaratively across isolated Terraform modules, enabling consistent recreation across staging and production environments:</p>
+            <ul class="article-list">
+                <li><strong>Network Layer:</strong> Custom multi-tier VPC featuring public subnets across two Availability Zones for redundant Application Load Balancers, and private subnets isolating compute instances and databases.</li>
+                <li><strong>Compute &amp; Scaling:</strong> Auto Scaling Groups (ASG) of Amazon EC2 instances running hardened Linux images behind an AWS Application Load Balancer (ALB).</li>
+                <li><strong>Database Layer:</strong> Amazon RDS MySQL configured with Multi-AZ automated failover, private subnet placement, and automated backup windows.</li>
+                <li><strong>State Management:</strong> Remote Terraform state stored in Amazon S3 with server-side AES-256 encryption and state locking powered by Amazon DynamoDB to prevent concurrent pipeline conflicts.</li>
+            </ul>
+
+            <div class="article-callout">
+                <strong>IaC Best Practice:</strong> Strict least-privilege AWS IAM roles were provisioned so EC2 compute instances interact with S3 buckets and CloudWatch monitoring without embedding static credentials anywhere in code.
+            </div>
+        </section>
+
+        <section class="article-section">
+            <h2>Automated CI/CD Pipeline with Jenkins &amp; Docker</h2>
+            <p>The continuous integration and delivery workflow is orchestrated through a Jenkins Declarative Pipeline triggered automatically on GitHub commits:</p>
+            <ul class="article-list">
+                <li><strong>Build Stage:</strong> Applications are containerized into lightweight Docker images, ensuring environmental parity between developer machines and production.</li>
+                <li><strong>Test &amp; Quality Gates:</strong> Automated unit test execution and static code linting occur prior to image promotion.</li>
+                <li><strong>Zero-Downtime Deployment:</strong> Rolling deployments update target group instances behind the ALB, draining active connections smoothly without user interruption.</li>
+                <li><strong>Automated Rollback:</strong> If target group health checks fail post-deployment, the pipeline automatically halts and rolls back traffic to the previous healthy container image.</li>
+            </ul>
+        </section>
+
+        <section class="article-section">
+            <h2>Disaster Recovery &amp; S3 Synchronization</h2>
+            <p>Scheduled Bash scripts and cron automation synchronize database dumps and application log archives to an offsite S3 bucket with strict lifecycle transition rules to Glacier for low-cost compliance storage.</p>
+        </section>
+
+        <!-- BOTTOM ACTION BUTTONS -->
+        <div class="project-top-actions" style="margin-top: 40px;">
+            <a href="https://github.com/zain5103/devops-assessments.git" target="_blank" rel="noopener noreferrer" class="project-action-btn primary">⌘ View Repository on GitHub</a>
+            <a href="https://github.com/zain5103/devops-assessments.git" target="_blank" rel="noopener noreferrer" class="project-action-btn">↗ Inspect Architecture Diagram</a>
+            <a href="index.html#projects" class="project-action-btn">← Back to All Projects</a>
+        </div>
+
+        <!-- MORE PROJECTS -->
+        <div class="more-articles-section">
+            <h3 class="more-articles-title">Explore other projects</h3>
+            <div class="more-articles-grid">
+                <div class="mini-card">
+                    <div>
+                        <div class="mini-card-tag">PROJECT 01 · AI APPLICATION</div>
+                        <h4>Qira'a — AI-Driven Arabic Qirat Learning Platform</h4>
+                        <p>AI-powered personalized Tajweed recitation feedback using speech recognition and OpenAI Whisper.</p>
+                    </div>
+                    <a href="project-qiraa-ai.html" class="mini-card-link">View Project Details <span>→</span></a>
+                </div>
+
+                <div class="mini-card">
+                    <div>
+                        <div class="mini-card-tag">PROJECT 03 · WEB DEPLOYMENT</div>
+                        <h4>Laravel Project Deployment on AWS</h4>
+                        <p>Laravel deployed on AWS EC2 with reproducible Terraform IaC and GitHub Actions CI/CD pipeline.</p>
+                    </div>
+                    <a href="project-laravel-aws.html" class="mini-card-link">View Project Details <span>→</span></a>
+                </div>
+            </div>
+        </div>
+
+    </article>
+</div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+<div class="container footer-inner">
+    <div>© <span id="year"></span> Muhammad Zain. All rights reserved.</div>
+    <div class="socials">
+        <a href="https://github.com/ZainCloud009" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/muhammadzaindevops/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="mailto:muhammadzain8489@gmail.com">Email</a>
+    </div>
+</div>
+</footer>
+
+<script>
+// CURRENT YEAR
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// THEME TOGGLE
+const themeToggle = document.getElementById("themeToggle");
+const themeColor = document.querySelector('meta[name="theme-color"]');
+
+function setTheme(theme){
+    document.documentElement.dataset.theme = theme;
+    const isLight = theme === "light";
+    themeToggle.setAttribute("aria-label", isLight ? "Switch to dark mode" : "Switch to light mode");
+    themeToggle.title = isLight ? "Switch to dark mode" : "Switch to light mode";
+    if(themeColor) themeColor.setAttribute("content", isLight ? "#f5f7ff" : "#060910");
+}
+
+try{
+    const savedTheme = localStorage.getItem("portfolio-theme");
+    if(savedTheme === "light" || savedTheme === "dark"){
+        setTheme(savedTheme);
+    }
+}catch(e){}
+
+themeToggle.addEventListener("click", function(){
+    const nextTheme = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+    setTheme(nextTheme);
+    try{
+        localStorage.setItem("portfolio-theme", nextTheme);
+    }catch(e){}
+});
+
+// MOBILE MENU
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+function closeMobileMenu(){
+    navLinks.classList.remove("is-open");
+    menuToggle.setAttribute("aria-expanded", "false");
+}
+
+menuToggle.addEventListener("click", function(){
+    const isOpen = navLinks.classList.toggle("is-open");
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+});
+
+navLinks.addEventListener("click", function(e){
+    if(e.target.closest("a")) closeMobileMenu();
+});
+</script>
+
+</body>
+</html>

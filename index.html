@@ -1000,6 +1000,8 @@ html[data-theme="light"] .stat strong{ color:var(--text); }
     transform-style:preserve-3d;
     perspective:1200px;
     min-height:100%;
+    cursor:pointer;
+    transition:transform .4s cubic-bezier(.16,1,.3,1), background .4s, border-color .4s, box-shadow .4s;
 }
 
 .project::after{
@@ -1009,6 +1011,8 @@ html[data-theme="light"] .stat strong{ color:var(--text); }
 .project:hover{
     transform:perspective(1200px) rotateX(3deg) rotateY(-2deg) translateY(-10px) !important;
     background:linear-gradient(145deg, #16233a, #0d1625) !important;
+    border-color:rgba(113,143,255,.45);
+    box-shadow:0 24px 45px rgba(0,0,0,.35), 0 0 28px rgba(113,143,255,.14);
 }
 
 .project-content{
@@ -2154,8 +2158,8 @@ footer{
 
 <ul class="nav-links" id="navLinks">
 <li><a href="#about">About</a></li>
-<li><a href="#skills">Skills</a></li>
 <li><a href="#projects">Projects</a></li>
+<li><a href="#skills">Skills</a></li>
 <li><a href="#experience">Experience</a></li>
 <li><a href="#blogs">Blogs</a></li>
 <li><a href="#contact">Contact</a></li>
@@ -2296,10 +2300,103 @@ I'm passionate about building scalable, secure and automated cloud infrastructur
 </div>
 </section>
 
+<!-- PROJECTS -->
+<section id="projects">
+<div class="container reveal">
+<div class="section-label">02 — Projects</div>
+<h2 class="section-title">Things I've built.</h2>
+<p class="section-description">Selected projects demonstrating cloud infrastructure, Linux automation, CI/CD and AI application development.</p>
+
+<div class="projects">
+
+<article class="project" data-href="project-qiraa-ai.html">
+    <div class="project-visual visual-qiraa">
+        <img class="project-image" src="images/Project1.jpeg" alt="Qira'a AI-powered Quran recitation learning platform preview" loading="eager">
+    </div>
+    <div class="project-content">
+        <div class="project-number">PROJECT 01 (University Of Engineering and Technology Final Year Project)</div>
+        <h3>Qira'a — AI-Driven Arabic Qirat Learning Platform</h3>
+        <div class="tags"><span class="tag">React JS</span><span class="tag">Firebase</span><span class="tag">JavaScript</span><span class="tag">Whisper AI</span><span class="tag">Speech Recognition</span></div>
+        <p>AI-powered personalized Tajweed feedback using speech recognition, OpenAI Whisper and custom Quranic speech models.</p>
+        <div class="project-actions">
+            <a href="https://qiraa-h.web.app/" target="_blank" rel="noopener noreferrer" class="project-action primary">◉ Live Demo</a>
+            <a href="https://qiraa-h.web.app/" target="_blank" rel="noopener noreferrer" class="project-action">↗ View Project</a>
+        </div>
+    </div>
+</article>
+
+
+
+<article class="project" data-href="project-enterprise-devops.html">
+    <div class="project-visual visual-devops">
+        <img class="project-image" src="images/Project2.jpeg" alt="Enterprise DevOps deployment architecture with Terraform and Jenkins preview" loading="lazy">
+    </div>
+    <div class="project-content">
+        <div class="project-number">PROJECT 02</div>
+        <h3>Enterprise DevOps Deployment: Terraform IaC & Jenkins CI/CD</h3>
+        <div class="tags"><span class="tag">Terraform</span><span class="tag">AWS EC2</span><span class="tag">ALB</span><span class="tag">RDS</span><span class="tag">Jenkins</span><span class="tag">Docker</span></div>
+        <p>Reusable AWS infrastructure with modular Terraform, Jenkins CI/CD, Docker, testing, automated rollbacks and S3 disaster recovery.</p>
+        <div class="project-actions">
+            <a href="https://github.com/zain5103/devops-assessments.git" target="_blank" rel="noopener noreferrer" class="project-action primary">⌘ Source Code</a>
+            <a href="https://github.com/zain5103/devops-assessments.git" target="_blank" rel="noopener noreferrer" class="project-action">↗ View Architecture</a>
+        </div>
+    </div>
+</article>
+
+
+
+
+<article class="project" data-href="project-laravel-aws.html">
+    <div class="project-visual visual-laravel">
+        <img class="project-image" src="images/Project3.jpeg" alt="Laravel application deployment on AWS preview" loading="lazy">
+    </div>
+    <div class="project-content">
+        <div class="project-number">PROJECT 03</div>
+        <h3>Laravel Project Deployment on AWS</h3>
+        <div class="tags"><span class="tag">GitHub Actions</span><span class="tag">CI/CD Pipeline</span><span class="tag">AWS EC2</span><span class="tag">Terraform</span><span class="tag">Git</span></div>
+        <p>Laravel deployed on AWS EC2 with reproducible Terraform infrastructure and a GitHub Actions CI/CD delivery workflow.</p>
+        <div class="project-actions">
+            <a href="https://github.com/ZainCloud009/IdeaProj.git" target="_blank" rel="noopener noreferrer" class="project-action primary">⌘ Source Code</a>
+            <a href="https://github.com/ZainCloud009/IdeaProj.git" target="_blank" rel="noopener noreferrer" class="project-action">↗ View Deployment</a>
+        </div>
+    </div>
+</article>
+
+
+<article class="project" data-href="project-linux-automation.html">
+<div class="project-visual visual-linux" role="img" aria-label="Linux administration and Bash automation preview">
+    <div class="mockup-window"><div class="mockup-bar"><i></i><i></i><i></i></div><div class="mockup-screen"></div></div>
+</div>
+<div class="project-content">
+<div class="project-number">PROJECT 04</div>
+<h3>Linux Administration & Bash Automation</h3>
+<div class="tags">
+<span class="tag">Linux</span>
+<span class="tag">Amazon Linux</span>
+<span class="tag">Bash</span>
+<span class="tag">Apache</span>
+<span class="tag">Cron</span>
+<span class="tag">S3</span>
+<span class="tag">MySQL</span>
+</div>
+<p>Automated Amazon Linux administration, database backups, log archiving and scheduled S3 synchronization with Bash and Cron.</p>
+<div class="project-actions">
+    <a href="#contact" class="project-action primary">✦ Discuss Project</a>
+    <a href="#skills" class="project-action">↗ View Skills</a>
+</div>
+</div>
+</article>
+
+
+
+</div>
+</div>
+</section>
+
 <!-- SKILLS -->
 <section id="skills">
 <div class="container reveal">
-<div class="section-label">02 — Technical Skills</div>
+<div class="section-label">03 — Technical Skills</div>
 <h2 class="section-title">Tools I work with.</h2>
 <p class="section-description">A practical technical stack covering cloud infrastructure, automation, networking, server administration and deployment.</p>
 
@@ -2377,99 +2474,6 @@ I'm passionate about building scalable, secure and automated cloud infrastructur
 </div>
 </div>
 
-</div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects">
-<div class="container reveal">
-<div class="section-label">03 — Projects</div>
-<h2 class="section-title">Things I've built.</h2>
-<p class="section-description">Selected projects demonstrating cloud infrastructure, Linux automation, CI/CD and AI application development.</p>
-
-<div class="projects">
-
-<article class="project">
-    <div class="project-visual visual-qiraa">
-        <img class="project-image" src="images/Project1.jpeg" alt="Qira'a AI-powered Quran recitation learning platform preview" loading="eager">
-    </div>
-    <div class="project-content">
-        <div class="project-number">PROJECT 01</div>
-        <h3>Qira'a — AI-Driven Arabic Qirat Learning Platform</h3>
-        <div class="tags"><span class="tag">React JS</span><span class="tag">Firebase</span><span class="tag">JavaScript</span><span class="tag">Whisper AI</span><span class="tag">Speech Recognition</span></div>
-        <p>AI-powered personalized Tajweed feedback using speech recognition, OpenAI Whisper and custom Quranic speech models.</p>
-        <div class="project-actions">
-            <a href="https://qiraa-h.web.app/" target="_blank" rel="noopener noreferrer" class="project-action primary">◉ Live Demo</a>
-            <a href="https://qiraa-h.web.app/" target="_blank" rel="noopener noreferrer" class="project-action">↗ View Project</a>
-        </div>
-    </div>
-</article>
-
-
-
-<article class="project">
-    <div class="project-visual visual-devops">
-        <img class="project-image" src="images/Project2.jpeg" alt="Enterprise DevOps deployment architecture with Terraform and Jenkins preview" loading="lazy">
-    </div>
-    <div class="project-content">
-        <div class="project-number">PROJECT 02</div>
-        <h3>Enterprise DevOps Deployment: Terraform IaC & Jenkins CI/CD</h3>
-        <div class="tags"><span class="tag">Terraform</span><span class="tag">AWS EC2</span><span class="tag">ALB</span><span class="tag">RDS</span><span class="tag">Jenkins</span><span class="tag">Docker</span></div>
-        <p>Reusable AWS infrastructure with modular Terraform, Jenkins CI/CD, Docker, testing, automated rollbacks and S3 disaster recovery.</p>
-        <div class="project-actions">
-            <a href="https://github.com/zain5103/devops-assessments.git" target="_blank" rel="noopener noreferrer" class="project-action primary">⌘ Source Code</a>
-            <a href="https://github.com/zain5103/devops-assessments.git" target="_blank" rel="noopener noreferrer" class="project-action">↗ View Architecture</a>
-        </div>
-    </div>
-</article>
-
-
-
-
-<article class="project">
-    <div class="project-visual visual-laravel">
-        <img class="project-image" src="images/Project3.jpeg" alt="Laravel application deployment on AWS preview" loading="lazy">
-    </div>
-    <div class="project-content">
-        <div class="project-number">PROJECT 03</div>
-        <h3>Laravel Project Deployment on AWS</h3>
-        <div class="tags"><span class="tag">GitHub Actions</span><span class="tag">CI/CD Pipeline</span><span class="tag">AWS EC2</span><span class="tag">Terraform</span><span class="tag">Git</span></div>
-        <p>Laravel deployed on AWS EC2 with reproducible Terraform infrastructure and a GitHub Actions CI/CD delivery workflow.</p>
-        <div class="project-actions">
-            <a href="https://github.com/ZainCloud009/IdeaProj.git" target="_blank" rel="noopener noreferrer" class="project-action primary">⌘ Source Code</a>
-            <a href="https://github.com/ZainCloud009/IdeaProj.git" target="_blank" rel="noopener noreferrer" class="project-action">↗ View Deployment</a>
-        </div>
-    </div>
-</article>
-
-
-<article class="project">
-<div class="project-visual visual-linux" role="img" aria-label="Linux administration and Bash automation preview">
-    <div class="mockup-window"><div class="mockup-bar"><i></i><i></i><i></i></div><div class="mockup-screen"></div></div>
-</div>
-<div class="project-content">
-<div class="project-number">PROJECT 04</div>
-<h3>Linux Administration & Bash Automation</h3>
-<div class="tags">
-<span class="tag">Linux</span>
-<span class="tag">Amazon Linux</span>
-<span class="tag">Bash</span>
-<span class="tag">Apache</span>
-<span class="tag">Cron</span>
-<span class="tag">S3</span>
-<span class="tag">MySQL</span>
-</div>
-<p>Automated Amazon Linux administration, database backups, log archiving and scheduled S3 synchronization with Bash and Cron.</p>
-<div class="project-actions">
-    <a href="#contact" class="project-action primary">✦ Discuss Project</a>
-    <a href="#skills" class="project-action">↗ View Skills</a>
-</div>
-</div>
-</article>
-
-
-
-</div>
 </div>
 </section>
 
@@ -2791,6 +2795,15 @@ document.addEventListener("mousemove", function(event){
     const x = (window.innerWidth / 2 - event.clientX) / 55;
     const y = (window.innerHeight / 2 - event.clientY) / 55;
     profile.style.transform = `translate(${x}px, ${y}px)`;
+});
+
+// CLICKABLE PROJECT CARDS
+document.querySelectorAll(".project[data-href]").forEach(function(card){
+    card.addEventListener("click", function(event){
+        if(event.target.closest(".project-action")) return;
+        const href = card.getAttribute("data-href");
+        if(href) window.location.href = href;
+    });
 });
 </script>
 

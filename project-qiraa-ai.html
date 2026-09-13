@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#060910">
+    <title>Qira'a — AI-Driven Arabic Qirat Learning Platform | Muhammad Zain</title>
+    <meta name="description" content="AI-powered personalized Tajweed recitation feedback platform using speech recognition, OpenAI Whisper and Firebase by Muhammad Zain.">
+    <link rel="canonical" href="https://zaincloud009.github.io/MuhammadZainPortfolio/project-qiraa-ai.html">
+    <link rel="stylesheet" href="blog.css">
+</head>
+<body>
+
+<div class="background-grid"></div>
+
+<!-- NAVBAR -->
+<nav>
+<div class="container nav-inner">
+    <a href="index.html" class="logo">M<span>Z</span>.</a>
+
+    <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#projects" class="active">Projects</a></li>
+        <li><a href="index.html#skills">Skills</a></li>
+        <li><a href="index.html#experience">Experience</a></li>
+        <li><a href="index.html#blogs">Blogs</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+
+    <div class="nav-actions">
+        <a href="index.html#contact" class="nav-contact">Let's Talk</a>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode" title="Switch to light mode">
+            <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"/></svg>
+            <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 2.5v2M12 19.5v2M21.5 12h-2M4.5 12h-2M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4M18.7 18.7l-1.4-1.4M6.7 6.7 5.3 5.3"/></svg>
+        </button>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation menu" aria-controls="navLinks" aria-expanded="false">•••</button>
+    </div>
+</div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main>
+<div class="container">
+    
+    <div class="blog-nav-bar">
+        <a href="index.html#projects" class="back-link">← Back to all projects</a>
+    </div>
+
+    <article class="blog-article">
+        <div class="article-hero-badge-wrap">
+            <div class="article-eyebrow">PROJECT 01 · AI APPLICATION</div>
+            <span class="article-category-tag">Speech Recognition &amp; EdTech</span>
+        </div>
+        
+        <h1>Qira'a — AI-Driven Arabic Qirat Learning Platform (Final Year Project) </h1>
+        <p class="article-lead">An intelligent educational application delivering real-time Tajweed recitation assessment, phoneme accuracy scoring, and voice analysis powered by OpenAI Whisper and Firebase cloud infrastructure.</p>
+
+        <!-- TOP ACTION BUTTONS -->
+        <div class="project-top-actions">
+            <a href="https://qiraa-h.web.app/" target="_blank" rel="noopener noreferrer" class="project-action-btn primary">◉ Live Demo</a>
+            <a href="https://qiraa-h.web.app/" target="_blank" rel="noopener noreferrer" class="project-action-btn">↗ View Project</a>
+            <a href="index.html#contact" class="project-action-btn">✦ Discuss Project</a>
+        </div>
+
+        <!-- HERO IMAGE -->
+        <div class="project-detail-visual">
+            <img src="images/Project1.jpeg" alt="Qira'a AI platform interface preview" loading="eager">
+        </div>
+
+        <!-- SPECIFICATION GRID -->
+        <div class="project-spec-grid">
+            <div class="project-spec-item">
+                <span>Role</span>
+                <strong>Full-Stack &amp; AI Integration</strong>
+            </div>
+            <div class="project-spec-item">
+                <span>Deployment</span>
+                <strong>Firebase Hosting &amp; Cloud</strong>
+            </div>
+            <div class="project-spec-item">
+                <span>Key Tech</span>
+                <strong>React JS · Whisper AI · Firebase</strong>
+            </div>
+        </div>
+
+        <div class="project-tags-list">
+            <span class="project-tag-pill">React JS</span>
+            <span class="project-tag-pill">Firebase</span>
+            <span class="project-tag-pill">JavaScript</span>
+            <span class="project-tag-pill">Whisper AI</span>
+            <span class="project-tag-pill">Speech Recognition</span>
+            <span class="project-tag-pill">Audio Web API</span>
+            <span class="project-tag-pill">Cloud Firestore</span>
+        </div>
+
+        <div class="article-divider"></div>
+
+        <!-- DESCRIPTION SECTIONS (250-300 words) -->
+        <section class="article-section">
+            <h2>Project Overview &amp; Problem Solved</h2>
+            <p>Many students struggle to learn proper Quranic recitation due to the lack of personal guidance, accurate pronunciation correction, and real-time feedback. Mastering Tajweed rules, articulation points (Makharij), and correct rhythm is difficult without continuous supervision from a qualified teacher. </p>
+            <p>Traditional learning methods often rely on physical classes or one-on-one sessions, which may not always be accessible because of geographical, time, or financial limitations.With the advancement of Artificial Intelligence and speech recognition technologies, there is a need for a smart digital solution that supports learners anytime and anywhere. An intelligent system that evaluates recitation, detects pronunciation errors, and provides instant corrective feedback can make Quran learning more accessible, structured, and effective while enabling consistent practice and measurable progress tracking.</p>
+        </section>
+
+        <section class="article-section">
+            <h2>Architecture &amp; AI Pipeline</h2>
+            <p>The frontend is engineered in modern React.js, featuring an intuitive audio recording interface built on top of the browser's native Web Audio API. Students record verses directly from their device microphone with client-side noise reduction and audio normalization.</p>
+            <p>Audio waveforms are streamed to backend cloud processing pipelines where OpenAI Whisper speech recognition models identify character-level pronunciation nuances. The engine cross-references speech timestamps against certified Quranic phonetic rules, highlighting precise mistakes in letter articulation points (Makharij), vowel elongation (Madd), and nasalization (Ghunnah).</p>
+            
+            <div class="article-callout">
+                <strong>Technical Highlight:</strong> Sub-second inference latency was achieved by pre-processing audio chunks client-side, reducing server bandwidth consumption by 40% while preserving high-fidelity vocal clarity needed for phonetic evaluation.
+            </div>
+        </section>
+
+        <section class="article-section">
+            <h2>Cloud Infrastructure &amp; Deployment</h2>
+            <p>The entire application architecture leverages Google Firebase cloud services for effortless scalability and zero server management overhead:</p>
+            <ul class="article-list">
+                <li><strong>Firebase Authentication:</strong> Secure email and social authentication ensuring isolated learner profiles and persistent practice histories.</li>
+                <li><strong>Cloud Firestore:</strong> High-performance NoSQL database managing real-time progress metrics, recitation scores, and personalized mistake logs.</li>
+                <li><strong>Cloud Storage:</strong> Scalable object storage for high-quality audio clips and verified recitation reference tracks.</li>
+                <li><strong>Firebase Global Hosting:</strong> CDN-backed edge hosting providing instant global load times with automatic SSL certificate management.</li>
+            </ul>
+        </section>
+
+        <section class="article-section">
+            <h2>Results &amp; Impact</h2>
+            <p>Qira'a has demonstrated high pronunciation accuracy across multi-accent test datasets, helping students practice independently with confidence. The platform serves as a benchmark for combining state-of-the-art speech recognition AI with accessible web technologies to solve real educational challenges.</p>
+        </section>
+
+        <!-- BOTTOM ACTION BUTTONS -->
+        <div class="project-top-actions" style="margin-top: 40px;">
+            <a href="https://qiraa-h.web.app/" target="_blank" rel="noopener noreferrer" class="project-action-btn primary">◉ Launch Live Demo</a>
+            <a href="https://qiraa-h.web.app/" target="_blank" rel="noopener noreferrer" class="project-action-btn">↗ View Project Site</a>
+            <a href="index.html#projects" class="project-action-btn">← Back to All Projects</a>
+        </div>
+
+        <!-- MORE PROJECTS -->
+        <div class="more-articles-section">
+            <h3 class="more-articles-title">Explore other projects</h3>
+            <div class="more-articles-grid">
+                <div class="mini-card">
+                    <div>
+                        <div class="mini-card-tag">PROJECT 02 · CLOUD INFRASTRUCTURE</div>
+                        <h4>Enterprise DevOps Deployment: Terraform IaC &amp; Jenkins CI/CD</h4>
+                        <p>Reusable AWS infrastructure with modular Terraform, Jenkins CI/CD, Docker, and S3 disaster recovery.</p>
+                    </div>
+                    <a href="project-enterprise-devops.html" class="mini-card-link">View Project Details <span>→</span></a>
+                </div>
+
+                <div class="mini-card">
+                    <div>
+                        <div class="mini-card-tag">PROJECT 03 · WEB DEPLOYMENT</div>
+                        <h4>Laravel Project Deployment on AWS</h4>
+                        <p>Laravel deployed on AWS EC2 with reproducible Terraform IaC and GitHub Actions CI/CD pipeline.</p>
+                    </div>
+                    <a href="project-laravel-aws.html" class="mini-card-link">View Project Details <span>→</span></a>
+                </div>
+            </div>
+        </div>
+
+    </article>
+</div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+<div class="container footer-inner">
+    <div>© <span id="year"></span> Muhammad Zain. All rights reserved.</div>
+    <div class="socials">
+        <a href="https://github.com/ZainCloud009" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/muhammadzaindevops/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="mailto:muhammadzain8489@gmail.com">Email</a>
+    </div>
+</div>
+</footer>
+
+<script>
+// CURRENT YEAR
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// THEME TOGGLE
+const themeToggle = document.getElementById("themeToggle");
+const themeColor = document.querySelector('meta[name="theme-color"]');
+
+function setTheme(theme){
+    document.documentElement.dataset.theme = theme;
+    const isLight = theme === "light";
+    themeToggle.setAttribute("aria-label", isLight ? "Switch to dark mode" : "Switch to light mode");
+    themeToggle.title = isLight ? "Switch to dark mode" : "Switch to light mode";
+    if(themeColor) themeColor.setAttribute("content", isLight ? "#f5f7ff" : "#060910");
+}
+
+try{
+    const savedTheme = localStorage.getItem("portfolio-theme");
+    if(savedTheme === "light" || savedTheme === "dark"){
+        setTheme(savedTheme);
+    }
+}catch(e){}
+
+themeToggle.addEventListener("click", function(){
+    const nextTheme = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+    setTheme(nextTheme);
+    try{
+        localStorage.setItem("portfolio-theme", nextTheme);
+    }catch(e){}
+});
+
+// MOBILE MENU
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+function closeMobileMenu(){
+    navLinks.classList.remove("is-open");
+    menuToggle.setAttribute("aria-expanded", "false");
+}
+
+menuToggle.addEventListener("click", function(){
+    const isOpen = navLinks.classList.toggle("is-open");
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+});
+
+navLinks.addEventListener("click", function(e){
+    if(e.target.closest("a")) closeMobileMenu();
+});
+</script>
+
+</body>
+</html>
