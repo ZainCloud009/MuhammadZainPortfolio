@@ -134,7 +134,7 @@ a{
 }
 
 .container{
-    width:min(1150px,90%);
+    width:min(1240px,92%);
     margin:auto;
 }
 
@@ -423,7 +423,19 @@ html[data-theme="light"] .service:hover{
     box-shadow:0 18px 45px rgba(84,116,216,.16) !important;
 }
 
-html[data-theme="light"] .hero-role,
+html[data-theme="light"] .hero-role-text{
+    background:linear-gradient(120deg, #0284c7 0%, #4f46e5 25%, #7c3aed 50%, #059669 75%, #0284c7 100%);
+    background-size:300% 100%;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    filter:drop-shadow(0 2px 4px rgba(79,70,229,.2));
+}
+
+html[data-theme="light"] .hero-cursor{
+    background:linear-gradient(180deg, #0284c7, #7c3aed);
+    box-shadow:0 0 8px rgba(2,132,199,.5);
+}
+
 html[data-theme="light"] .experience-company{
     color:#3e4b60;
 }
@@ -515,12 +527,60 @@ html[data-theme="light"] .stat strong{ color:var(--text); }
     to{ background-position:200% center; }
 }
 
+@keyframes heroGradientShift{
+    0%{ background-position:0% 50%; }
+    50%{ background-position:100% 50%; }
+    100%{ background-position:0% 50%; }
+}
+
+@keyframes heroRolePulse{
+    0%, 100%{
+        transform:translateY(0px);
+        filter:drop-shadow(0 0 14px rgba(99,102,241,.45)) drop-shadow(0 0 28px rgba(56,189,248,.25));
+    }
+    50%{
+        transform:translateY(-2px);
+        filter:drop-shadow(0 0 20px rgba(192,132,252,.65)) drop-shadow(0 0 36px rgba(56,189,248,.38));
+    }
+}
+
+@keyframes heroCursorBlink{
+    0%, 45%{ opacity:1; }
+    50%, 95%{ opacity:0; }
+    100%{ opacity:1; }
+}
+
 .hero-role{
-    font-size:19px;
-    font-weight:650;
-    color:#d0d7e2;
-    margin-bottom:13px;
-    animation:fadeUp .9s .15s both;
+    display:inline-flex;
+    align-items:center;
+    flex-wrap:wrap;
+    font-size:20px;
+    font-weight:750;
+    letter-spacing:.3px;
+    margin-bottom:14px;
+    min-height:34px;
+    animation:fadeUp .9s .15s both, heroRolePulse 4s ease-in-out infinite 1.2s;
+}
+
+.hero-role-text{
+    background:linear-gradient(120deg, #38bdf8 0%, #818cf8 25%, #c084fc 50%, #34d399 75%, #38bdf8 100%);
+    background-size:300% 100%;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:heroGradientShift 6s ease infinite;
+    display:inline-block;
+}
+
+.hero-cursor{
+    display:inline-block;
+    width:3px;
+    height:1.15em;
+    vertical-align:-0.15em;
+    margin-left:5px;
+    background:linear-gradient(180deg, #38bdf8, #a855f7);
+    border-radius:2px;
+    box-shadow:0 0 10px #38bdf8, 0 0 20px #818cf8;
+    animation:heroCursorBlink .8s ease-in-out infinite;
 }
 
 .hero-description{
@@ -988,12 +1048,14 @@ html[data-theme="light"] .stat strong{ color:var(--text); }
 .projects{
     margin-top:45px;
     display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:18px;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
 }
 
 .project{
-    padding:0 0 26px;
+    display:flex;
+    flex-direction:column;
+    padding:0 0 22px;
     background:linear-gradient(145deg, #111a25, #0c131c);
     border:1px solid var(--border);
     border-radius:18px;
@@ -1016,7 +1078,10 @@ html[data-theme="light"] .stat strong{ color:var(--text); }
 }
 
 .project-content{
-    padding:24px 26px 0;
+    display:flex;
+    flex-direction:column;
+    flex:1;
+    padding:22px 20px 0;
 }
 
 .project-visual{
@@ -1198,22 +1263,123 @@ html[data-theme="light"] .stat strong{ color:var(--text); }
 }
 
 .project-number{
-    margin-bottom:10px;
+    margin-bottom:8px;
+    font-size:10px;
+    line-height:1.4;
+    letter-spacing:1px;
+    color:var(--cyan);
+    font-weight:750;
 }
 
 .project h3{
-    transform:translateZ(13px);
+    position:relative;
+    font-size:17.5px;
+    line-height:1.35;
+    margin-bottom:12px;
+    transform:translateZ(14px);
 }
 
-.project p{
-    min-height:67px;
+/* 3D TYPING TERMINAL DESCRIPTION BOX */
+.project-desc-3d{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    flex:1;
+    margin-top:14px;
+    margin-bottom:16px;
+    padding:12px 14px;
+    background:linear-gradient(145deg, rgba(8, 14, 24, 0.9), rgba(12, 20, 34, 0.9));
+    border:1px solid rgba(113, 143, 255, 0.22);
+    border-radius:12px;
+    box-shadow:inset 0 2px 5px rgba(0, 0, 0, 0.6), 0 8px 18px rgba(0, 0, 0, 0.25), 0 0 14px rgba(113, 143, 255, 0.08);
+    transform:translateZ(22px);
+    transform-style:preserve-3d;
+    transition:all .35s cubic-bezier(.16,1,.3,1);
+    min-height:98px;
+}
+
+.project:hover .project-desc-3d{
+    border-color:rgba(84, 216, 255, 0.45);
+    box-shadow:inset 0 2px 6px rgba(0, 0, 0, 0.7), 0 12px 24px rgba(0, 0, 0, 0.35), 0 0 22px rgba(84, 216, 255, 0.22);
+    transform:translateZ(28px);
+}
+
+.project-desc-header{
+    display:flex;
+    align-items:center;
+    gap:5px;
+    padding-bottom:7px;
+    margin-bottom:8px;
+    border-bottom:1px solid rgba(255, 255, 255, 0.07);
+}
+
+.desc-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    display:inline-block;
+}
+
+.desc-dot.red{ background:#f87171; box-shadow:0 0 6px rgba(248,113,113,.6); }
+.desc-dot.yellow{ background:#fbbf24; box-shadow:0 0 6px rgba(251,191,36,.6); }
+.desc-dot.green{ background:#34d399; box-shadow:0 0 6px rgba(52,211,153,.6); }
+
+.desc-terminal-title{
+    margin-left:auto;
+    font-size:9.5px;
+    font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    color:rgba(255, 255, 255, 0.45);
+    letter-spacing:.5px;
+}
+
+.project-desc-body{
+    display:flex;
+    align-items:flex-start;
+    gap:6px;
+    font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size:11.5px;
+    line-height:1.65;
+}
+
+.desc-prompt{
+    color:var(--cyan);
+    font-weight:700;
+    user-select:none;
+    flex-shrink:0;
+    text-shadow:0 0 8px rgba(84,216,255,.6);
+}
+
+.project-desc-text{
+    color:#d8e2ef;
+    letter-spacing:.15px;
+    margin:0;
+    min-height:auto;
+    text-shadow:0 1px 2px rgba(0, 0, 0, 0.8), 0 0 8px rgba(113, 143, 255, 0.2);
+    word-break:break-word;
+}
+
+.desc-cursor{
+    display:inline-block;
+    width:2px;
+    height:1.15em;
+    vertical-align:-0.15em;
+    background:var(--cyan);
+    box-shadow:0 0 8px var(--cyan);
+    animation:descCursorBlink .7s infinite;
+    flex-shrink:0;
+}
+
+@keyframes descCursorBlink{
+    0%, 49%{ opacity:1; }
+    50%, 100%{ opacity:0; }
 }
 
 .project-actions{
     display:flex;
     flex-wrap:wrap;
-    gap:10px;
-    margin-top:22px;
+    gap:8px;
+    margin-top:auto;
+    padding-top:14px;
     transform:translateZ(16px);
 }
 
@@ -1222,8 +1388,8 @@ html[data-theme="light"] .stat strong{ color:var(--text); }
     align-items:center;
     justify-content:center;
     gap:7px;
-    min-height:39px;
-    padding:9px 13px;
+    min-height:38px;
+    padding:9px 12px;
     border:1px solid var(--border);
     border-radius:9px;
     font-size:11px;
@@ -1232,6 +1398,7 @@ html[data-theme="light"] .stat strong{ color:var(--text); }
     background:rgba(255,255,255,.04);
     box-shadow:0 4px 0 rgba(0,0,0,.34), inset 0 1px rgba(255,255,255,.1);
     transition:transform .22s ease, box-shadow .22s ease, background .22s ease;
+    flex:1 1 115px;
 }
 
 .project-action.primary{
@@ -1265,6 +1432,40 @@ html[data-theme="light"] .project:hover{
     box-shadow:0 22px 42px rgba(70,96,163,.17) !important;
 }
 
+html[data-theme="light"] .project-desc-3d{
+    background:linear-gradient(145deg, #f3f6fc, #eaf0fa);
+    border-color:rgba(82, 110, 232, 0.22);
+    box-shadow:inset 0 2px 4px rgba(31, 48, 81, 0.08), 0 6px 16px rgba(82, 110, 232, 0.08);
+}
+
+html[data-theme="light"] .project:hover .project-desc-3d{
+    border-color:rgba(82, 110, 232, 0.45);
+    box-shadow:inset 0 2px 5px rgba(31, 48, 81, 0.12), 0 10px 22px rgba(82, 110, 232, 0.16);
+}
+
+html[data-theme="light"] .project-desc-header{
+    border-bottom-color:rgba(31, 48, 81, 0.09);
+}
+
+html[data-theme="light"] .desc-terminal-title{
+    color:rgba(31, 48, 81, 0.55);
+}
+
+html[data-theme="light"] .project-desc-text{
+    color:#1e293b;
+    text-shadow:0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+html[data-theme="light"] .desc-prompt{
+    color:var(--primary);
+    text-shadow:none;
+}
+
+html[data-theme="light"] .desc-cursor{
+    background:var(--primary);
+    box-shadow:0 0 6px var(--primary);
+}
+
 html[data-theme="light"] .project-action{
     background:#fff;
     box-shadow:0 4px 0 rgba(67,86,123,.18), inset 0 1px rgba(255,255,255,.9);
@@ -1294,18 +1495,6 @@ html[data-theme="light"] .project-action.primary{
     margin-bottom:18px;
 }
 
-.project h3{
-    position:relative;
-    font-size:19px;
-    margin-bottom:10px;
-}
-
-.project p{
-    position:relative;
-    color:var(--muted);
-    font-size:12px;
-    line-height:1.85;
-}
 
 .tags{
     position:relative;
@@ -1887,6 +2076,13 @@ footer{
    RESPONSIVE & MOBILE DESIGN SYSTEM
 ========================================================= */
 
+@media(max-width:1080px){
+    .projects{
+        grid-template-columns:repeat(2,1fr);
+        gap:18px;
+    }
+}
+
 @media(max-width:900px){
     .nav-inner{
         position:relative;
@@ -1973,7 +2169,7 @@ footer{
     }
 
     .projects{
-        grid-template-columns:1fr;
+        grid-template-columns:repeat(2,1fr);
     }
 
     .project-visual{
@@ -2009,6 +2205,11 @@ footer{
 
     .container{
         width:92%;
+    }
+
+    .projects{
+        grid-template-columns:1fr;
+        gap:16px;
     }
 
     .hero h1{
@@ -2194,8 +2395,8 @@ Muhammad<br>
 <span class="gradient">Zain.</span>
 </h1>
 
-<div class="hero-role">
-AWS Cloud & DevOps Engineer
+<div class="hero-role" aria-label="AWS Cloud & DevOps Engineer">
+<span class="hero-role-text" id="heroRoleText">AWS Cloud & DevOps Engineer</span><span class="hero-cursor" aria-hidden="true"></span>
 </div>
 
 <p class="hero-description">
@@ -2317,7 +2518,19 @@ I'm passionate about building scalable, secure and automated cloud infrastructur
         <div class="project-number">PROJECT 01 (University Of Engineering and Technology Final Year Project)</div>
         <h3>Qira'a — AI-Driven Arabic Qirat Learning Platform</h3>
         <div class="tags"><span class="tag">React JS</span><span class="tag">Firebase</span><span class="tag">JavaScript</span><span class="tag">Whisper AI</span><span class="tag">Speech Recognition</span></div>
-        <p>AI-powered personalized Tajweed feedback using speech recognition, OpenAI Whisper and custom Quranic speech models.</p>
+        <div class="project-desc-3d">
+            <div class="project-desc-header">
+                <span class="desc-dot red"></span>
+                <span class="desc-dot yellow"></span>
+                <span class="desc-dot green"></span>
+                <span class="desc-terminal-title">qiraa.ai</span>
+            </div>
+            <div class="project-desc-body">
+                <span class="desc-prompt">&gt;</span>
+                <p class="project-desc-text" data-text="AI-powered personalized Tajweed feedback using speech recognition, OpenAI Whisper and custom Quranic speech models.">AI-powered personalized Tajweed feedback using speech recognition, OpenAI Whisper and custom Quranic speech models.</p>
+                <span class="desc-cursor" aria-hidden="true"></span>
+            </div>
+        </div>
         <div class="project-actions">
             <a href="https://qiraa-h.web.app/" target="_blank" rel="noopener noreferrer" class="project-action primary">◉ Live Demo</a>
             <a href="https://github.com/ZainCloud009/Qiraa-h.git" target="_blank" rel="noopener noreferrer" class="project-action">↗ View Project</a>
@@ -2335,7 +2548,19 @@ I'm passionate about building scalable, secure and automated cloud infrastructur
         <div class="project-number">PROJECT 02</div>
         <h3>Enterprise DevOps Deployment: Terraform IaC & Jenkins CI/CD</h3>
         <div class="tags"><span class="tag">Terraform</span><span class="tag">AWS EC2</span><span class="tag">ALB</span><span class="tag">RDS</span><span class="tag">Jenkins</span><span class="tag">Docker</span></div>
-        <p>Reusable AWS infrastructure with modular Terraform, Jenkins CI/CD, Docker, testing, automated rollbacks and S3 disaster recovery.</p>
+        <div class="project-desc-3d">
+            <div class="project-desc-header">
+                <span class="desc-dot red"></span>
+                <span class="desc-dot yellow"></span>
+                <span class="desc-dot green"></span>
+                <span class="desc-terminal-title">devops.tf</span>
+            </div>
+            <div class="project-desc-body">
+                <span class="desc-prompt">&gt;</span>
+                <p class="project-desc-text" data-text="Reusable AWS infrastructure with modular Terraform, Jenkins CI/CD, Docker, testing, automated rollbacks and S3 disaster recovery.">Reusable AWS infrastructure with modular Terraform, Jenkins CI/CD, Docker, testing, automated rollbacks and S3 disaster recovery.</p>
+                <span class="desc-cursor" aria-hidden="true"></span>
+            </div>
+        </div>
         <div class="project-actions">
             <a href="https://github.com/zain5103/devops-assessments.git" target="_blank" rel="noopener noreferrer" class="project-action primary">⌘ Source Code</a>
             <a href="https://github.com/zain5103/devops-assessments.git" target="_blank" rel="noopener noreferrer" class="project-action">↗ View Architecture</a>
@@ -2354,7 +2579,19 @@ I'm passionate about building scalable, secure and automated cloud infrastructur
         <div class="project-number">PROJECT 03</div>
         <h3>Laravel Project Deployment on AWS</h3>
         <div class="tags"><span class="tag">GitHub Actions</span><span class="tag">CI/CD Pipeline</span><span class="tag">AWS EC2</span><span class="tag">Terraform</span><span class="tag">Git</span></div>
-        <p>Laravel deployed on AWS EC2 with reproducible Terraform infrastructure and a GitHub Actions CI/CD delivery workflow.</p>
+        <div class="project-desc-3d">
+            <div class="project-desc-header">
+                <span class="desc-dot red"></span>
+                <span class="desc-dot yellow"></span>
+                <span class="desc-dot green"></span>
+                <span class="desc-terminal-title">laravel-aws.yml</span>
+            </div>
+            <div class="project-desc-body">
+                <span class="desc-prompt">&gt;</span>
+                <p class="project-desc-text" data-text="Laravel deployed on AWS EC2 with reproducible Terraform infrastructure and a GitHub Actions CI/CD delivery workflow.">Laravel deployed on AWS EC2 with reproducible Terraform infrastructure and a GitHub Actions CI/CD delivery workflow.</p>
+                <span class="desc-cursor" aria-hidden="true"></span>
+            </div>
+        </div>
         <div class="project-actions">
             <a href="https://github.com/ZainCloud009/IdeaProj.git" target="_blank" rel="noopener noreferrer" class="project-action primary">⌘ Source Code</a>
             <a href="https://github.com/ZainCloud009/IdeaProj.git" target="_blank" rel="noopener noreferrer" class="project-action">↗ View Deployment</a>
@@ -2379,7 +2616,19 @@ I'm passionate about building scalable, secure and automated cloud infrastructur
 <span class="tag">S3</span>
 <span class="tag">MySQL</span>
 </div>
-<p>Automated Amazon Linux administration, database backups, log archiving and scheduled S3 synchronization with Bash and Cron.</p>
+<div class="project-desc-3d">
+    <div class="project-desc-header">
+        <span class="desc-dot red"></span>
+        <span class="desc-dot yellow"></span>
+        <span class="desc-dot green"></span>
+        <span class="desc-terminal-title">backup-cron.sh</span>
+    </div>
+    <div class="project-desc-body">
+        <span class="desc-prompt">&gt;</span>
+        <p class="project-desc-text" data-text="Automated Amazon Linux administration, database backups, log archiving and scheduled S3 synchronization with Bash and Cron.">Automated Amazon Linux administration, database backups, log archiving and scheduled S3 synchronization with Bash and Cron.</p>
+        <span class="desc-cursor" aria-hidden="true"></span>
+    </div>
+</div>
 <div class="project-actions">
     <a href="#contact" class="project-action primary">✦ Discuss Project</a>
     <a href="#skills" class="project-action">↗ View Skills</a>
@@ -2805,6 +3054,88 @@ document.querySelectorAll(".project[data-href]").forEach(function(card){
         if(href) window.location.href = href;
     });
 });
+
+// HERO ROLE TYPING ANIMATION
+(function(){
+    const heroRoleText = document.getElementById("heroRoleText");
+    if(!heroRoleText) return;
+    const roleText = "AWS Cloud & DevOps Engineer";
+    let charIndex = 0;
+    let isDeleting = false;
+    heroRoleText.textContent = "";
+
+    function typeHeroRole(){
+        if(!isDeleting){
+            heroRoleText.textContent = roleText.substring(0, charIndex + 1);
+            charIndex++;
+            if(charIndex === roleText.length){
+                isDeleting = true;
+                setTimeout(typeHeroRole, 3800);
+                return;
+            }
+            setTimeout(typeHeroRole, 70);
+        } else {
+            heroRoleText.textContent = roleText.substring(0, charIndex - 1);
+            charIndex--;
+            if(charIndex === 0){
+                isDeleting = false;
+                setTimeout(typeHeroRole, 600);
+                return;
+            }
+            setTimeout(typeHeroRole, 35);
+        }
+    }
+    setTimeout(typeHeroRole, 450);
+})();
+
+// PROJECT DESCRIPTIONS 3D TYPING ANIMATION
+(function(){
+    const projectDescTexts = document.querySelectorAll(".project-desc-text");
+    if(!projectDescTexts.length) return;
+
+    function typeProjectDescription(element, delay){
+        const fullText = element.getAttribute("data-text") || element.textContent.trim();
+        element.setAttribute("data-text", fullText);
+        element.textContent = "";
+        let idx = 0;
+
+        setTimeout(function(){
+            function nextChar(){
+                if(idx < fullText.length){
+                    element.textContent += fullText.charAt(idx);
+                    idx++;
+                    setTimeout(nextChar, 18);
+                }
+            }
+            nextChar();
+        }, delay);
+    }
+
+    const projectsSection = document.getElementById("projects");
+    let hasProjectsTyped = false;
+
+    function runProjectsTyping(){
+        if(hasProjectsTyped) return;
+        hasProjectsTyped = true;
+        projectDescTexts.forEach(function(el, i){
+            typeProjectDescription(el, i * 160);
+        });
+    }
+
+    if(projectsSection && window.IntersectionObserver){
+        const projectsObserver = new IntersectionObserver(function(entries){
+            entries.forEach(function(entry){
+                if(entry.isIntersecting){
+                    runProjectsTyping();
+                    projectsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        projectsObserver.observe(projectsSection);
+    } else {
+        setTimeout(runProjectsTyping, 900);
+    }
+})();
 </script>
 
 </body>
