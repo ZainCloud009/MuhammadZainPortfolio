@@ -102,11 +102,6 @@ body{
 
     background:
         radial-gradient(
-            circle at var(--cursor-x) var(--cursor-y),
-            rgba(113,143,255,.11),
-            transparent 20%
-        ),
-        radial-gradient(
             circle at 80% 5%,
             rgba(113,143,255,.10),
             transparent 28%
@@ -142,6 +137,16 @@ section{
     padding:110px 0;
 }
 
+#skills,
+#experience,
+#certifications,
+#education,
+#contact,
+#blogs{
+    content-visibility:auto;
+    contain-intrinsic-size:0 500px;
+}
+
 
 /* =========================================================
    CURSOR GLOW (DESKTOP ONLY)
@@ -155,39 +160,33 @@ section{
     top:0;
     pointer-events:none;
     z-index:0;
-    transform:
-        translate(
-            calc(var(--cursor-x) - 210px),
-            calc(var(--cursor-y) - 210px)
-        );
     background:
         radial-gradient(
             circle,
-            rgba(113,143,255,.09),
+            rgba(113,143,255,.12),
             transparent 65%
         );
-    filter:blur(15px);
-    transition:transform .08s linear;
+    transform:translate3d(-500px, -500px, 0);
+    will-change:transform;
+    backface-visibility:hidden;
 }
 
 .cursor-dot{
     position:fixed;
-    width:5px;
-    height:5px;
+    width:6px;
+    height:6px;
     left:0;
     top:0;
     border-radius:50%;
     pointer-events:none;
     z-index:9999;
-    background:white;
+    background:#fff;
     box-shadow:
-        0 0 15px rgba(113,143,255,.9),
-        0 0 35px rgba(113,143,255,.5);
-    transform:
-        translate(
-            calc(var(--cursor-x) - 2.5px),
-            calc(var(--cursor-y) - 2.5px)
-        );
+        0 0 12px rgba(113,143,255,.9),
+        0 0 24px rgba(113,143,255,.5);
+    transform:translate3d(-500px, -500px, 0);
+    will-change:transform;
+    backface-visibility:hidden;
 }
 
 
@@ -236,6 +235,7 @@ section{
     background:rgba(143,166,255,.65);
     box-shadow:0 0 10px rgba(113,143,255,.6);
     animation:particleFloat linear infinite;
+    will-change:transform;
 }
 
 @keyframes particleFloat{
@@ -384,7 +384,6 @@ html[data-theme="light"] .theme-toggle .sun-icon{ display:block; }
 
 html[data-theme="light"] body{
     background:
-        radial-gradient(circle at var(--cursor-x) var(--cursor-y), rgba(82,110,232,.12), transparent 20%),
         radial-gradient(circle at 80% 5%, rgba(82,110,232,.12), transparent 28%),
         radial-gradient(circle at 5% 35%, rgba(129,90,232,.08), transparent 28%),
         var(--bg);
@@ -534,14 +533,8 @@ html[data-theme="light"] .stat strong{ color:var(--text); }
 }
 
 @keyframes heroRolePulse{
-    0%, 100%{
-        transform:translateY(0px);
-        filter:drop-shadow(0 0 14px rgba(99,102,241,.45)) drop-shadow(0 0 28px rgba(56,189,248,.25));
-    }
-    50%{
-        transform:translateY(-2px);
-        filter:drop-shadow(0 0 20px rgba(192,132,252,.65)) drop-shadow(0 0 36px rgba(56,189,248,.38));
-    }
+    0%, 100%{ transform:translate3d(0, 0, 0); }
+    50%{ transform:translate3d(0, -3px, 0); }
 }
 
 @keyframes heroCursorBlink{
@@ -564,11 +557,13 @@ html[data-theme="light"] .stat strong{ color:var(--text); }
 
 .hero-role-text{
     background:linear-gradient(120deg, #38bdf8 0%, #818cf8 25%, #c084fc 50%, #34d399 75%, #38bdf8 100%);
-    background-size:300% 100%;
+    background-size:250% 100%;
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
     animation:heroGradientShift 6s ease infinite;
+    filter:drop-shadow(0 0 12px rgba(113,143,255,.45));
     display:inline-block;
+    will-change:transform;
 }
 
 .hero-cursor{
@@ -2049,15 +2044,14 @@ footer{
 
 .reveal{
     opacity:0;
-    transform:translateY(35px);
-    filter:blur(3px);
-    transition:opacity .8s ease, transform .8s ease, filter .8s ease;
+    transform:translate3d(0, 25px, 0);
+    transition:opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1);
+    will-change:opacity, transform;
 }
 
 .reveal.active{
     opacity:1;
-    transform:translateY(0);
-    filter:blur(0);
+    transform:translate3d(0, 0, 0);
 }
 
 .scroll-progress{
@@ -2444,7 +2438,7 @@ while continuously improving deployment workflows.
 
 <div class="profile-ring">
 <div class="profile-image-wrap">
-<img class="profile-image" src="images/muhammadzain.png" alt="Muhammad Zain" title="Muhammad Zain">
+<img class="profile-image" src="images/muhammadzain.png" alt="Muhammad Zain" title="Muhammad Zain" width="584" height="800" fetchpriority="high" decoding="async">
 </div>
 </div>
 
@@ -2512,7 +2506,7 @@ I'm passionate about building scalable, secure and automated cloud infrastructur
 
 <article class="project" data-href="project-qiraa-ai.html">
     <div class="project-visual visual-qiraa">
-        <img class="project-image" src="images/Project1.jpeg" alt="Qira'a AI-powered Quran recitation learning platform preview" loading="eager">
+        <img class="project-image" src="images/Project1.jpeg" alt="Qira'a AI-powered Quran recitation learning platform preview" loading="lazy" decoding="async" width="900" height="600">
     </div>
     <div class="project-content">
         <div class="project-number">PROJECT 01 (University Of Engineering and Technology Final Year Project)</div>
@@ -2542,7 +2536,7 @@ I'm passionate about building scalable, secure and automated cloud infrastructur
 
 <article class="project" data-href="project-enterprise-devops.html">
     <div class="project-visual visual-devops">
-        <img class="project-image" src="images/Project2.jpeg" alt="Enterprise DevOps deployment architecture with Terraform and Jenkins preview" loading="lazy">
+        <img class="project-image" src="images/Project2.jpeg" alt="Enterprise DevOps deployment architecture with Terraform and Jenkins preview" loading="lazy" decoding="async" width="900" height="600">
     </div>
     <div class="project-content">
         <div class="project-number">PROJECT 02</div>
@@ -2573,7 +2567,7 @@ I'm passionate about building scalable, secure and automated cloud infrastructur
 
 <article class="project" data-href="project-laravel-aws.html">
     <div class="project-visual visual-laravel">
-        <img class="project-image" src="images/Project3.jpeg" alt="Laravel application deployment on AWS preview" loading="lazy">
+        <img class="project-image" src="images/Project3.jpeg" alt="Laravel application deployment on AWS preview" loading="lazy" decoding="async" width="900" height="600">
     </div>
     <div class="project-content">
         <div class="project-number">PROJECT 03</div>
@@ -2973,24 +2967,48 @@ window.addEventListener("resize", function(){
     if(window.innerWidth > 900) closeMobileMenu();
 });
 
-// CURSOR GLOW (DESKTOP ONLY)
-document.addEventListener("mousemove", function(event){
-    if(window.innerWidth > 650){
-        document.documentElement.style.setProperty("--cursor-x", event.clientX + "px");
-        document.documentElement.style.setProperty("--cursor-y", event.clientY + "px");
+// UNIFIED HIGH-PERFORMANCE MOUSE TRACKER (ZERO LAYOUT REFLOWS)
+const cursorGlow = document.querySelector(".cursor-glow");
+const cursorDot = document.querySelector(".cursor-dot");
+const profileArea = document.querySelector(".profile-area");
+
+let mouseX = -500, mouseY = -500;
+let mouseTicking = false;
+
+document.addEventListener("mousemove", function(e){
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    if(!mouseTicking){
+        mouseTicking = true;
+        requestAnimationFrame(updateMouseVisuals);
     }
-});
+}, { passive: true });
+
+function updateMouseVisuals(){
+    if(window.innerWidth > 650){
+        if(cursorGlow) cursorGlow.style.transform = `translate3d(${mouseX - 210}px, ${mouseY - 210}px, 0)`;
+        if(cursorDot) cursorDot.style.transform = `translate3d(${mouseX - 3}px, ${mouseY - 3}px, 0)`;
+    }
+    if(profileArea && window.innerWidth > 900){
+        const x = (window.innerWidth / 2 - mouseX) / 55;
+        const y = (window.innerHeight / 2 - mouseY) / 55;
+        profileArea.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+    }
+    mouseTicking = false;
+}
 
 // PARTICLES
 const particleContainer = document.getElementById("particles");
-for(let i = 0; i < 28; i++){
-    const particle = document.createElement("div");
-    particle.className = "particle";
-    particle.style.left = Math.random() * 100 + "%";
-    particle.style.animationDuration = (8 + Math.random() * 15) + "s";
-    particle.style.animationDelay = (-Math.random() * 15) + "s";
-    particle.style.opacity = Math.random();
-    particleContainer.appendChild(particle);
+if(particleContainer){
+    for(let i = 0; i < 24; i++){
+        const particle = document.createElement("div");
+        particle.className = "particle";
+        particle.style.left = Math.random() * 100 + "%";
+        particle.style.animationDuration = (8 + Math.random() * 15) + "s";
+        particle.style.animationDelay = (-Math.random() * 15) + "s";
+        particle.style.opacity = Math.random();
+        particleContainer.appendChild(particle);
+    }
 }
 
 // SCROLL REVEAL
@@ -3002,22 +3020,28 @@ const revealObserver = new IntersectionObserver(function(entries){
             revealObserver.unobserve(entry.target);
         }
     });
-}, { threshold: 0.1 });
+}, { threshold: 0.08 });
 
 revealElements.forEach(function(element){
     revealObserver.observe(element);
 });
 
-// SCROLL PROGRESS
+// SCROLL PROGRESS (THROTTLED TO RAF)
 const progress = document.getElementById("scrollProgress");
+let scrollTicking = false;
 window.addEventListener("scroll", function(){
-    const scrollTop = window.scrollY;
-    const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
-    if(documentHeight > 0){
-        const percentage = (scrollTop / documentHeight) * 100;
-        progress.style.width = percentage + "%";
+    if(!scrollTicking){
+        scrollTicking = true;
+        requestAnimationFrame(function(){
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            if(docHeight > 0 && progress){
+                progress.style.width = (scrollTop / docHeight * 100) + "%";
+            }
+            scrollTicking = false;
+        });
     }
-});
+}, { passive: true });
 
 // TERMINAL ANIMATION
 const commands = [
@@ -3030,21 +3054,14 @@ const commandElement = document.getElementById("terminalCommand");
 const outputElement = document.getElementById("terminalOutput");
 let commandIndex = 0;
 
-setInterval(function(){
-    const current = commands[commandIndex];
-    commandElement.textContent = current[0];
-    outputElement.textContent = current[1];
-    commandIndex = (commandIndex + 1) % commands.length;
-}, 3200);
-
-// PARALLAX (DESKTOP ONLY)
-const profile = document.querySelector(".profile-area");
-document.addEventListener("mousemove", function(event){
-    if(window.innerWidth <= 900) return;
-    const x = (window.innerWidth / 2 - event.clientX) / 55;
-    const y = (window.innerHeight / 2 - event.clientY) / 55;
-    profile.style.transform = `translate(${x}px, ${y}px)`;
-});
+if(commandElement && outputElement){
+    setInterval(function(){
+        const current = commands[commandIndex];
+        commandElement.textContent = current[0];
+        outputElement.textContent = current[1];
+        commandIndex = (commandIndex + 1) % commands.length;
+    }, 3200);
+}
 
 // CLICKABLE PROJECT CARDS
 document.querySelectorAll(".project[data-href]").forEach(function(card){
@@ -3055,7 +3072,7 @@ document.querySelectorAll(".project[data-href]").forEach(function(card){
     });
 });
 
-// HERO ROLE TYPING ANIMATION
+// HERO ROLE TYPING ANIMATION (FAST & CRISP)
 (function(){
     const heroRoleText = document.getElementById("heroRoleText");
     if(!heroRoleText) return;
@@ -3070,25 +3087,25 @@ document.querySelectorAll(".project[data-href]").forEach(function(card){
             charIndex++;
             if(charIndex === roleText.length){
                 isDeleting = true;
-                setTimeout(typeHeroRole, 3800);
+                setTimeout(typeHeroRole, 4200);
                 return;
             }
-            setTimeout(typeHeroRole, 70);
+            setTimeout(typeHeroRole, 32);
         } else {
             heroRoleText.textContent = roleText.substring(0, charIndex - 1);
             charIndex--;
             if(charIndex === 0){
                 isDeleting = false;
-                setTimeout(typeHeroRole, 600);
+                setTimeout(typeHeroRole, 500);
                 return;
             }
-            setTimeout(typeHeroRole, 35);
+            setTimeout(typeHeroRole, 18);
         }
     }
-    setTimeout(typeHeroRole, 450);
+    setTimeout(typeHeroRole, 200);
 })();
 
-// PROJECT DESCRIPTIONS 3D TYPING ANIMATION
+// PROJECT DESCRIPTIONS 3D TYPING ANIMATION (FAST, ZERO-LAG MICRO-BATCHES)
 (function(){
     const projectDescTexts = document.querySelectorAll(".project-desc-text");
     if(!projectDescTexts.length) return;
@@ -3096,18 +3113,20 @@ document.querySelectorAll(".project[data-href]").forEach(function(card){
     function typeProjectDescription(element, delay){
         const fullText = element.getAttribute("data-text") || element.textContent.trim();
         element.setAttribute("data-text", fullText);
-        element.textContent = "";
-        let idx = 0;
 
         setTimeout(function(){
-            function nextChar(){
-                if(idx < fullText.length){
-                    element.textContent += fullText.charAt(idx);
-                    idx++;
-                    setTimeout(nextChar, 18);
+            element.textContent = "";
+            let idx = 0;
+            const step = Math.max(2, Math.round(fullText.length / 32));
+            const timer = setInterval(function(){
+                idx += step;
+                if(idx >= fullText.length){
+                    element.textContent = fullText;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = fullText.substring(0, idx);
                 }
-            }
-            nextChar();
+            }, 16);
         }, delay);
     }
 
@@ -3118,7 +3137,7 @@ document.querySelectorAll(".project[data-href]").forEach(function(card){
         if(hasProjectsTyped) return;
         hasProjectsTyped = true;
         projectDescTexts.forEach(function(el, i){
-            typeProjectDescription(el, i * 160);
+            typeProjectDescription(el, i * 75);
         });
     }
 
@@ -3133,7 +3152,7 @@ document.querySelectorAll(".project[data-href]").forEach(function(card){
         }, { threshold: 0.1 });
         projectsObserver.observe(projectsSection);
     } else {
-        setTimeout(runProjectsTyping, 900);
+        setTimeout(runProjectsTyping, 400);
     }
 })();
 </script>
