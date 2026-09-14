@@ -1700,8 +1700,8 @@ html[data-theme="light"] .project-action.primary{
 
 .blogs-grid{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
+    grid-template-columns:repeat(2,1fr);
+    gap:22px;
     margin-top:42px;
 }
 
@@ -1750,6 +1750,49 @@ html[data-theme="light"] .project-action.primary{
 .blog-image.cloud{ background-position:0 center; }
 .blog-image.automation{ background-position:50% center; }
 .blog-image.cicd{ background-position:100% center; }
+.blog-image.career{
+    background-image:none;
+    background:radial-gradient(circle at 85% 15%, rgba(0,242,254,.28) 0%, transparent 55%),
+              radial-gradient(circle at 15% 85%, rgba(113,143,255,.32) 0%, transparent 60%),
+              linear-gradient(135deg, #070e1e 0%, #0d1b38 50%, #07192c 100%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.career-bg-art{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    pointer-events:none;
+}
+
+.career-svg-pattern{
+    width:88%;
+    height:88%;
+    opacity:.85;
+}
+
+.blog-badge-tag{
+    position:relative;
+    z-index:2;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:8px 18px;
+    border-radius:999px;
+    font-size:11.5px;
+    font-weight:800;
+    letter-spacing:1.2px;
+    text-transform:uppercase;
+    color:#fff;
+    background:rgba(113,143,255,.22);
+    border:1px solid rgba(113,143,255,.45);
+    box-shadow:0 10px 30px rgba(0,0,0,.35), inset 0 0 16px rgba(113,143,255,.15);
+    backdrop-filter:blur(8px);
+}
 
 .blog-content{
     padding:22px;
@@ -2850,10 +2893,33 @@ muhammadzain8489@gmail.com &nbsp; · &nbsp; +92 324 7474009
 <section id="blogs" class="blogs">
 <div class="container reveal">
 <div class="blog-kicker">From the blog</div>
-<h2 class="blogs-heading">Cloud, automation &amp; DevOps notes.</h2>
-<p class="blogs-description">A small collection of practical articles. These are sample posts that you can replace with your own writing and links later.</p>
+<h2 class="blogs-heading">Cloud, automation &amp; career guides.</h2>
+<p class="blogs-description">Practical guides and insights on cloud architecture, DevOps automation, CI/CD pipelines, and software engineering career growth.</p>
 
 <div class="blogs-grid">
+    <a href="blog-software-internship-guide-2026.html" class="blog-card">
+        <div class="blog-image career" role="img" aria-label="Software Development Internship Roadmap 2026 Guide">
+            <div class="career-bg-art" aria-hidden="true">
+                <svg viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg" class="career-svg-pattern">
+                    <circle cx="100" cy="60" r="45" stroke="rgba(113,143,255,0.18)" stroke-width="1.5" stroke-dasharray="4 4"/>
+                    <circle cx="100" cy="60" r="28" stroke="rgba(0,242,254,0.22)" stroke-width="1.5"/>
+                    <path d="M40 95 L80 60 L120 75 L160 25" stroke="rgba(113,143,255,0.3)" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="40" cy="95" r="3.5" fill="#718fff"/>
+                    <circle cx="80" cy="60" r="3.5" fill="#718fff"/>
+                    <circle cx="120" cy="75" r="3.5" fill="#00f2fe"/>
+                    <circle cx="160" cy="25" r="4.5" fill="#00f2fe"/>
+                </svg>
+            </div>
+            <span class="blog-badge-tag">🎓 2026 ROADMAP</span>
+        </div>
+        <div class="blog-content">
+            <div class="blog-meta"><span>Career &amp; Tech</span><span>· 12 min read</span></div>
+            <h3>How to Get Your First Software Development Internship in India in 2026</h3>
+            <p>A practical step-by-step roadmap for college students: tech stack selection, real-world projects, GitHub, resume, and interview tactics.</p>
+            <span class="blog-read">Read article <span>→</span></span>
+        </div>
+    </a>
+
     <a href="blog-cloud-fundamentals.html" class="blog-card">
         <div class="blog-image cloud" role="img" aria-label="Cloud infrastructure and server network illustration"></div>
         <div class="blog-content">
