@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#060910">
+    <title>Containerized RESTful API with Automated CI/CD | Muhammad Zain</title>
+    <meta name="description" content="Production-focused To-Do List REST API built with FastAPI, containerized with Docker python:3.12-slim, non-root security, native urllib health checks, and GitHub Actions CI/CD by Muhammad Zain.">
+    <meta name="keywords" content="FastAPI Docker, GitHub Actions CI CD, Containerized REST API, To-Do API DevOps, non-root Docker container, pytest automation, Muhammad Zain DevOps">
+    <link rel="canonical" href="https://zaincloud009.github.io/MuhammadZainPortfolio/project-todo-api.html">
+    <link rel="stylesheet" href="blog.css">
+
+    <!-- OPEN GRAPH -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Containerized RESTful API with Automated CI/CD | Muhammad Zain">
+    <meta property="og:description" content="Production-focused To-Do List REST API using FastAPI, hardened with non-root Docker security, native health checks, and automated GitHub Actions CI/CD.">
+    <meta property="og:url" content="https://zaincloud009.github.io/MuhammadZainPortfolio/project-todo-api.html">
+    <meta property="og:site_name" content="Muhammad Zain | AWS Cloud & DevOps Engineer">
+
+    <!-- TWITTER CARD -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Containerized RESTful API with Automated CI/CD | Muhammad Zain">
+    <meta name="twitter:description" content="Production-focused FastAPI REST API containerized with Docker and automated via GitHub Actions CI/CD.">
+
+    <!-- JSON-LD STRUCTURED DATA -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareSourceCode",
+      "name": "Containerized RESTful API with Automated CI/CD",
+      "headline": "Production-focused FastAPI To-Do REST API with Docker and GitHub Actions CI/CD",
+      "description": "Production-focused To-Do List REST API using FastAPI, with a strong focus on containerization, security, automated testing, and CI/CD.",
+      "programmingLanguage": "Python",
+      "codeRepository": "https://github.com/ZainCloud009/todo-api",
+      "author": {
+        "@type": "Person",
+        "name": "Muhammad Zain",
+        "url": "https://zaincloud009.github.io/MuhammadZainPortfolio/"
+      }
+    }
+    </script>
+</head>
+<body>
+
+<div class="background-grid"></div>
+
+<!-- NAVBAR -->
+<nav>
+<div class="container nav-inner">
+    <a href="index.html" class="logo">M<span>Z</span>.</a>
+
+    <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#projects" class="active">Projects</a></li>
+        <li><a href="index.html#skills">Skills</a></li>
+        <li><a href="index.html#experience">Experience</a></li>
+        <li><a href="index.html#blogs">Blogs</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+
+    <div class="nav-actions">
+        <a href="index.html#contact" class="nav-contact">Let's Talk</a>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode" title="Switch to light mode">
+            <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"/></svg>
+            <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 2.5v2M12 19.5v2M21.5 12h-2M4.5 12h-2M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4M18.7 18.7l-1.4-1.4M6.7 6.7 5.3 5.3"/></svg>
+        </button>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation menu" aria-controls="navLinks" aria-expanded="false">•••</button>
+    </div>
+</div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main>
+<div class="container">
+    
+    <div class="blog-nav-bar">
+        <a href="index.html#projects" class="back-link">← Back to all projects</a>
+    </div>
+
+    <article class="blog-article">
+        <div class="article-hero-badge-wrap">
+            <div class="article-eyebrow">PROJECT 05 · CONTAINERIZATION &amp; CI/CD</div>
+            <span class="article-category-tag">FastAPI · Docker · GitHub Actions</span>
+        </div>
+        
+        <h1>Containerized RESTful API with Automated CI/CD</h1>
+        <p class="article-lead">A production-focused To-Do List REST API built with FastAPI and Pydantic, hardened with non-root Docker security, native urllib health monitoring, and an automated GitHub Actions CI/CD pipeline running 13 pytest tests and container smoke verification.</p>
+
+        <!-- TOP ACTION BUTTONS -->
+        <div class="project-top-actions">
+            <a href="https://github.com/ZainCloud009/todo-api" target="_blank" rel="noopener noreferrer" class="project-action-btn primary">⌘ GitHub Repository ↗</a>
+            <a href="https://github.com/ZainCloud009/todo-api/actions" target="_blank" rel="noopener noreferrer" class="project-action-btn">⚙ GitHub Actions CI/CD ↗</a>
+            <a href="index.html#contact" class="project-action-btn">✦ Discuss Project</a>
+        </div>
+
+        <!-- SPECIFICATION GRID -->
+        <div class="project-spec-grid">
+            <div class="project-spec-item">
+                <span>Role</span>
+                <strong>Cloud &amp; DevOps Engineer</strong>
+            </div>
+            <div class="project-spec-item">
+                <span>Architecture</span>
+                <strong>FastAPI Microservice &amp; Docker</strong>
+            </div>
+            <div class="project-spec-item">
+                <span>CI/CD &amp; Testing</span>
+                <strong>GitHub Actions · 13 Pytest Tests · Smoke Test</strong>
+            </div>
+        </div>
+
+        <div class="project-tags-list">
+            <span class="project-tag-pill">FastAPI</span>
+            <span class="project-tag-pill">Docker</span>
+            <span class="project-tag-pill">GitHub Actions</span>
+            <span class="project-tag-pill">CI/CD Pipeline</span>
+            <span class="project-tag-pill">Python 3.12</span>
+            <span class="project-tag-pill">pytest</span>
+            <span class="project-tag-pill">Pydantic</span>
+            <span class="project-tag-pill">Non-Root Security</span>
+            <span class="project-tag-pill">Container Healthcheck</span>
+            <span class="project-tag-pill">Docker Compose</span>
+            <span class="project-tag-pill">Swagger / OpenAPI</span>
+        </div>
+
+        <div class="article-divider"></div>
+
+        <!-- SECTION 1 -->
+        <section class="article-section">
+            <h2>Project Overview &amp; DevOps Mindset</h2>
+            <p>As part of my Cloud &amp; DevOps Engineering journey, I built a production-focused To-Do List REST API using FastAPI. While building functional application endpoints is essential, this project was architected around a fundamental DevOps principle:</p>
+            
+            <div class="article-callout">
+                <strong>Key Takeaway:</strong> Building the application is only one part of the job. Making it secure, testable, reproducible, and automatically verifiable is what turns raw code into a reliable, cloud-ready workload.
+            </div>
+
+            <p>From initial source code to automated unit test execution, lightweight multi-stage Docker packaging, non-root Linux permissions, and continuous smoke testing in GitHub Actions, this project implements a complete modern software delivery lifecycle.</p>
+        </section>
+
+        <!-- SECTION 2 -->
+        <section class="article-section">
+            <h2>FastAPI + Pydantic: High-Performance REST API</h2>
+            <p>The backend was crafted using <strong>FastAPI</strong> and <strong>Pydantic v2</strong> to achieve sub-millisecond serialization latency, strict type validation, and automated API documentation:</p>
+            <ul class="article-list">
+                <li><strong>Data Modeling &amp; Validation:</strong> Pydantic models define strict schema contracts for request bodies (title, description, completion status, due dates), automatically rejecting malformed JSON payloads with descriptive 422 HTTP responses.</li>
+                <li><strong>Interactive Swagger / OpenAPI:</strong> FastAPI auto-generates live interactive documentation endpoints at <code>/docs</code> (Swagger UI) and <code>/redoc</code>, enabling frictionless API discovery and manual testing.</li>
+                <li><strong>Clean Architecture:</strong> Separated business logic, route controllers, and error handling layers to ensure high modularity and maintainability.</li>
+            </ul>
+        </section>
+
+        <!-- SECTION 3 -->
+        <section class="article-section">
+            <h2>Hardened Docker Containerization</h2>
+            <p>Containers are often built with oversized base images or run under root privileges by default, creating severe security vulnerabilities in production. To eliminate these risks, the container was engineered with industry best practices:</p>
+            <ul class="article-list">
+                <li><strong>Lean Base Image (<code>python:3.12-slim</code>):</strong> Dramatically minimizes image size, cuts build and pull times, and reduces Common Vulnerabilities and Exposures (CVEs) by excluding unnecessary build tools and packages.</li>
+                <li><strong>Container Security (Non-Root User):</strong> Configured a dedicated system user (<code>appuser</code>, UID 1001) adhering strictly to the <strong>Principle of Least Privilege</strong>. Even in the event of an application exploit, the attacker is confined to an unprivileged sandbox without root access to the host kernel.</li>
+                <li><strong>Zero-Dependency Health Checks:</strong> Traditional Docker health checks often install <code>curl</code> or <code>wget</code>, adding bloat and attack surface. Instead, this image utilizes Python's built-in <code>urllib.request</code> standard library to verify endpoint responsiveness natively.</li>
+            </ul>
+
+            <!-- CODE BOX: DOCKERFILE -->
+            <div class="code-box">
+                <div class="code-header">
+                    <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+                    <span>Dockerfile — Production Hardened</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy Dockerfile</button>
+                </div>
+                <pre class="code-content"><code><span class="code-keyword">FROM</span> python:3.12-slim
+
+<span class="code-comment"># Create non-root system user (Principle of Least Privilege)</span>
+<span class="code-keyword">RUN</span> useradd -u 1001 -m appuser
+
+<span class="code-keyword">WORKDIR</span> /app
+
+<span class="code-comment"># Install dependencies with pip cache disabled to minimize layers</span>
+<span class="code-keyword">COPY</span> requirements.txt .
+<span class="code-keyword">RUN</span> pip install --no-cache-dir -r requirements.txt
+
+<span class="code-comment"># Copy application files and grant ownership to non-root user</span>
+<span class="code-keyword">COPY</span> --chown=appuser:appuser . .
+
+<span class="code-keyword">USER</span> appuser
+
+<span class="code-comment"># Native Python urllib health check without extra packages</span>
+<span class="code-keyword">HEALTHCHECK</span> --interval=30s --timeout=3s --retries=3 \
+  <span class="code-keyword">CMD</span> python -c <span class="code-string">"import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"</span> || exit 1
+
+<span class="code-keyword">EXPOSE</span> 8000
+<span class="code-keyword">CMD</span> [<span class="code-string">"uvicorn"</span>, <span class="code-string">"main:app"</span>, <span class="code-string">"--host"</span>, <span class="code-string">"0.0.0.0"</span>, <span class="code-string">"--port"</span>, <span class="code-string">"8000"</span>]</code></pre>
+            </div>
+        </section>
+
+        <!-- SECTION 4 -->
+        <section class="article-section">
+            <h2>Automated GitHub Actions CI/CD Pipeline</h2>
+            <p>Every commit pushed to GitHub and every pull request triggers an automated continuous integration and delivery pipeline defined in <code>.github/workflows/ci.yml</code>:</p>
+            <ul class="article-list">
+                <li><strong>Automated Testing with pytest (13 Unit Tests):</strong> Executes a test suite containing 13 unit tests covering CRUD endpoints, error handlers, query filters, and data validations with zero tolerance for regressions.</li>
+                <li><strong>Docker Build with Layer Caching:</strong> Uses <code>docker/setup-buildx-action</code> and GitHub Actions cache backends (<code>type=gha</code>) to accelerate image assembly by reusing unchanged layers.</li>
+                <li><strong>Ephemeral Container Spin-Up:</strong> Starts a temporary live instance of the built Docker container inside the GitHub runner environment.</li>
+                <li><strong>Automated Smoke Testing:</strong> Executes an HTTP probe against the live container to verify that uvicorn started properly, routes respond with <code>200 OK</code>, and no runtime missing modules crash the process.</li>
+            </ul>
+
+            <!-- CODE BOX: GITHUB ACTIONS -->
+            <div class="code-box">
+                <div class="code-header">
+                    <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+                    <span>.github/workflows/ci.yml — Automated CI/CD</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy Workflow</button>
+                </div>
+                <pre class="code-content"><code><span class="code-keyword">name</span>: CI/CD Pipeline
+
+<span class="code-keyword">on</span>:
+  <span class="code-keyword">push</span>:
+    <span class="code-keyword">branches</span>: [ main ]
+  <span class="code-keyword">pull_request</span>:
+    <span class="code-keyword">branches</span>: [ main ]
+
+<span class="code-keyword">jobs</span>:
+  <span class="code-keyword">test-and-build</span>:
+    <span class="code-keyword">runs-on</span>: ubuntu-latest
+
+    <span class="code-keyword">steps</span>:
+      - <span class="code-keyword">name</span>: Checkout Repository
+        <span class="code-keyword">uses</span>: actions/checkout@v4
+
+      - <span class="code-keyword">name</span>: Set up Python 3.12
+        <span class="code-keyword">uses</span>: actions/setup-python@v5
+        <span class="code-keyword">with</span>:
+          <span class="code-keyword">python-version</span>: <span class="code-string">"3.12"</span>
+          <span class="code-keyword">cache</span>: <span class="code-string">"pip"</span>
+
+      - <span class="code-keyword">name</span>: Install Dependencies &amp; pytest
+        <span class="code-keyword">run</span>: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest httpx
+
+      - <span class="code-keyword">name</span>: Run 13 Unit Tests
+        <span class="code-keyword">run</span>: pytest -v --tb=short
+
+      - <span class="code-keyword">name</span>: Set up Docker Buildx
+        <span class="code-keyword">uses</span>: docker/setup-buildx-action@v3
+
+      - <span class="code-keyword">name</span>: Build Docker Image with Caching
+        <span class="code-keyword">uses</span>: docker/build-push-action@v5
+        <span class="code-keyword">with</span>:
+          <span class="code-keyword">context</span>: .
+          <span class="code-keyword">load</span>: true
+          <span class="code-keyword">tags</span>: todo-api:latest
+          <span class="code-keyword">cache-from</span>: type=gha
+          <span class="code-keyword">cache-to</span>: type=gha,mode=max
+
+      - <span class="code-keyword">name</span>: Container Smoke Test
+        <span class="code-keyword">run</span>: |
+          docker run -d -p 8000:8000 --name test-api todo-api:latest
+          sleep 3
+          python -c "import urllib.request; res = urllib.request.urlopen('http://localhost:8000/health'); assert res.status == 200"
+          echo "Smoke test passed successfully!"
+          docker stop test-api</code></pre>
+            </div>
+        </section>
+
+        <!-- SECTION 5 -->
+        <section class="article-section">
+            <h2>Frictionless Local Development with Docker Compose</h2>
+            <p>To eliminate the classic <em>"it works on my machine"</em> dilemma, a comprehensive <code>docker-compose.yml</code> setup was created for team members and contributors:</p>
+            <ul class="article-list">
+                <li><strong>Live Volume Mounting:</strong> Mounts local application code directly into the container filesystem (<code>.:/app</code>), enabling instant hot-reloading on code edits without rebuilding the image.</li>
+                <li><strong>Environment Isolation:</strong> Encapsulates runtime dependencies so developers can test the exact production Python version and packages without polluting their host machines.</li>
+            </ul>
+        </section>
+
+        <!-- SECTION 6 -->
+        <section class="article-section">
+            <h2>Engineering Takeaways &amp; Future Improvements</h2>
+            <p>This hands-on project solidified key architectural principles for developing modern cloud workloads:</p>
+            <ol class="article-list" style="list-style: decimal; padding-left: 20px;">
+                <li><strong>Shift Security Left:</strong> Implementing non-root containers and least-privilege principles during development eliminates security remediation bottlenecks in production.</li>
+                <li><strong>Fail Fast with Smoke Tests:</strong> Merely checking whether a Docker build exits with status 0 is insufficient; spinning up the image and pinging real endpoints catches runtime configuration mismatches before deployment.</li>
+                <li><strong>Native Tooling Over Extra Bloat:</strong> Leveraging Python's standard library for health checks prevents unnecessary dependencies and reduces the surface area for vulnerabilities.</li>
+            </ol>
+        </section>
+
+        <!-- BOTTOM ACTION BUTTONS -->
+        <div class="project-top-actions" style="margin-top: 40px;">
+            <a href="https://github.com/ZainCloud009/todo-api" target="_blank" rel="noopener noreferrer" class="project-action-btn primary">⌘ View Code on GitHub</a>
+            <a href="https://github.com/ZainCloud009/todo-api/actions" target="_blank" rel="noopener noreferrer" class="project-action-btn">⚙ GitHub Actions Runs</a>
+            <a href="index.html#projects" class="project-action-btn">← Back to All Projects</a>
+        </div>
+
+        <!-- MORE PROJECTS -->
+        <div class="more-articles-section" style="margin-top: 50px;">
+            <h3 class="more-articles-title">More projects to explore</h3>
+            <div class="more-articles-grid">
+                <div class="mini-card">
+                    <div>
+                        <div class="mini-card-tag">DevOps &amp; IaC</div>
+                        <h4>Enterprise DevOps Deployment: Terraform &amp; Jenkins</h4>
+                        <p>Modular AWS infrastructure with ALB, RDS, Jenkins pipelines, and automated rollbacks.</p>
+                    </div>
+                    <a href="project-enterprise-devops.html" class="mini-card-link">View project <span>→</span></a>
+                </div>
+
+                <div class="mini-card">
+                    <div>
+                        <div class="mini-card-tag">Cloud &amp; CI/CD</div>
+                        <h4>Laravel Project Deployment on AWS</h4>
+                        <p>Full-stack production deployment on AWS EC2 automated through Terraform and GitHub Actions.</p>
+                    </div>
+                    <a href="project-laravel-aws.html" class="mini-card-link">View project <span>→</span></a>
+                </div>
+
+                <div class="mini-card">
+                    <div>
+                        <div class="mini-card-tag">Automation</div>
+                        <h4>Linux Administration &amp; Bash Automation</h4>
+                        <p>Automated Amazon Linux maintenance, database backups, log archiving, and scheduled S3 sync.</p>
+                    </div>
+                    <a href="project-linux-automation.html" class="mini-card-link">View project <span>→</span></a>
+                </div>
+            </div>
+        </div>
+
+    </article>
+</div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+<div class="container footer-inner">
+    <div>© <span id="year"></span> Muhammad Zain. All rights reserved.</div>
+    <div class="socials">
+        <a href="https://github.com/ZainCloud009" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/muhammadzaindevops/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="mailto:muhammadzain8489@gmail.com">Email</a>
+    </div>
+</div>
+</footer>
+
+<script>
+// CURRENT YEAR
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// THEME TOGGLE
+const themeToggle = document.getElementById("themeToggle");
+const themeColor = document.querySelector('meta[name="theme-color"]');
+
+function setTheme(theme){
+    document.documentElement.dataset.theme = theme;
+    const isLight = theme === "light";
+    themeToggle.setAttribute("aria-label", isLight ? "Switch to dark mode" : "Switch to light mode");
+    themeToggle.title = isLight ? "Switch to dark mode" : "Switch to light mode";
+    if(themeColor) themeColor.setAttribute("content", isLight ? "#f5f7ff" : "#060910");
+}
+
+try{
+    const savedTheme = localStorage.getItem("portfolio-theme");
+    if(savedTheme === "light" || savedTheme === "dark"){
+        setTheme(savedTheme);
+    }
+}catch(e){}
+
+themeToggle.addEventListener("click", function(){
+    const nextTheme = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+    setTheme(nextTheme);
+    try{
+        localStorage.setItem("portfolio-theme", nextTheme);
+    }catch(e){}
+});
+
+// MOBILE MENU
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+function closeMobileMenu(){
+    navLinks.classList.remove("is-open");
+    menuToggle.setAttribute("aria-expanded", "false");
+}
+
+menuToggle.addEventListener("click", function(){
+    const isOpen = navLinks.classList.toggle("is-open");
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+});
+
+navLinks.addEventListener("click", function(e){
+    if(e.target.closest("a")) closeMobileMenu();
+});
+
+// COPY CODE
+function copyCode(button){
+    const pre = button.closest(".code-box").querySelector("pre code");
+    navigator.clipboard.writeText(pre.innerText).then(() => {
+        const originalText = button.textContent;
+        button.textContent = "Copied!";
+        button.style.borderColor = "var(--green)";
+        button.style.color = "var(--green)";
+        setTimeout(() => {
+            button.textContent = originalText;
+            button.style.borderColor = "";
+            button.style.color = "";
+        }, 2000);
+    });
+}
+</script>
+
+</body>
+</html>
