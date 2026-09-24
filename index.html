@@ -1878,6 +1878,31 @@ html[data-theme="light"] .project-action.primary{
     opacity:.85;
 }
 
+.blog-image.laravel-ecs{
+    background-image:none;
+    background:radial-gradient(circle at 80% 20%, rgba(244,63,94,.28) 0%, transparent 55%),
+              radial-gradient(circle at 20% 80%, rgba(113,143,255,.32) 0%, transparent 60%),
+              linear-gradient(135deg, #090e1a 0%, #161a33 50%, #091326 100%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.ecs-bg-art{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    pointer-events:none;
+}
+
+.ecs-svg-pattern{
+    width:88%;
+    height:88%;
+    opacity:.9;
+}
+
 .blog-badge-tag{
     position:relative;
     z-index:2;
@@ -2713,28 +2738,29 @@ I'm passionate about building scalable, secure and automated cloud infrastructur
 
 <article class="project" data-href="project-laravel-aws.html">
     <div class="project-visual visual-laravel">
-        <img class="project-image" src="images/Project3.jpeg" alt="Laravel application deployment on AWS preview" loading="lazy" decoding="async" width="900" height="600">
+        <img class="project-image" src="images/Project3.jpeg" alt="Laravel 12 application on AWS ECS architecture preview" loading="lazy" decoding="async" width="900" height="600">
     </div>
     <div class="project-content">
         <div class="project-number">PROJECT 03</div>
-        <h3>Laravel Project Deployment on AWS</h3>
-        <div class="tags"><span class="tag">GitHub Actions</span><span class="tag">CI/CD Pipeline</span><span class="tag">AWS EC2</span><span class="tag">Terraform</span><span class="tag">Git</span></div>
+        <h3>Laravel 12 Cloud Architecture: AWS ECS, ALB &amp; CI/CD</h3>
+        <div class="tags"><span class="tag">Laravel 12</span><span class="tag">AWS ECS</span><span class="tag">Docker</span><span class="tag">ALB</span><span class="tag">RDS MySQL SSL</span><span class="tag">GitHub Actions</span></div>
         <div class="project-desc-3d">
             <div class="project-desc-header">
                 <span class="desc-dot red"></span>
                 <span class="desc-dot yellow"></span>
                 <span class="desc-dot green"></span>
-                <span class="desc-terminal-title">laravel-aws.yml</span>
+                <span class="desc-terminal-title">laravel-ecs-cicd.yml</span>
             </div>
             <div class="project-desc-body">
                 <span class="desc-prompt">&gt;</span>
-                <p class="project-desc-text" data-text="Laravel deployed on AWS EC2 with reproducible Terraform infrastructure and a GitHub Actions CI/CD delivery workflow.">Laravel deployed on AWS EC2 with reproducible Terraform infrastructure and a GitHub Actions CI/CD delivery workflow.</p>
+                <p class="project-desc-text" data-text="Migrated Laravel 12 to AWS ECS with Dynamic Port Mapping (hostPort: 0), ALB zero-downtime routing, RDS SSL transport security, and sub-4-minute GitHub Actions CI/CD.">Migrated Laravel 12 to AWS ECS with Dynamic Port Mapping (hostPort: 0), ALB zero-downtime routing, RDS SSL transport security, and sub-4-minute GitHub Actions CI/CD.</p>
                 <span class="desc-cursor" aria-hidden="true"></span>
             </div>
         </div>
         <div class="project-actions">
-            <a href="https://github.com/ZainCloud009/IdeaProj.git" target="_blank" rel="noopener noreferrer" class="project-action primary">⌘ Source Code</a>
-            <a href="https://github.com/ZainCloud009/IdeaProj.git" target="_blank" rel="noopener noreferrer" class="project-action">↗ View Deployment</a>
+            <a href="https://github.com/ZainCloud009/IdeaProj.git" target="_blank" rel="noopener noreferrer" class="project-action primary">⌘ GitHub Repo ↗</a>
+            <a href="project-laravel-aws.html" class="project-action">📖 Case Study ↗</a>
+            <a href="blog-laravel-ecs-deployment.html" class="project-action">⚡ ECS Blog ↗</a>
         </div>
     </div>
 </article>
@@ -3056,6 +3082,31 @@ muhammadzain8489@gmail.com &nbsp; · &nbsp; +92 324 7474009
 <p class="blogs-description">Practical guides and insights on cloud architecture, DevOps automation, CI/CD pipelines, and software engineering career growth.</p>
 
 <div class="blogs-grid">
+    <a href="blog-laravel-ecs-deployment.html" class="blog-card">
+        <div class="blog-image laravel-ecs" role="img" aria-label="Migrating Laravel 12 to AWS ECS with Dynamic Port Mapping and CI/CD">
+            <div class="ecs-bg-art" aria-hidden="true">
+                <svg viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg" class="ecs-svg-pattern">
+                    <rect x="20" y="32" width="48" height="34" rx="7" stroke="rgba(244,63,94,0.7)" stroke-width="1.8" fill="rgba(244,63,94,0.12)"/>
+                    <rect x="132" y="32" width="48" height="34" rx="7" stroke="rgba(113,143,255,0.7)" stroke-width="1.8" fill="rgba(113,143,255,0.12)"/>
+                    <circle cx="100" cy="84" r="18" stroke="rgba(0,242,254,0.75)" stroke-width="1.8" fill="rgba(0,242,254,0.12)"/>
+                    <path d="M68 49 L132 49" stroke="rgba(255,255,255,0.35)" stroke-width="1.5" stroke-dasharray="3 3"/>
+                    <path d="M44 66 L86 78" stroke="rgba(244,63,94,0.55)" stroke-width="1.5"/>
+                    <path d="M156 66 L114 78" stroke="rgba(113,143,255,0.55)" stroke-width="1.5"/>
+                    <text x="44" y="53" fill="#f43f5e" font-size="9.5" font-family="ui-monospace, monospace" font-weight="bold" text-anchor="middle">PHP 8.2</text>
+                    <text x="156" y="53" fill="#718fff" font-size="9.5" font-family="ui-monospace, monospace" font-weight="bold" text-anchor="middle">AWS ECS</text>
+                    <text x="100" y="88" fill="#00f2fe" font-size="9" font-family="ui-monospace, monospace" font-weight="bold" text-anchor="middle">ALB:0</text>
+                </svg>
+            </div>
+            <span class="blog-badge-tag">⚡ AWS ECS &amp; LARAVEL 12</span>
+        </div>
+        <div class="blog-content">
+            <div class="blog-meta"><span>AWS Cloud &amp; DevOps</span><span>· 8 min read</span></div>
+            <h3>Migrating Laravel 12 to AWS ECS with Dynamic Port Mapping &amp; CI/CD</h3>
+            <p>Zero-downtime containerized deployment with multi-stage Docker, AWS ALB dynamic ports, RDS SSL security, and a 4-minute GitHub Actions pipeline.</p>
+            <span class="blog-read">Read article <span>→</span></span>
+        </div>
+    </a>
+
     <a href="blog-software-internship-guide-2026.html" class="blog-card">
         <div class="blog-image career" role="img" aria-label="Software Development Internship Roadmap 2026 Guide">
             <div class="career-bg-art" aria-hidden="true">

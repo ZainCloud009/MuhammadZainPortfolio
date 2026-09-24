@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#060910">
+
+    <!-- PRIMARY SEO META TAGS -->
+    <title>Migrating Laravel 12 to AWS ECS: Dynamic Port Mapping, ALB & CI/CD | Muhammad Zain</title>
+    <meta name="title" content="Migrating Laravel 12 to AWS ECS: Dynamic Port Mapping, ALB & CI/CD | Muhammad Zain">
+    <meta name="description" content="Production guide: Migrating Laravel 12 (PHP 8.2) to AWS ECS with Dynamic Port Mapping (hostPort: 0), ALB zero-downtime routing, RDS MySQL SSL security, and GitHub Actions CI/CD under 4 minutes by Muhammad Zain.">
+    <meta name="keywords" content="Laravel 12, AWS ECS, Dynamic Port Mapping, hostPort 0, Application Load Balancer, AWS ALB, RDS MySQL SSL, GitHub Actions CI/CD, Docker multi-stage, PHP 8.2 FPM Alpine, Nginx Supervisor, zero downtime deployment, AWS DevOps, Muhammad Zain">
+    <meta name="author" content="Muhammad Zain">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <link rel="canonical" href="https://zaincloud009.github.io/MuhammadZainPortfolio/blog-laravel-ecs-deployment.html">
+
+    <!-- OPEN GRAPH / FACEBOOK / LINKEDIN -->
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:url" content="https://zaincloud009.github.io/MuhammadZainPortfolio/blog-laravel-ecs-deployment.html">
+    <meta property="og:site_name" content="Muhammad Zain | AWS Cloud & DevOps Engineer">
+    <meta property="og:title" content="Migrating Laravel 12 to AWS ECS with Dynamic Port Mapping, ALB, RDS SSL & CI/CD">
+    <meta property="og:description" content="Step-by-step production tested architecture for zero-downtime containerized Laravel 12 on AWS ECS with dynamic port mapping, ALB routing, RDS CA encryption, and 30-second deploys.">
+    <meta property="og:image" content="https://zaincloud009.github.io/MuhammadZainPortfolio/images/Project3.jpeg">
+    <meta property="og:image:alt" content="Laravel application on AWS ECS architecture preview">
+    <meta property="article:published_time" content="2026-09-25T00:00:00+00:00">
+    <meta property="article:author" content="https://www.linkedin.com/in/muhammadzaindevops/">
+    <meta property="article:section" content="Cloud Architecture & DevOps">
+    <meta property="article:tag" content="Laravel 12">
+    <meta property="article:tag" content="AWS ECS">
+    <meta property="article:tag" content="Docker">
+    <meta property="article:tag" content="GitHub Actions">
+    <meta property="article:tag" content="CI/CD">
+
+    <!-- TWITTER CARD -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://zaincloud009.github.io/MuhammadZainPortfolio/blog-laravel-ecs-deployment.html">
+    <meta name="twitter:title" content="Migrating Laravel 12 to AWS ECS with Dynamic Port Mapping & CI/CD">
+    <meta name="twitter:description" content="Production guide: Migrating Laravel 12 to AWS ECS with Dynamic Port Mapping, ALB, RDS SSL and GitHub Actions CI/CD under 4 minutes.">
+    <meta name="twitter:image" content="https://zaincloud009.github.io/MuhammadZainPortfolio/images/Project3.jpeg">
+    <meta name="twitter:creator" content="@ZainCloud009">
+
+    <!-- JSON-LD STRUCTURED DATA -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "TechArticle",
+          "@id": "https://zaincloud009.github.io/MuhammadZainPortfolio/blog-laravel-ecs-deployment.html#article",
+          "isPartOf": {
+            "@type": "WebPage",
+            "@id": "https://zaincloud009.github.io/MuhammadZainPortfolio/blog-laravel-ecs-deployment.html",
+            "url": "https://zaincloud009.github.io/MuhammadZainPortfolio/blog-laravel-ecs-deployment.html",
+            "name": "Migrating Laravel 12 to AWS ECS with Dynamic Port Mapping, ALB, RDS SSL & CI/CD"
+          },
+          "headline": "Migrating Laravel 12 to AWS ECS with Dynamic Port Mapping, ALB, RDS SSL & GitHub Actions CI/CD",
+          "description": "A production-tested architecture guide for containerizing and deploying modern Laravel 12 (PHP 8.2) applications to AWS ECS with zero-downtime rolling updates, dynamic port mapping, and sub-4-minute GitHub Actions pipelines.",
+          "image": "https://zaincloud009.github.io/MuhammadZainPortfolio/images/Project3.jpeg",
+          "datePublished": "2026-09-25T00:00:00+00:00",
+          "dateModified": "2026-09-25T00:00:00+00:00",
+          "author": {
+            "@type": "Person",
+            "name": "Muhammad Zain",
+            "jobTitle": "DevOps & Cloud Engineer",
+            "url": "https://zaincloud009.github.io/MuhammadZainPortfolio/",
+            "sameAs": [
+              "https://www.linkedin.com/in/muhammadzaindevops",
+              "https://github.com/ZainCloud009"
+            ]
+          },
+          "publisher": {
+            "@type": "Person",
+            "name": "Muhammad Zain",
+            "url": "https://zaincloud009.github.io/MuhammadZainPortfolio/"
+          },
+          "keywords": "Laravel 12, AWS ECS, Dynamic Port Mapping, hostPort 0, Application Load Balancer, RDS MySQL SSL, GitHub Actions CI/CD, Docker, PHP 8.2"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://zaincloud009.github.io/MuhammadZainPortfolio/blog-laravel-ecs-deployment.html#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://zaincloud009.github.io/MuhammadZainPortfolio/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Blogs",
+              "item": "https://zaincloud009.github.io/MuhammadZainPortfolio/#blogs"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Laravel 12 on AWS ECS",
+              "item": "https://zaincloud009.github.io/MuhammadZainPortfolio/blog-laravel-ecs-deployment.html"
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <link rel="stylesheet" href="blog.css">
+</head>
+<body>
+
+<div class="background-grid"></div>
+
+<!-- NAVBAR -->
+<nav>
+<div class="container nav-inner">
+    <a href="index.html" class="logo">M<span>Z</span>.</a>
+
+    <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="index.html#skills">Skills</a></li>
+        <li><a href="index.html#experience">Experience</a></li>
+        <li><a href="index.html#blogs" class="active">Blogs</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+
+    <div class="nav-actions">
+        <a href="index.html#contact" class="nav-contact">Let's Talk</a>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode" title="Switch to light mode">
+            <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"/></svg>
+            <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 2.5v2M12 19.5v2M21.5 12h-2M4.5 12h-2M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4M18.7 18.7l-1.4-1.4M6.7 6.7 5.3 5.3"/></svg>
+        </button>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation menu" aria-controls="navLinks" aria-expanded="false">•••</button>
+    </div>
+</div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main>
+<div class="container">
+    
+    <div class="blog-nav-bar">
+        <a href="index.html#blogs" class="back-link">← Back to all blogs</a>
+    </div>
+
+    <article class="blog-article">
+        <div class="article-hero-badge-wrap">
+            <div class="article-eyebrow">☁️ AWS CLOUD &amp; ECS CONTAINERS</div>
+            <span class="article-category-tag">Production Architecture &amp; CI/CD</span>
+        </div>
+        
+        <h1>Migrating Laravel 12 to AWS ECS with Dynamic Port Mapping, ALB, RDS SSL &amp; GitHub Actions CI/CD</h1>
+        
+        <p class="article-lead">Deploying Laravel applications on a single EC2 instance using manual SSH commands or standalone Docker containers works fine initially, but as traffic grows, it quickly becomes brittle. You face downtime during code updates, port conflicts when restarting containers, and sluggish deployment pipelines.</p>
+
+        <!-- TOP ACTION BUTTONS (REPO + CASE STUDY + CONTACT) -->
+        <div class="project-top-actions">
+            <a href="https://github.com/ZainCloud009/IdeaProj.git" target="_blank" rel="noopener noreferrer" class="project-action-btn primary">⌘ GitHub Repository ↗</a>
+            <a href="project-laravel-aws.html" class="project-action-btn">📖 View Project Case Study</a>
+            <a href="index.html#contact" class="project-action-btn">✦ Discuss Architecture</a>
+        </div>
+
+        <div class="article-byline">
+            <span>By Muhammad Zain</span>
+            <span>Cloud &amp; DevOps Engineer</span>
+            <span>8 min read</span>
+            <span>Laravel 12 · AWS ECS · Docker · ALB · RDS MySQL SSL · GitHub Actions</span>
+        </div>
+        
+        <div class="article-divider"></div>
+
+        <!-- INTRODUCTION -->
+        <section class="article-section">
+            <h2>Introduction</h2>
+            <p>In this guide, we will walk through a production-tested architecture: migrating a modern <strong>Laravel 12 (PHP 8.2)</strong> application to <strong>AWS Elastic Container Service (ECS)</strong> with EC2 Launch Type, paired with an <strong>Application Load Balancer (ALB)</strong>, secure <strong>AWS RDS MySQL</strong>, and a lightning-fast <strong>GitHub Actions CI/CD pipeline</strong>.</p>
+            
+            <div class="article-callout">
+                <strong>Why Migrate from EC2 to ECS?</strong> Standalone EC2 setups require manual container lifecycle management, suffer from port binding collisions during zero-downtime attempts, and lack automated healing. AWS ECS automates container scheduling, handles rolling deployments seamlessly behind an Application Load Balancer, and eliminates downtime completely.
+            </div>
+        </section>
+
+        <!-- ARCHITECTURE OVERVIEW -->
+        <section class="article-section">
+            <h2>Architecture Overview</h2>
+            <p>Here is what our production pipeline and hosting topology looks like from code commit to user request handling:</p>
+
+            <div class="cloud-map">
+                <div class="cloud-map-item">
+                    <span>1. GitHub Actions CI/CD</span>
+                    <p>Runs automated PHPUnit test suites, compiles frontend assets with Node 22 &amp; Vite, builds an optimized multi-stage Docker image, and pushes it to Amazon ECR with commit SHA tags.</p>
+                </div>
+                <div class="cloud-map-item">
+                    <span>2. Amazon ECS (EC2 Launch Type)</span>
+                    <p>Orchestrates container tasks on EC2 instances using <strong>Dynamic Port Mapping (<code>hostPort: 0</code>)</strong>, allowing old and new containers to run side-by-side during rolling updates.</p>
+                </div>
+                <div class="cloud-map-item">
+                    <span>3. Application Load Balancer (ALB)</span>
+                    <p>Terminates SSL/TLS certificates and intelligently routes public HTTPS traffic to the dynamically assigned host ephemeral ports registered by ECS.</p>
+                </div>
+                <div class="cloud-map-item">
+                    <span>4. AWS RDS MySQL with SSL</span>
+                    <p>Fully managed, highly available database secured via AWS RDS CA bundle certificate verification, guaranteeing encrypted transit across your AWS VPC.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- STEP 1: MULTI-STAGE DOCKERFILE -->
+        <section class="article-section">
+            <h2>Step 1: Multi-Stage Dockerfile for Laravel 12</h2>
+            <p>A production Docker image must be lightweight, fast to build, and secure. We use an optimized 3-stage build to isolate build tools from runtime binaries:</p>
+            <ul class="article-list">
+                <li><strong>Stage 1 (Frontend):</strong> Builds compiled assets via Node 22 and Vite, outputting only production bundles to <code>public/build</code>.</li>
+                <li><strong>Stage 2 (Composer Builder):</strong> Installs production PHP packages without development clutter, applying optimized classmaps.</li>
+                <li><strong>Stage 3 (Runtime):</strong> Lightweight Alpine Linux running PHP 8.2-FPM and Nginx, supervised together via Supervisor, with the official AWS RDS CA certificate pre-installed.</li>
+            </ul>
+
+            <div class="code-box">
+                <div class="code-header">
+                    <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+                    <span>Dockerfile (Multi-Stage Production Build)</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+                </div>
+                <pre class="code-content"><code><span class="code-comment"># Stage 1: Build Frontend Assets</span>
+<span class="code-keyword">FROM</span> node:22-alpine <span class="code-keyword">AS</span> frontend
+<span class="code-keyword">WORKDIR</span> /app
+<span class="code-keyword">COPY</span> package.json package-lock.json* ./
+<span class="code-keyword">RUN</span> npm install
+<span class="code-keyword">COPY</span> resources ./resources
+<span class="code-keyword">COPY</span> public ./public
+<span class="code-keyword">COPY</span> vite.config.js ./
+<span class="code-keyword">RUN</span> npm run build
+
+<span class="code-comment"># Stage 2: Composer Dependencies</span>
+<span class="code-keyword">FROM</span> composer:2 <span class="code-keyword">AS</span> composer-builder
+<span class="code-keyword">WORKDIR</span> /app
+<span class="code-keyword">COPY</span> composer.json composer.lock ./
+<span class="code-keyword">RUN</span> composer install --no-dev --no-interaction --prefer-dist --no-scripts --no-autoloader
+<span class="code-keyword">COPY</span> . .
+<span class="code-keyword">RUN</span> composer dump-autoload --optimize --no-dev
+
+<span class="code-comment"># Stage 3: Production Runtime</span>
+<span class="code-keyword">FROM</span> php:8.2-fpm-alpine <span class="code-keyword">AS</span> production
+<span class="code-keyword">RUN</span> apk add --no-cache nginx supervisor curl bash ca-certificates \
+    libpng-dev libxml2-dev oniguruma-dev libzip-dev \
+    &amp;&amp; docker-php-ext-install -j$(nproc) pdo_mysql mbstring exif pcntl bcmath xml zip
+
+<span class="code-comment"># Download AWS RDS CA Certificate</span>
+<span class="code-keyword">RUN</span> mkdir -p /var/www/html/storage/certs \
+    &amp;&amp; curl -sS https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem -o /var/www/html/storage/certs/rds-ca-bundle.pem
+
+<span class="code-keyword">WORKDIR</span> /var/www/html
+<span class="code-keyword">COPY</span> --from=composer-builder /app /var/www/html
+<span class="code-keyword">COPY</span> --from=frontend /app/public/build /var/www/html/public/build
+<span class="code-keyword">COPY</span> docker/nginx.conf /etc/nginx/http.d/default.conf
+<span class="code-keyword">COPY</span> docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+<span class="code-keyword">COPY</span> docker/entrypoint.sh /usr/local/bin/entrypoint.sh
+
+<span class="code-keyword">RUN</span> chmod +x /usr/local/bin/entrypoint.sh \
+    &amp;&amp; chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+
+<span class="code-keyword">EXPOSE</span> 80
+<span class="code-keyword">ENTRYPOINT</span> ["/usr/local/bin/entrypoint.sh"]
+<span class="code-keyword">CMD</span> ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]</code></pre>
+            </div>
+
+            <h3>Automated Startup Script (entrypoint.sh)</h3>
+            <p>Inside <code>docker/entrypoint.sh</code>, automatically apply pending database migrations and cache configurations on startup, ensuring that new containers are immediately optimized and ready to serve traffic:</p>
+
+            <div class="code-box">
+                <div class="code-header">
+                    <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+                    <span>docker/entrypoint.sh</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+                </div>
+                <pre class="code-content"><code><span class="code-comment">#!/bin/sh</span>
+<span class="code-keyword">set</span> -e
+
+<span class="code-keyword">if</span> [ -n <span class="code-string">"$APP_KEY"</span> ]; <span class="code-keyword">then</span>
+    php /var/www/html/artisan migrate --force || <span class="code-keyword">true</span>
+    php /var/www/html/artisan config:cache || <span class="code-keyword">true</span>
+    php /var/www/html/artisan route:cache || <span class="code-keyword">true</span>
+    php /var/www/html/artisan view:cache || <span class="code-keyword">true</span>
+<span class="code-keyword">fi</span>
+
+<span class="code-keyword">exec</span> <span class="code-string">"$@"</span></code></pre>
+            </div>
+        </section>
+
+        <!-- STEP 2: DYNAMIC PORT MAPPING -->
+        <section class="article-section">
+            <h2>Step 2: The Port Conflict Problem &amp; Dynamic Port Mapping</h2>
+            
+            <h3>The Pitfall of Static Port 80</h3>
+            <p>If you configure your ECS Task Definition with <code>"hostPort": 80</code>, you will inevitably run into this fatal deployment error:</p>
+
+            <div class="code-box">
+                <div class="code-header">
+                    <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+                    <span>ECS Task Failure Log</span>
+                </div>
+                <pre class="code-content"><code><span class="code-comment">CannotStartContainerError: Error starting userland proxy: listen tcp4 0.0.0.0:80: bind: address already in use</span></code></pre>
+            </div>
+
+            <p>This happens because only one container can bind to the host's port 80. During rolling deployments, ECS tries to start the new container before stopping the old one to avoid downtime, which immediately causes a port collision crash.</p>
+
+            <h3>The Solution: Dynamic Port Mapping (hostPort: 0)</h3>
+            <p>Set <code>"hostPort": 0</code> in your <code>task-definition.json</code>:</p>
+
+            <div class="code-box">
+                <div class="code-header">
+                    <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+                    <span>task-definition.json (Dynamic Port Mapping)</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+                </div>
+                <pre class="code-content"><code><span class="code-keyword">"portMappings"</span>: [
+  {
+    <span class="code-keyword">"containerPort"</span>: 80,
+    <span class="code-keyword">"hostPort"</span>: 0,
+    <span class="code-keyword">"protocol"</span>: <span class="code-string">"tcp"</span>
+  }
+]</code></pre>
+            </div>
+
+            <p>When <code>hostPort</code> is set to <code>0</code>:</p>
+            <ul class="article-list">
+                <li><strong>Dynamic Ephemeral Port:</strong> The Docker daemon dynamically assigns a free ephemeral port from the Linux range (e.g., <code>32768</code> to <code>65535</code>) to the new container.</li>
+                <li><strong>Automatic ALB Registration:</strong> Amazon ECS registers the container with the Application Load Balancer Target Group on that exact ephemeral port.</li>
+                <li><strong>Zero-Downtime Traffic Shift:</strong> ALB waits for the new container's health checks to pass on the dynamic port, gracefully drains the old container, and switches traffic seamlessly.</li>
+            </ul>
+
+            <div class="article-callout">
+                <strong>Crucial Security Group Rule:</strong> Ensure your EC2 Security Group allows inbound TCP traffic on ports <strong>32768–65535</strong> originating specifically from your ALB's Security Group ID. This ensures your ephemeral ports are protected from public exposure.
+            </div>
+        </section>
+
+        <!-- STEP 3: SECURE AWS RDS MYSQL -->
+        <section class="article-section">
+            <h2>Step 3: Secure AWS RDS MySQL Connection</h2>
+            <p>To enforce secure SSL transport encryption between Laravel and AWS RDS MySQL:</p>
+            <ul class="article-list">
+                <li>Store the downloaded Amazon RDS CA bundle at <code>/var/www/html/storage/certs/rds-ca-bundle.pem</code> (automated in Stage 3 of our Dockerfile).</li>
+                <li>Configure the MySQL connection options in <code>config/database.php</code> to verify the server certificate:</li>
+            </ul>
+
+            <div class="code-box">
+                <div class="code-header">
+                    <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+                    <span>config/database.php</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+                </div>
+                <pre class="code-content"><code><span class="code-string">'mysql'</span> =&gt; [
+    <span class="code-string">'driver'</span> =&gt; <span class="code-string">'mysql'</span>,
+    <span class="code-string">'host'</span> =&gt; env(<span class="code-string">'DB_HOST'</span>),
+    <span class="code-string">'port'</span> =&gt; env(<span class="code-string">'DB_PORT'</span>, <span class="code-string">'3306'</span>),
+    <span class="code-string">'database'</span> =&gt; env(<span class="code-string">'DB_DATABASE'</span>),
+    <span class="code-string">'username'</span> =&gt; env(<span class="code-string">'DB_USERNAME'</span>),
+    <span class="code-string">'password'</span> =&gt; env(<span class="code-string">'DB_PASSWORD'</span>),
+    <span class="code-string">'options'</span> =&gt; extension_loaded(<span class="code-string">'pdo_mysql'</span>) ? array_filter([
+        PDO::MYSQL_ATTR_SSL_CA =&gt; env(<span class="code-string">'MYSQL_ATTR_SSL_CA'</span>, storage_path(<span class="code-string">'certs/rds-ca-bundle.pem'</span>)),
+        PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT =&gt; filter_var(env(<span class="code-string">'MYSQL_ATTR_SSL_VERIFY_SERVER_CERT'</span>, <span class="code-keyword">true</span>), FILTER_VALIDATE_BOOLEAN),
+    ]) : [],
+],</code></pre>
+            </div>
+        </section>
+
+        <!-- STEP 4: GITHUB ACTIONS CI/CD -->
+        <section class="article-section">
+            <h2>Step 4: High-Speed GitHub Actions CI/CD Pipeline</h2>
+            <p>Many teams suffer from 15-to-20-minute pipelines. We optimized ours down to <strong>under 4 minutes</strong> using two key DevOps techniques:</p>
+            <ul class="article-list">
+                <li><strong>Parallel Execution:</strong> Run automated test suites and the Docker build-and-push jobs concurrently rather than sequentially.</li>
+                <li><strong>Dependency Caching:</strong> Cache Composer packages and Node modules across runs using GitHub Actions cache (<code>type=gha</code>).</li>
+            </ul>
+
+            <div class="code-box">
+                <div class="code-header">
+                    <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+                    <span>.github/workflows/deploy.yml (Sub-4-Minute CI/CD)</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+                </div>
+                <pre class="code-content"><code><span class="code-keyword">name</span>: <span class="code-string">CI/CD Pipeline (AWS ECS)</span>
+<span class="code-keyword">on</span>:
+  <span class="code-keyword">push</span>:
+    <span class="code-keyword">branches</span>: [ <span class="code-string">"main"</span> ]
+
+<span class="code-keyword">jobs</span>:
+  <span class="code-comment"># JOB 1: Parallel Automated Testing</span>
+  <span class="code-func">tests</span>:
+    <span class="code-keyword">name</span>: <span class="code-string">Run Automated Tests</span>
+    <span class="code-keyword">runs-on</span>: ubuntu-latest
+    <span class="code-keyword">steps</span>:
+      - <span class="code-keyword">uses</span>: actions/checkout@v4
+      - <span class="code-keyword">uses</span>: shivammathur/setup-php@v2
+        <span class="code-keyword">with</span>:
+          <span class="code-keyword">php-version</span>: <span class="code-string">'8.2'</span>
+          <span class="code-keyword">extensions</span>: mbstring, pdo, pdo_sqlite, zip
+      - <span class="code-keyword">uses</span>: actions/setup-node@v4
+        <span class="code-keyword">with</span>:
+          <span class="code-keyword">node-version</span>: 22
+          <span class="code-keyword">cache</span>: <span class="code-string">'npm'</span>
+      - <span class="code-keyword">run</span>: composer install --prefer-dist --no-progress
+      - <span class="code-keyword">run</span>: npm ci &amp;&amp; npm run build
+      - <span class="code-keyword">run</span>: php artisan test
+
+  <span class="code-comment"># JOB 2: Parallel Docker Build &amp; Push to ECR</span>
+  <span class="code-func">build-and-push</span>:
+    <span class="code-keyword">name</span>: <span class="code-string">Build &amp; Push Docker Image</span>
+    <span class="code-keyword">runs-on</span>: ubuntu-latest
+    <span class="code-keyword">steps</span>:
+      - <span class="code-keyword">uses</span>: actions/checkout@v4
+      - <span class="code-keyword">uses</span>: aws-actions/configure-aws-credentials@v4
+        <span class="code-keyword">with</span>:
+          <span class="code-keyword">aws-access-key-id</span>: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          <span class="code-keyword">aws-secret-access-key</span>: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          <span class="code-keyword">aws-region</span>: eu-north-1
+      - <span class="code-keyword">id</span>: login-ecr
+        <span class="code-keyword">uses</span>: aws-actions/amazon-ecr-login@v2
+      - <span class="code-keyword">uses</span>: docker/setup-buildx-action@v3
+      - <span class="code-keyword">uses</span>: docker/build-push-action@v5
+        <span class="code-keyword">with</span>:
+          <span class="code-keyword">context</span>: .
+          <span class="code-keyword">push</span>: true
+          <span class="code-keyword">tags</span>: |
+            ${{ steps.login-ecr.outputs.registry }}/laravelprojimage:${{ github.sha }}
+            ${{ steps.login-ecr.outputs.registry }}/laravelprojimage:latest
+          <span class="code-keyword">cache-from</span>: type=gha
+          <span class="code-keyword">cache-to</span>: type=gha,mode=max
+
+  <span class="code-comment"># JOB 3: Rolling Deployment to Amazon ECS</span>
+  <span class="code-func">deploy</span>:
+    <span class="code-keyword">name</span>: <span class="code-string">Deploy to Amazon ECS</span>
+    <span class="code-keyword">needs</span>: [tests, build-and-push]
+    <span class="code-keyword">runs-on</span>: ubuntu-latest
+    <span class="code-keyword">steps</span>:
+      - <span class="code-keyword">uses</span>: aws-actions/configure-aws-credentials@v4
+        <span class="code-keyword">with</span>:
+          <span class="code-keyword">aws-access-key-id</span>: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          <span class="code-keyword">aws-secret-access-key</span>: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          <span class="code-keyword">aws-region</span>: eu-north-1
+      - <span class="code-keyword">id</span>: login-ecr
+        <span class="code-keyword">uses</span>: aws-actions/amazon-ecr-login@v2
+      - <span class="code-keyword">name</span>: Fetch and Render ECS Task Definition
+        <span class="code-keyword">run</span>: |
+          aws ecs describe-task-definition --task-definition laravel-app-ec2-task --query taskDefinition &gt; task-def.json
+          jq 'del(.taskDefinitionArn, .revision, .status, .requiresAttributes, .compatibilities, .registeredAt, .registeredBy)' task-def.json &gt; task-definition-clean.json
+      - <span class="code-keyword">id</span>: render-app
+        <span class="code-keyword">uses</span>: aws-actions/amazon-ecs-render-task-definition@v1
+        <span class="code-keyword">with</span>:
+          <span class="code-keyword">task-definition</span>: task-definition-clean.json
+          <span class="code-keyword">container-name</span>: laravel_app
+          <span class="code-keyword">image</span>: ${{ steps.login-ecr.outputs.registry }}/laravelprojimage:${{ github.sha }}
+      - <span class="code-keyword">uses</span>: aws-actions/amazon-ecs-deploy-task-definition@v2
+        <span class="code-keyword">with</span>:
+          <span class="code-keyword">task-definition</span>: ${{ steps.render-app.outputs.task-definition }}
+          <span class="code-keyword">service</span>: laravel-ec2-service
+          <span class="code-keyword">cluster</span>: laravel-ec2-cluster
+          <span class="code-keyword">wait-for-service-stability</span>: true</code></pre>
+            </div>
+        </section>
+
+        <!-- STEP 5: CUTTING DEPLOYMENT TIME -->
+        <section class="article-section">
+            <h2>Step 5: Cutting Deployment Time from 7.5 Minutes to 30 Seconds</h2>
+            <p>By default, an AWS ALB Target Group takes up to <strong>7.5 minutes</strong> to drain in-flight connections and declare new containers healthy:</p>
+            <ul class="article-list">
+                <li><strong>Deregistration Delay Default:</strong> 300 seconds (5 full minutes of idle waiting during instance draining).</li>
+                <li><strong>Health Check Default:</strong> 5 consecutive checks spaced 30 seconds apart (150 seconds minimum before routing traffic).</li>
+            </ul>
+
+            <p>Run these two AWS CLI commands to supercharge your Target Group for rapid 30-second rolling deployments:</p>
+
+            <div class="code-box">
+                <div class="code-header">
+                    <div class="code-dots"><span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span></div>
+                    <span>AWS CLI (Target Group Optimization)</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+                </div>
+                <pre class="code-content"><code><span class="code-comment"># 1. Reduce connection draining delay from 300s to 5s</span>
+aws elbv2 modify-target-group-attributes \
+  --target-group-arn &lt;TARGET_GROUP_ARN&gt; \
+  --attributes Key=deregistration_delay.timeout_seconds,Value=5
+
+<span class="code-comment"># 2. Configure fast 10-second health check verification</span>
+aws elbv2 modify-target-group \
+  --target-group-arn &lt;TARGET_GROUP_ARN&gt; \
+  --health-check-interval-seconds 5 \
+  --health-check-timeout-seconds 2 \
+  --healthy-threshold-count 2 \
+  --unhealthy-threshold-count 2</code></pre>
+            </div>
+        </section>
+
+        <!-- CONCLUSION -->
+        <section class="article-section">
+            <h2>Conclusion</h2>
+            <p>By migrating Laravel 12 to Amazon ECS with Dynamic Port Mapping and an optimized Application Load Balancer, we transformed a brittle single-server setup into an enterprise-grade cloud deployment:</p>
+            
+            <div class="cloud-map">
+                <div class="cloud-map-item">
+                    <span>⚡ Zero Manual SSH</span>
+                    <p>No manual SSH logins are required to pull code, restart workers, or kill old containers.</p>
+                </div>
+                <div class="cloud-map-item">
+                    <span>🛡️ No Port 80 Collisions</span>
+                    <p>Port 80 collisions are eliminated forever using Docker ephemeral ports and dynamic ALB mapping.</p>
+                </div>
+                <div class="cloud-map-item">
+                    <span>⏱️ 30s ECS Rollouts</span>
+                    <p>Deployments take ~30 seconds on ECS and ~3 to 4 minutes end-to-end within GitHub Actions.</p>
+                </div>
+                <div class="cloud-map-item">
+                    <span>🌐 100% Uptime Guaranteed</span>
+                    <p>Zero-downtime rolling updates ensure users never experience broken renders or 502 Bad Gateway errors.</p>
+                </div>
+            </div>
+
+            <p style="margin-top: 24px;">Happy containerizing! Explore the complete project source code and deployment templates in the GitHub repository:</p>
+
+            <!-- ACTION BUTTONS -->
+            <div class="project-top-actions" style="margin-top: 25px;">
+                <a href="https://github.com/ZainCloud009/IdeaProj.git" target="_blank" rel="noopener noreferrer" class="project-action-btn primary">⌘ View Code on GitHub ↗</a>
+                <a href="project-laravel-aws.html" class="project-action-btn">📖 Explore Project Case Study</a>
+                <a href="index.html#blogs" class="project-action-btn">← Back to All Blogs</a>
+            </div>
+        </section>
+
+        <!-- EXPLORE MORE ARTICLES -->
+        <div class="more-articles-section">
+            <h3 class="more-articles-title">Explore more technical guides</h3>
+            <div class="more-articles-grid">
+                <div class="mini-card">
+                    <div>
+                        <div class="mini-card-tag">CI/CD &amp; DevOps</div>
+                        <h4>Designing a CI/CD pipeline your team can trust</h4>
+                        <p>Build checks, deployment gates, security scanning, container packaging, and automated rollbacks.</p>
+                    </div>
+                    <a href="blog-cicd-pipeline.html" class="mini-card-link">Read article <span>→</span></a>
+                </div>
+
+                <div class="mini-card">
+                    <div>
+                        <div class="mini-card-tag">AWS Cloud</div>
+                        <h4>What is Cloud Computing? Practical AWS Exploration</h4>
+                        <p>From service models to scalable infrastructure: what I learned exploring core AWS services hands-on.</p>
+                    </div>
+                    <a href="blog-cloud-fundamentals.html" class="mini-card-link">Read article <span>→</span></a>
+                </div>
+
+                <div class="mini-card">
+                    <div>
+                        <div class="mini-card-tag">Career &amp; Tech</div>
+                        <h4>First Software Development Internship in India (2026)</h4>
+                        <p>A complete roadmap covering tech stacks, problem-solving projects, GitHub, resume and interviews.</p>
+                    </div>
+                    <a href="blog-software-internship-guide-2026.html" class="mini-card-link">Read article <span>→</span></a>
+                </div>
+            </div>
+        </div>
+
+    </article>
+</div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+<div class="container footer-inner">
+    <div>© <span id="year"></span> Muhammad Zain. All rights reserved.</div>
+    <div class="socials">
+        <a href="https://github.com/ZainCloud009" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/muhammadzaindevops/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="mailto:muhammadzain8489@gmail.com">Email</a>
+    </div>
+</div>
+</footer>
+
+<script>
+// CURRENT YEAR
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// THEME TOGGLE
+const themeToggle = document.getElementById("themeToggle");
+const themeColor = document.querySelector('meta[name="theme-color"]');
+
+function setTheme(theme){
+    document.documentElement.dataset.theme = theme;
+    const isLight = theme === "light";
+    themeToggle.setAttribute("aria-label", isLight ? "Switch to dark mode" : "Switch to light mode");
+    themeToggle.title = isLight ? "Switch to dark mode" : "Switch to light mode";
+    if(themeColor) themeColor.setAttribute("content", isLight ? "#f5f7ff" : "#060910");
+}
+
+try{
+    const savedTheme = localStorage.getItem("portfolio-theme");
+    if(savedTheme === "light" || savedTheme === "dark"){
+        setTheme(savedTheme);
+    }
+}catch(e){}
+
+themeToggle.addEventListener("click", function(){
+    const nextTheme = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+    setTheme(nextTheme);
+    try{
+        localStorage.setItem("portfolio-theme", nextTheme);
+    }catch(e){}
+});
+
+// MOBILE MENU
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+function closeMobileMenu(){
+    navLinks.classList.remove("is-open");
+    menuToggle.setAttribute("aria-expanded", "false");
+}
+
+menuToggle.addEventListener("click", function(){
+    const isOpen = navLinks.classList.toggle("is-open");
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+});
+
+navLinks.addEventListener("click", function(e){
+    if(e.target.closest("a")) closeMobileMenu();
+});
+
+// COPY CODE FUNCTION
+function copyCode(button){
+    const pre = button.closest(".code-box").querySelector("pre code");
+    navigator.clipboard.writeText(pre.innerText).then(() => {
+        const originalText = button.textContent;
+        button.textContent = "Copied!";
+        button.style.borderColor = "var(--green)";
+        button.style.color = "var(--green)";
+        setTimeout(() => {
+            button.textContent = originalText;
+            button.style.borderColor = "";
+            button.style.color = "";
+        }, 2000);
+    });
+}
+</script>
+
+</body>
+</html>
