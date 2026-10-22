@@ -1,3 +1,11 @@
 User-agent: *
 Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+Allow: /images/
+
 Sitemap: https://zaincloud009.github.io/MuhammadZainPortfolio/sitemap.xml

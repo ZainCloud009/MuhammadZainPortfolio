@@ -3,39 +3,138 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://zaincloud009.github.io/MuhammadZainPortfolio/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
     <image:image>
-      <image:loc>https://zaincloud009.github.io/MuhammadZainPortfolio/images/muhammmadzain.png</image:loc>
-      <image:title>Muhammad Zain</image:title>
+      <image:loc>https://zaincloud009.github.io/MuhammadZainPortfolio/images/muhammadzain.png</image:loc>
+      <image:title>Muhammad Zain - AWS Cloud &amp; DevOps Engineer</image:title>
+      <image:caption>Official portfolio photograph of Muhammad Zain, AWS Cloud &amp; DevOps Engineer and Computer Science graduate from UET Lahore</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://zaincloud009.github.io/MuhammadZainPortfolio/images/muhammadzain-new.jpg</image:loc>
+      <image:title>Muhammad Zain - Professional Portrait &amp; Cloud Specialist</image:title>
+      <image:caption>Portrait photograph of Muhammad Zain, specializing in AWS ECS, Docker, Terraform IaC, and automated CI/CD pipelines</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://zaincloud009.github.io/MuhammadZainPortfolio/images/site-icon.png</image:loc>
+      <image:title>Muhammad Zain - Verified Profile Icon</image:title>
+      <image:caption>Verified entity profile avatar of Muhammad Zain</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://zaincloud009.github.io/MuhammadZainPortfolio/images/awais-general-store.png</image:loc>
+      <image:title>Awais General Store - Digital Grocery Solution by Muhammad Zain</image:title>
+      <image:caption>Full-stack e-commerce web application with real-time cart and delivery routing developed by Muhammad Zain</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://zaincloud009.github.io/MuhammadZainPortfolio/images/zuri-fashion.png</image:loc>
+      <image:title>Zuri Fashion - B2B Wholesale Platform by Muhammad Zain</image:title>
+      <image:caption>Enterprise B2B wholesale clothing and replica retailer platform engineered by Muhammad Zain</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://zaincloud009.github.io/MuhammadZainPortfolio/images/Project1.jpeg</image:loc>
+      <image:title>Qira'a AI Quran Recitation Platform by Muhammad Zain</image:title>
+      <image:caption>AI-powered Tajweed feedback platform using Whisper AI and speech recognition by Muhammad Zain</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://zaincloud009.github.io/MuhammadZainPortfolio/images/Project2.jpeg</image:loc>
+      <image:title>Enterprise DevOps Deployment by Muhammad Zain</image:title>
+      <image:caption>Modular Terraform IaC, Jenkins CI/CD, Docker, and AWS S3 disaster recovery architecture by Muhammad Zain</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://zaincloud009.github.io/MuhammadZainPortfolio/images/Project3.jpeg</image:loc>
+      <image:title>Laravel 12 on AWS ECS Architecture by Muhammad Zain</image:title>
+      <image:caption>Zero-downtime containerized Laravel architecture with ALB dynamic port mapping by Muhammad Zain</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://zaincloud009.github.io/MuhammadZainPortfolio/images/Project5.jpg</image:loc>
+      <image:title>Dockerized FastAPI on AWS ECS by Muhammad Zain</image:title>
+      <image:caption>Multi-container FastAPI service with EC2 Auto Scaling across Availability Zones by Muhammad Zain</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://zaincloud009.github.io/MuhammadZainPortfolio/blog-laravel-ecs-deployment.html</loc>
-  </url>
-  <url>
-    <loc>https://zaincloud009.github.io/MuhammadZainPortfolio/blog-software-internship-guide-2026.html</loc>
-  </url>
-  <url>
-    <loc>https://zaincloud009.github.io/MuhammadZainPortfolio/blog-cloud-fundamentals.html</loc>
-  </url>
-  <url>
-    <loc>https://zaincloud009.github.io/MuhammadZainPortfolio/blog-bash-automation.html</loc>
-  </url>
-  <url>
-    <loc>https://zaincloud009.github.io/MuhammadZainPortfolio/blog-cicd-pipeline.html</loc>
-  </url>
-  <url>
-    <loc>https://zaincloud009.github.io/MuhammadZainPortfolio/project-qiraa-ai.html</loc>
-  </url>
-  <url>
-    <loc>https://zaincloud009.github.io/MuhammadZainPortfolio/project-enterprise-devops.html</loc>
+    <loc>https://zaincloud009.github.io/MuhammadZainPortfolio/project-todo-api.html</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://zaincloud009.github.io/MuhammadZainPortfolio/images/Project5.jpg</image:loc>
+      <image:title>FastAPI Todo-List on AWS ECS Case Study by Muhammad Zain</image:title>
+      <image:caption>Production Docker container deployment on AWS ECS with EC2 capacity by Muhammad Zain</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://zaincloud009.github.io/MuhammadZainPortfolio/project-laravel-aws.html</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://zaincloud009.github.io/MuhammadZainPortfolio/images/Project3.jpeg</image:loc>
+      <image:title>Laravel 12 AWS ECS Deployment Architecture by Muhammad Zain</image:title>
+      <image:caption>AWS ECS container architecture diagram for Laravel 12 by Muhammad Zain</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://zaincloud009.github.io/MuhammadZainPortfolio/project-enterprise-devops.html</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://zaincloud009.github.io/MuhammadZainPortfolio/images/Project2.jpeg</image:loc>
+      <image:title>Enterprise DevOps Terraform and Jenkins Pipeline by Muhammad Zain</image:title>
+      <image:caption>Modular Terraform IaC and Jenkins CI/CD deployment architecture by Muhammad Zain</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://zaincloud009.github.io/MuhammadZainPortfolio/project-qiraa-ai.html</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://zaincloud009.github.io/MuhammadZainPortfolio/images/Project1.jpeg</image:loc>
+      <image:title>Qira'a AI Arabic Learning Platform by Muhammad Zain</image:title>
+      <image:caption>AI-driven speech recognition and Tajweed feedback platform by Muhammad Zain</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://zaincloud009.github.io/MuhammadZainPortfolio/project-linux-automation.html</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://zaincloud009.github.io/MuhammadZainPortfolio/project-todo-api.html</loc>
+    <loc>https://zaincloud009.github.io/MuhammadZainPortfolio/blog-laravel-ecs-deployment.html</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://zaincloud009.github.io/MuhammadZainPortfolio/images/Project3.jpeg</image:loc>
+      <image:title>Laravel 12 ECS Deployment Guide by Muhammad Zain</image:title>
+      <image:caption>Step-by-step production guide for migrating Laravel 12 to AWS ECS by Muhammad Zain</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://zaincloud009.github.io/MuhammadZainPortfolio/blog-software-internship-guide-2026.html</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zaincloud009.github.io/MuhammadZainPortfolio/blog-cloud-fundamentals.html</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zaincloud009.github.io/MuhammadZainPortfolio/blog-bash-automation.html</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zaincloud009.github.io/MuhammadZainPortfolio/blog-cicd-pipeline.html</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>
