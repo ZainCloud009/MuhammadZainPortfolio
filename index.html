@@ -1266,7 +1266,7 @@ html[data-theme="light"] .stat strong{ color:var(--text); }
 }
 
 .project:hover{
-    transform:perspective(1200px) rotateX(3deg) rotateY(-2deg) translateY(-10px) !important;
+    transform:perspective(1200px) rotateX(3deg) rotateY(-2deg) translateY(-10px);
     background:linear-gradient(145deg, #16233a, #0d1625) !important;
     border-color:rgba(113,143,255,.45);
     box-shadow:0 24px 45px rgba(0,0,0,.35), 0 0 28px rgba(113,143,255,.14);
@@ -2926,6 +2926,601 @@ html[data-theme="light"] .faq-answer{
     text-decoration:underline;
 }
 
+
+/* =========================================================
+   ADVANCED 3D DESIGN, SLIDERS & PERSPECTIVE SYSTEM
+========================================================= */
+
+/* 3D CANVAS & BACKGROUND DEPTH LAYERS */
+.canvas-3d{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:-2;
+    pointer-events:none;
+    opacity:.85;
+}
+
+html[data-theme="light"] .canvas-3d{
+    opacity:.45;
+}
+
+.perspective-horizon{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:48vh;
+    perspective:750px;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:-1;
+    opacity:.35;
+    mask-image:linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 85%);
+    -webkit-mask-image:linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 85%);
+}
+
+.perspective-grid-plane{
+    width:220%;
+    height:220%;
+    left:-60%;
+    top:0;
+    position:absolute;
+    background-image:
+        linear-gradient(rgba(113,143,255,.22) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(113,143,255,.22) 1px, transparent 1px);
+    background-size:60px 60px;
+    transform:rotateX(72deg) translateZ(0);
+    transform-origin:50% 0%;
+    animation:gridFlow 22s linear infinite;
+}
+
+@keyframes gridFlow{
+    0%{ background-position:0 0; }
+    100%{ background-position:0 60px; }
+}
+
+html[data-theme="light"] .perspective-grid-plane{
+    background-image:
+        linear-gradient(rgba(82,110,232,.14) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(82,110,232,.14) 1px, transparent 1px);
+}
+
+.spotlight-3d{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-1;
+    background:radial-gradient(circle 480px at var(--mouse-x, 50%) var(--mouse-y, 30%), rgba(113,143,255,.08), transparent 70%);
+    transition:opacity .4s ease;
+}
+
+html[data-theme="light"] .spotlight-3d{
+    background:radial-gradient(circle 480px at var(--mouse-x, 50%) var(--mouse-y, 30%), rgba(82,110,232,.06), transparent 70%);
+}
+
+/* 3D PROFILE ORBIT PARTICLES & HERO 3D DEPTH */
+.profile-area{
+    transform-style:preserve-3d;
+    perspective:1000px;
+}
+
+.profile-orbit-3d{
+    position:absolute;
+    width:370px;
+    height:370px;
+    border-radius:50%;
+    border:1px dashed rgba(84,216,255,.32);
+    transform:rotateX(68deg) rotateY(18deg);
+    pointer-events:none;
+    animation:orbitSpin3D 24s linear infinite;
+}
+
+@keyframes orbitSpin3D{
+    from{ transform:rotateX(68deg) rotateY(18deg) rotateZ(0deg); }
+    to{ transform:rotateX(68deg) rotateY(18deg) rotateZ(360deg); }
+}
+
+.orbit-particle{
+    position:absolute;
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:var(--cyan);
+    box-shadow:0 0 14px var(--cyan), 0 0 24px rgba(84,216,255,.6);
+}
+
+.orbit-particle.p1{ top:-4px; left:50%; }
+.orbit-particle.p2{ bottom:15%; left:6%; background:var(--primary2); box-shadow:0 0 14px var(--primary2); }
+.orbit-particle.p3{ top:45%; right:-4px; background:#4ade80; box-shadow:0 0 14px #4ade80; }
+
+.tech-docker{
+    top:125px;
+    left:-25px;
+    animation-delay:1.5s;
+}
+
+.tech-security{
+    top:215px;
+    right:-15px;
+    animation-delay:2.5s;
+}
+
+.tech-float{
+    transform-style:preserve-3d;
+    transition:transform .3s ease, box-shadow .3s ease;
+    border:1px solid rgba(113,143,255,.28);
+    background:rgba(12,18,30,.88);
+    box-shadow:0 12px 32px rgba(0,0,0,.45), 0 0 18px rgba(113,143,255,.15);
+}
+
+.tech-float:hover{
+    transform:scale(1.12) translateZ(35px) !important;
+    border-color:var(--cyan);
+    box-shadow:0 16px 40px rgba(0,0,0,.55), 0 0 25px rgba(84,216,255,.45);
+}
+
+/* =========================================================
+   3D INFINITE MARQUEE SLIDERS (TOP & BOTTOM)
+========================================================= */
+.slider-3d-wrap{
+    position:relative;
+    width:100%;
+    padding:44px 0;
+    overflow:hidden;
+    perspective:1200px;
+}
+
+.slider-top{
+    margin-top:20px;
+    margin-bottom:30px;
+    border-top:1px solid rgba(255,255,255,.05);
+    border-bottom:1px solid rgba(255,255,255,.05);
+    background:linear-gradient(180deg, rgba(113,143,255,.03), transparent 70%);
+}
+
+.slider-bottom{
+    margin-top:25px;
+    margin-bottom:45px;
+    border-top:1px solid rgba(255,255,255,.05);
+    border-bottom:1px solid rgba(255,255,255,.05);
+    background:linear-gradient(180deg, transparent, rgba(54,220,131,.03) 50%, transparent);
+}
+
+html[data-theme="light"] .slider-top,
+html[data-theme="light"] .slider-bottom{
+    border-color:rgba(31,48,81,.08);
+    background:linear-gradient(180deg, rgba(82,110,232,.04), transparent);
+}
+
+.slider-header-wrap{
+    display:flex;
+    justify-content:center;
+    margin-bottom:24px;
+}
+
+.slider-header-pill{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:7px 18px;
+    border-radius:100px;
+    background:rgba(14,21,32,.75);
+    backdrop-filter:blur(14px);
+    border:1px solid rgba(113,143,255,.24);
+    box-shadow:0 8px 24px rgba(0,0,0,.25), 0 0 16px rgba(113,143,255,.12);
+    position:relative;
+}
+
+html[data-theme="light"] .slider-header-pill{
+    background:#ffffff;
+    border-color:rgba(82,110,232,.22);
+    box-shadow:0 6px 20px rgba(82,110,232,.08);
+}
+
+.slider-header-pill .pill-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--cyan);
+    box-shadow:0 0 10px var(--cyan);
+    animation:pulseDot 2s infinite ease-in-out;
+}
+
+.slider-header-pill .pill-dot.green{
+    background:var(--green);
+    box-shadow:0 0 10px var(--green);
+}
+
+@keyframes pulseDot{
+    0%,100%{ transform:scale(1); opacity:1; }
+    50%{ transform:scale(1.4); opacity:.6; }
+}
+
+.slider-header-pill .pill-text{
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:var(--text);
+}
+
+.slider-3d-track{
+    display:flex;
+    width:max-content;
+    will-change:transform;
+    mask-image:linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%);
+    -webkit-mask-image:linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%);
+}
+
+.slider-3d-group{
+    display:flex;
+    gap:18px;
+    padding:0 9px;
+    flex-shrink:0;
+}
+
+.marquee-left{
+    animation:scrollMarqueeLeft 40s linear infinite;
+}
+
+.marquee-right{
+    animation:scrollMarqueeRight 44s linear infinite;
+}
+
+.slider-3d-track:hover{
+    animation-play-state:paused;
+}
+
+@keyframes scrollMarqueeLeft{
+    0%{ transform:translateX(0); }
+    100%{ transform:translateX(-50%); }
+}
+
+@keyframes scrollMarqueeRight{
+    0%{ transform:translateX(-50%); }
+    100%{ transform:translateX(0); }
+}
+
+/* 3D SLIDER CARDS */
+.slider-card-3d{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px 20px;
+    border-radius:14px;
+    background:linear-gradient(145deg, rgba(17,26,37,.85), rgba(12,19,28,.8));
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,.09);
+    box-shadow:0 10px 28px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.08);
+    transform-style:preserve-3d;
+    transition:transform .3s cubic-bezier(.16,1,.3,1), border-color .3s, box-shadow .3s, background .3s;
+    user-select:none;
+    white-space:nowrap;
+}
+
+.slider-card-3d:hover{
+    transform:translateY(-8px) scale(1.05) translateZ(24px);
+    border-color:rgba(84,216,255,.55);
+    background:linear-gradient(145deg, #18263a, #0f1a28);
+    box-shadow:0 18px 40px rgba(0,0,0,.5), 0 0 24px rgba(84,216,255,.25);
+}
+
+html[data-theme="light"] .slider-card-3d{
+    background:#ffffff;
+    border-color:rgba(31,48,81,.12);
+    box-shadow:0 8px 24px rgba(84,116,216,.08), inset 0 1px 0 #ffffff;
+}
+
+html[data-theme="light"] .slider-card-3d:hover{
+    background:#ffffff;
+    border-color:var(--primary);
+    box-shadow:0 16px 36px rgba(82,110,232,.18);
+}
+
+.slider-card-3d .sc-icon{
+    font-size:20px;
+    filter:drop-shadow(0 2px 6px rgba(0,0,0,.3));
+    transition:transform .3s ease;
+}
+
+.slider-card-3d:hover .sc-icon{
+    transform:scale(1.2) rotate(6deg);
+}
+
+.slider-card-3d .sc-name{
+    font-size:13.5px;
+    font-weight:750;
+    color:var(--text);
+    letter-spacing:-.2px;
+}
+
+.slider-card-3d .sc-tag{
+    font-size:11px;
+    font-weight:600;
+    padding:3px 9px;
+    border-radius:6px;
+    background:rgba(113,143,255,.12);
+    color:var(--cyan);
+    border:1px solid rgba(113,143,255,.2);
+}
+
+html[data-theme="light"] .slider-card-3d .sc-tag{
+    background:rgba(82,110,232,.08);
+    color:var(--primary);
+    border-color:rgba(82,110,232,.18);
+}
+
+/* 3D METRIC CARDS (BOTTOM SLIDER) */
+.slider-metric-3d{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:14px 22px;
+    border-radius:14px;
+    background:linear-gradient(145deg, rgba(16,25,36,.88), rgba(11,18,26,.82));
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(54,220,131,.22);
+    box-shadow:0 10px 28px rgba(0,0,0,.35);
+    transition:transform .3s cubic-bezier(.16,1,.3,1), border-color .3s, box-shadow .3s;
+    user-select:none;
+    white-space:nowrap;
+}
+
+.slider-metric-3d:hover{
+    transform:translateY(-8px) scale(1.04) translateZ(24px);
+    border-color:var(--green);
+    box-shadow:0 18px 40px rgba(0,0,0,.5), 0 0 24px rgba(54,220,131,.28);
+}
+
+html[data-theme="light"] .slider-metric-3d{
+    background:#ffffff;
+    border-color:rgba(24,153,92,.25);
+    box-shadow:0 8px 24px rgba(24,153,92,.08);
+}
+
+html[data-theme="light"] .slider-metric-3d:hover{
+    border-color:var(--green);
+    box-shadow:0 16px 36px rgba(24,153,92,.18);
+}
+
+.slider-metric-3d .sm-badge{
+    font-family:"SFMono-Regular", Consolas, monospace;
+    font-size:12px;
+    font-weight:800;
+    padding:4px 9px;
+    border-radius:8px;
+    background:rgba(54,220,131,.14);
+    color:var(--green);
+    border:1px solid rgba(54,220,131,.3);
+}
+
+.slider-metric-3d .sm-content{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+}
+
+.slider-metric-3d .sm-content strong{
+    font-size:13.5px;
+    font-weight:750;
+    color:var(--text);
+}
+
+.slider-metric-3d .sm-content span{
+    font-size:11.5px;
+    color:var(--muted);
+}
+
+/* =========================================================
+   PROJECT CARDS 3D GLARE & DEPTH ENHANCEMENTS
+========================================================= */
+.project{
+    transform-style:preserve-3d;
+    perspective:1200px;
+    position:relative;
+    transition:transform .45s cubic-bezier(.16,1,.3,1), border-color .35s, box-shadow .35s, background .35s;
+}
+
+.project-glare{
+    position:absolute;
+    inset:0;
+    border-radius:inherit;
+    pointer-events:none;
+    z-index:4;
+    opacity:0;
+    transition:opacity .35s ease;
+    mix-blend-mode:overlay;
+}
+
+.project:hover .project-glare{
+    opacity:1;
+}
+
+.project-visual{
+    transform-style:preserve-3d;
+}
+
+.project-visual img{
+    transition:transform .45s cubic-bezier(.16,1,.3,1), filter .4s ease;
+}
+
+.project:hover .project-visual img{
+    transform:scale(1.05) translateZ(28px);
+}
+
+.project:hover .project-content{
+    transform:translateZ(18px);
+}
+
+.project:hover .project-number{
+    transform:translateZ(24px);
+}
+
+.project:hover .project-desc-3d{
+    transform:translateZ(26px);
+}
+
+.project:hover .project-actions{
+    transform:translateZ(30px);
+}
+
+/* 3D STATS ISOMETRIC ELEVATION */
+.stat{
+    transform-style:preserve-3d;
+    perspective:700px;
+    transition:transform .35s cubic-bezier(.16,1,.3,1), border-color .3s, box-shadow .3s, background .3s;
+}
+
+.stat:hover{
+    transform:perspective(700px) rotateX(8deg) rotateY(-6deg) translateY(-10px) translateZ(20px) !important;
+    border-color:var(--cyan) !important;
+    box-shadow:0 22px 50px rgba(0,0,0,.45), 0 0 30px rgba(84,216,255,.25) !important;
+}
+
+html[data-theme="light"] .stat:hover{
+    box-shadow:0 20px 45px rgba(82,110,232,.18) !important;
+}
+
+.stat strong{
+    transition:transform .3s ease, color .3s ease;
+}
+
+.stat:hover strong{
+    transform:translateZ(24px);
+    color:var(--cyan);
+}
+
+html[data-theme="light"] .stat:hover strong{
+    color:var(--primary);
+}
+
+/* 3D SKILLS CARDS */
+.skill{
+    transform-style:preserve-3d;
+    perspective:750px;
+}
+
+.skill .skill-icon{
+    transition:transform .35s cubic-bezier(.16,1,.3,1), filter .3s;
+}
+
+.skill:hover .skill-icon{
+    transform:translateZ(32px) scale(1.24);
+    filter:drop-shadow(0 8px 16px rgba(84,216,255,.35));
+}
+
+.skill:hover h3{
+    transform:translateZ(20px);
+}
+
+.skill:hover p{
+    transform:translateZ(14px);
+}
+
+/* =========================================================
+   3D QUICK SCROLL TO TOP WITH CIRCULAR PROGRESS
+========================================================= */
+.scroll-top-3d{
+    position:fixed;
+    bottom:28px;
+    right:28px;
+    width:52px;
+    height:52px;
+    border-radius:50%;
+    background:rgba(12,18,29,.9);
+    backdrop-filter:blur(14px);
+    border:1px solid rgba(113,143,255,.3);
+    box-shadow:0 12px 35px rgba(0,0,0,.45), 0 0 20px rgba(113,143,255,.2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    z-index:90;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(20px) scale(.85);
+    transition:all .35s cubic-bezier(.16,1,.3,1);
+}
+
+.scroll-top-3d.visible{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0) scale(1);
+}
+
+.scroll-top-3d:hover{
+    transform:translateY(-5px) scale(1.08);
+    border-color:var(--cyan);
+    box-shadow:0 18px 45px rgba(0,0,0,.6), 0 0 30px rgba(84,216,255,.45);
+}
+
+html[data-theme="light"] .scroll-top-3d{
+    background:#ffffff;
+    border-color:rgba(82,110,232,.3);
+    box-shadow:0 10px 30px rgba(82,110,232,.18);
+}
+
+.progress-ring{
+    position:absolute;
+    transform:rotate(-90deg);
+}
+
+.progress-ring-bg{
+    fill:none;
+    stroke:rgba(255,255,255,.08);
+    stroke-width:2.5;
+}
+
+html[data-theme="light"] .progress-ring-bg{
+    stroke:rgba(31,48,81,.1);
+}
+
+.progress-ring-fill{
+    fill:none;
+    stroke:url(#progressGradient);
+    stroke:var(--cyan);
+    stroke-width:2.5;
+    stroke-linecap:round;
+    stroke-dasharray:119.38;
+    stroke-dashoffset:119.38;
+    transition:stroke-dashoffset .12s linear;
+}
+
+.scroll-arrow{
+    font-size:18px;
+    font-weight:800;
+    color:var(--cyan);
+    transition:transform .25s ease;
+}
+
+.scroll-top-3d:hover .scroll-arrow{
+    transform:translateY(-2px);
+}
+
+html[data-theme="light"] .scroll-arrow,
+html[data-theme="light"] .progress-ring-fill{
+    color:var(--primary);
+    stroke:var(--primary);
+}
+
+/* RESPONSIVE ADJUSTMENTS FOR 3D ELEMENTS */
+@media (max-width: 900px){
+    .perspective-horizon{ height:35vh; }
+    .slider-3d-wrap{ padding:32px 0; }
+    .slider-card-3d{ padding:10px 16px; }
+    .tech-docker{ top:auto; bottom:20px; left:0; }
+    .tech-security{ top:auto; bottom:-10px; right:10px; }
+}
+
+@media (max-width: 650px){
+    .scroll-top-3d{ bottom:18px; right:18px; width:46px; height:46px; }
+    .slider-card-3d .sc-tag{ display:none; }
+    .profile-orbit-3d{ width:300px; height:300px; }
+}
+
 </style>
 </head>
 
@@ -2935,6 +3530,11 @@ html[data-theme="light"] .faq-answer{
 <!-- EFFECT LAYERS -->
 <div class="scroll-progress" id="scrollProgress"></div>
 <div class="background-grid"></div>
+<canvas id="canvas3d" class="canvas-3d"></canvas>
+<div class="perspective-horizon">
+    <div class="perspective-grid-plane"></div>
+</div>
+<div class="spotlight-3d" id="spotlight3D"></div>
 <div class="particles" id="particles"></div>
 <div class="cursor-glow"></div>
 <div class="cursor-dot"></div>
@@ -3030,7 +3630,12 @@ while continuously improving deployment workflows.
 </div>
 
 <!-- RIGHT (PROFILE) -->
-<div class="profile-area">
+<div class="profile-area" id="profileArea3D">
+<div class="profile-orbit-3d">
+    <div class="orbit-particle p1"></div>
+    <div class="orbit-particle p2"></div>
+    <div class="orbit-particle p3"></div>
+</div>
 <div class="profile-orbit"></div>
 <div class="profile-glow"></div>
 
@@ -3040,13 +3645,61 @@ while continuously improving deployment workflows.
 </div>
 </div>
 
-<div class="tech-float tech-aws">☁ AWS</div>
-<div class="tech-float tech-terraform">⚙ Terraform</div>
-<div class="tech-float tech-cicd">🚀 CI/CD</div>
+<div class="tech-float tech-aws" data-depth="60">☁ AWS ECS &amp; EC2</div>
+<div class="tech-float tech-terraform" data-depth="45">⚙ Terraform IaC</div>
+<div class="tech-float tech-cicd" data-depth="55">🚀 CI/CD Automation</div>
+<div class="tech-float tech-docker" data-depth="50">🐳 Docker Desktop</div>
+<div class="tech-float tech-security" data-depth="40">🛡 SSL &amp; IAM Security</div>
 </div>
 
 </div>
 </header>
+
+<!-- 3D TECH ECOSYSTEM MARQUEE SLIDER (TOP) -->
+<div class="slider-3d-wrap slider-top">
+    <div class="container slider-header-wrap">
+        <div class="slider-header-pill">
+            <span class="pill-dot"></span>
+            <span class="pill-text">CLOUD &amp; DEVOPS TECHNOLOGY ECOSYSTEM</span>
+        </div>
+    </div>
+    <div class="slider-3d-track marquee-left">
+        <div class="slider-3d-group">
+            <div class="slider-card-3d"><span class="sc-icon">☁️</span><span class="sc-name">AWS Cloud</span><span class="sc-tag">ECS · EC2 · ALB</span></div>
+            <div class="slider-card-3d"><span class="sc-icon">🐳</span><span class="sc-name">Docker</span><span class="sc-tag">Desktop · Multi-Stage</span></div>
+            <div class="slider-card-3d"><span class="sc-icon">⚙️</span><span class="sc-name">Terraform</span><span class="sc-tag">Infrastructure as Code</span></div>
+            <div class="slider-card-3d"><span class="sc-icon">🚀</span><span class="sc-name">GitHub Actions</span><span class="sc-tag">Automated CI/CD</span></div>
+            <div class="slider-card-3d"><span class="sc-icon">🔄</span><span class="sc-name">Jenkins</span><span class="sc-tag">Build &amp; Deploy Pipelines</span></div>
+            <div class="slider-card-3d"><span class="sc-icon">⚖️</span><span class="sc-name">AWS ALB</span><span class="sc-tag">Dynamic Port 0 Routing</span></div>
+            <div class="slider-card-3d"><span class="sc-icon">🗄️</span><span class="sc-name">AWS RDS MySQL</span><span class="sc-tag">SSL Transport Encrypted</span></div>
+            <div class="slider-card-3d"><span class="sc-icon">📦</span><span class="sc-name">Amazon S3</span><span class="sc-tag">Storage &amp; Disaster Recovery</span></div>
+            <div class="slider-card-3d"><span class="sc-icon">⚡</span><span class="sc-name">CloudFront CDN</span><span class="sc-tag">Global Edge Caching</span></div>
+            <div class="slider-card-3d"><span class="sc-icon">🌐</span><span class="sc-name">Route 53 DNS</span><span class="sc-tag">High-Availability Routing</span></div>
+            <div class="slider-card-3d"><span class="sc-icon">🐧</span><span class="sc-name">Amazon Linux</span><span class="sc-tag">Production Server Admin</span></div>
+            <div class="slider-card-3d"><span class="sc-icon">📜</span><span class="sc-name">Bash &amp; Shell</span><span class="sc-tag">Cron &amp; System Automation</span></div>
+            <div class="slider-card-3d"><span class="sc-icon">🐍</span><span class="sc-name">FastAPI &amp; Python</span><span class="sc-tag">Containerized REST APIs</span></div>
+            <div class="slider-card-3d"><span class="sc-icon">🔴</span><span class="sc-name">Laravel 12 / PHP 8.2</span><span class="sc-tag">Alpine Supervised Container</span></div>
+            <div class="slider-card-3d"><span class="sc-icon">🔐</span><span class="sc-name">AWS IAM</span><span class="sc-tag">Least-Privilege Security</span></div>
+        </div>
+        <div class="slider-3d-group" aria-hidden="true">
+            <div class="slider-card-3d"><span class="sc-icon">☁️</span><span class="sc-name">AWS Cloud</span><span class="sc-tag">ECS · EC2 · ALB</span></div>
+            <div class="slider-card-3d"><span class="sc-icon">🐳</span><span class="sc-name">Docker</span><span class="sc-tag">Desktop · Multi-Stage</span></div>
+            <div class="slider-card-3d"><span class="sc-icon">⚙️</span><span class="sc-name">Terraform</span><span class="sc-tag">Infrastructure as Code</span></div>
+            <div class="slider-card-3d"><span class="sc-icon">🚀</span><span class="sc-name">GitHub Actions</span><span class="sc-tag">Automated CI/CD</span></div>
+            <div class="slider-card-3d"><span class="sc-icon">🔄</span><span class="sc-name">Jenkins</span><span class="sc-tag">Build &amp; Deploy Pipelines</span></div>
+            <div class="slider-card-3d"><span class="sc-icon">⚖️</span><span class="sc-name">AWS ALB</span><span class="sc-tag">Dynamic Port 0 Routing</span></div>
+            <div class="slider-card-3d"><span class="sc-icon">🗄️</span><span class="sc-name">AWS RDS MySQL</span><span class="sc-tag">SSL Transport Encrypted</span></div>
+            <div class="slider-card-3d"><span class="sc-icon">📦</span><span class="sc-name">Amazon S3</span><span class="sc-tag">Storage &amp; Disaster Recovery</span></div>
+            <div class="slider-card-3d"><span class="sc-icon">⚡</span><span class="sc-name">CloudFront CDN</span><span class="sc-tag">Global Edge Caching</span></div>
+            <div class="slider-card-3d"><span class="sc-icon">🌐</span><span class="sc-name">Route 53 DNS</span><span class="sc-tag">High-Availability Routing</span></div>
+            <div class="slider-card-3d"><span class="sc-icon">🐧</span><span class="sc-name">Amazon Linux</span><span class="sc-tag">Production Server Admin</span></div>
+            <div class="slider-card-3d"><span class="sc-icon">📜</span><span class="sc-name">Bash &amp; Shell</span><span class="sc-tag">Cron &amp; System Automation</span></div>
+            <div class="slider-card-3d"><span class="sc-icon">🐍</span><span class="sc-name">FastAPI &amp; Python</span><span class="sc-tag">Containerized REST APIs</span></div>
+            <div class="slider-card-3d"><span class="sc-icon">🔴</span><span class="sc-name">Laravel 12 / PHP 8.2</span><span class="sc-tag">Alpine Supervised Container</span></div>
+            <div class="slider-card-3d"><span class="sc-icon">🔐</span><span class="sc-name">AWS IAM</span><span class="sc-tag">Least-Privilege Security</span></div>
+        </div>
+    </div>
+</div>
 
 <!-- ABOUT -->
 <section id="about">
@@ -3366,6 +4019,36 @@ I'm passionate about building scalable, secure and automated cloud infrastructur
 </div>
 </div>
 </section>
+
+<!-- 3D ARCHITECTURAL HIGHLIGHTS MARQUEE SLIDER (BOTTOM) -->
+<div class="slider-3d-wrap slider-bottom">
+    <div class="container slider-header-wrap">
+        <div class="slider-header-pill">
+            <span class="pill-dot green"></span>
+            <span class="pill-text">PRODUCTION HIGHLIGHTS &amp; CLOUD STANDARDS</span>
+        </div>
+    </div>
+    <div class="slider-3d-track marquee-right">
+        <div class="slider-3d-group">
+            <div class="slider-metric-3d"><span class="sm-badge">01</span><div class="sm-content"><strong>Zero-Downtime Deployment</strong><span>AWS ECS Dynamic Port Mapping (hostPort: 0) &amp; ALB</span></div></div>
+            <div class="slider-metric-3d"><span class="sm-badge">02</span><div class="sm-content"><strong>Sub-4-Minute CI/CD</strong><span>Parallel GitHub Actions Build &amp; Dependency Caching</span></div></div>
+            <div class="slider-metric-3d"><span class="sm-badge">03</span><div class="sm-content"><strong>Multi-AZ Auto Scaling</strong><span>Self-Managed EC2 Clusters Across Availability Zones</span></div></div>
+            <div class="slider-metric-3d"><span class="sm-badge">04</span><div class="sm-content"><strong>Encrypted Transport</strong><span>AWS RDS MySQL with Strict RDS CA Verification</span></div></div>
+            <div class="slider-metric-3d"><span class="sm-badge">05</span><div class="sm-content"><strong>Modular Terraform IaC</strong><span>Production AWS VPC, Subnets &amp; Security Isolation</span></div></div>
+            <div class="slider-metric-3d"><span class="sm-badge">06</span><div class="sm-content"><strong>Client E-Commerce Solutions</strong><span>High-Availability Cloud Web Apps &amp; Real-Time Order Flow</span></div></div>
+            <div class="slider-metric-3d"><span class="sm-badge">07</span><div class="sm-content"><strong>Multi-Stage Docker Images</strong><span>Lightweight Alpine PHP 8.2-FPM &amp; Nginx Supervised</span></div></div>
+        </div>
+        <div class="slider-3d-group" aria-hidden="true">
+            <div class="slider-metric-3d"><span class="sm-badge">01</span><div class="sm-content"><strong>Zero-Downtime Deployment</strong><span>AWS ECS Dynamic Port Mapping (hostPort: 0) &amp; ALB</span></div></div>
+            <div class="slider-metric-3d"><span class="sm-badge">02</span><div class="sm-content"><strong>Sub-4-Minute CI/CD</strong><span>Parallel GitHub Actions Build &amp; Dependency Caching</span></div></div>
+            <div class="slider-metric-3d"><span class="sm-badge">03</span><div class="sm-content"><strong>Multi-AZ Auto Scaling</strong><span>Self-Managed EC2 Clusters Across Availability Zones</span></div></div>
+            <div class="slider-metric-3d"><span class="sm-badge">04</span><div class="sm-content"><strong>Encrypted Transport</strong><span>AWS RDS MySQL with Strict RDS CA Verification</span></div></div>
+            <div class="slider-metric-3d"><span class="sm-badge">05</span><div class="sm-content"><strong>Modular Terraform IaC</strong><span>Production AWS VPC, Subnets &amp; Security Isolation</span></div></div>
+            <div class="slider-metric-3d"><span class="sm-badge">06</span><div class="sm-content"><strong>Client E-Commerce Solutions</strong><span>High-Availability Cloud Web Apps &amp; Real-Time Order Flow</span></div></div>
+            <div class="slider-metric-3d"><span class="sm-badge">07</span><div class="sm-content"><strong>Multi-Stage Docker Images</strong><span>Lightweight Alpine PHP 8.2-FPM &amp; Nginx Supervised</span></div></div>
+        </div>
+    </div>
+</div>
 
 <!-- SKILLS -->
 <section id="skills">
@@ -3754,6 +4437,15 @@ muhammadzain8489@gmail.com &nbsp; · &nbsp; +92 324 7474009
 </div>
 </footer>
 
+<!-- 3D FLOATING QUICK SCROLL BUTTON -->
+<button class="scroll-top-3d" id="scrollTop3D" type="button" aria-label="Scroll to top" title="Scroll to top">
+    <svg class="progress-ring" width="46" height="46" viewBox="0 0 46 46">
+        <circle class="progress-ring-bg" cx="23" cy="23" r="19"/>
+        <circle class="progress-ring-fill" id="progressRingFill" cx="23" cy="23" r="19"/>
+    </svg>
+    <span class="scroll-arrow">↑</span>
+</button>
+
 <!-- JAVASCRIPT -->
 <script>
 // CURRENT YEAR
@@ -4013,7 +4705,301 @@ document.querySelectorAll(".project[data-href]").forEach(function(card){
         setTimeout(runProjectsTyping, 400);
     }
 })();
+
+
+// =========================================================
+// 3D INTERACTIVE CANVAS & DEPTH ENGINE
+// =========================================================
+(function(){
+    const canvas = document.getElementById("canvas3d");
+    if(!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if(!ctx) return;
+
+    let width = 0, height = 0;
+    let dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let points = [];
+    const POINT_COUNT = 60;
+    const FOV = 420;
+
+    let targetCamX = 0, targetCamY = 0;
+    let camX = 0, camY = 0;
+
+    function resizeCanvas(){
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        ctx.scale(dpr, dpr);
+    }
+
+    function createPoints(){
+        points = [];
+        for(let i = 0; i < POINT_COUNT; i++){
+            points.push({
+                x: (Math.random() - 0.5) * width * 1.6,
+                y: (Math.random() - 0.5) * height * 1.6,
+                z: Math.random() * 700 - 350,
+                radius: Math.random() * 2 + 1.2,
+                vx: (Math.random() - 0.5) * 0.35,
+                vy: (Math.random() - 0.5) * 0.35,
+                colorType: Math.random() > 0.4 ? "cyan" : "purple"
+            });
+        }
+    }
+
+    window.addEventListener("resize", function(){
+        resizeCanvas();
+        createPoints();
+    });
+
+    resizeCanvas();
+    createPoints();
+
+    // Mouse camera tracking
+    document.addEventListener("mousemove", function(e){
+        targetCamX = (e.clientY / height - 0.5) * 0.35;
+        targetCamY = (e.clientX / width - 0.5) * 0.35;
+
+        // Update CSS spotlight coordinates
+        document.documentElement.style.setProperty("--mouse-x", e.clientX + "px");
+        document.documentElement.style.setProperty("--mouse-y", e.clientY + "px");
+    }, { passive: true });
+
+    let isVisible = true;
+    document.addEventListener("visibilitychange", function(){
+        isVisible = !document.hidden;
+    });
+
+    function render3D(){
+        if(isVisible){
+            ctx.clearRect(0, 0, width, height);
+
+            // Smooth camera lerp
+            camX += (targetCamX - camX) * 0.05;
+            camY += (targetCamY - camY) * 0.05;
+
+            const isLight = document.documentElement.dataset.theme === "light";
+            const cosY = Math.cos(camY), sinY = Math.sin(camY);
+            const cosX = Math.cos(camX), sinX = Math.sin(camX);
+
+            const projected = [];
+
+            // Update & project 3D points
+            for(let i = 0; i < points.length; i++){
+                const p = points[i];
+
+                p.x += p.vx;
+                p.y += p.vy;
+                p.z -= 0.65;
+                if(p.z < -FOV + 50) p.z += 700;
+                if(p.x > width * 0.9) p.x = -width * 0.9;
+                if(p.x < -width * 0.9) p.x = width * 0.9;
+                if(p.y > height * 0.9) p.y = -height * 0.9;
+                if(p.y < -height * 0.9) p.y = height * 0.9;
+
+                // 3D rotation math
+                // Rotate around Y
+                const x1 = p.x * cosY + p.z * sinY;
+                const z1 = -p.x * sinY + p.z * cosY;
+                // Rotate around X
+                const y1 = p.y * cosX - z1 * sinX;
+                const z2 = p.y * sinX + z1 * cosX;
+
+                const depth = z2 + FOV;
+                if(depth <= 20) continue;
+
+                const scale = FOV / depth;
+                const sx = width / 2 + x1 * scale;
+                const sy = height / 2 + y1 * scale;
+                const alpha = Math.min(Math.max((z2 + 350) / 700, 0.1), 0.9);
+
+                projected.push({ sx, sy, scale, alpha, z: z2, colorType: p.colorType, radius: p.radius });
+            }
+
+            // Draw connection lines in 3D
+            const lineDist = 115;
+            for(let i = 0; i < projected.length; i++){
+                for(let j = i + 1; j < projected.length; j++){
+                    const p1 = projected[i];
+                    const p2 = projected[j];
+                    const dx = p1.sx - p2.sx;
+                    const dy = p1.sy - p2.sy;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if(dist < lineDist){
+                        const lineAlpha = (1 - dist / lineDist) * Math.min(p1.alpha, p2.alpha) * (isLight ? 0.35 : 0.55);
+                        ctx.beginPath();
+                        ctx.moveTo(p1.sx, p1.sy);
+                        ctx.lineTo(p2.sx, p2.sy);
+                        ctx.strokeStyle = isLight
+                            ? `rgba(82, 110, 232, ${lineAlpha})`
+                            : `rgba(84, 216, 255, ${lineAlpha})`;
+                        ctx.lineWidth = 0.8 * Math.min(p1.scale, p2.scale);
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            // Draw points
+            for(let i = 0; i < projected.length; i++){
+                const p = projected[i];
+                const r = p.radius * p.scale;
+                ctx.beginPath();
+                ctx.arc(p.sx, p.sy, Math.max(r, 0.8), 0, Math.PI * 2);
+                if(isLight){
+                    ctx.fillStyle = p.colorType === "cyan"
+                        ? `rgba(82, 110, 232, ${p.alpha * 0.8})`
+                        : `rgba(129, 90, 232, ${p.alpha * 0.8})`;
+                } else {
+                    ctx.fillStyle = p.colorType === "cyan"
+                        ? `rgba(84, 216, 255, ${p.alpha})`
+                        : `rgba(154, 114, 255, ${p.alpha})`;
+                }
+                ctx.fill();
+            }
+        }
+        requestAnimationFrame(render3D);
+    }
+    requestAnimationFrame(render3D);
+})();
+
+// =========================================================
+// INTERACTIVE 3D CARD TILT & SPECULAR GLARE
+// =========================================================
+(function(){
+    // Only enable mouse tilt on non-touch devices
+    if(!window.matchMedia("(hover: hover)").matches) return;
+
+    const cards = document.querySelectorAll(".project, .stat, .skill");
+
+    cards.forEach(function(card){
+        // Ensure 3D glare overlay exists
+        let glare = card.querySelector(".project-glare");
+        if(!glare && card.classList.contains("project")){
+            glare = document.createElement("div");
+            glare.className = "project-glare";
+            card.appendChild(glare);
+        }
+
+        let isHovered = false;
+
+        card.addEventListener("mouseenter", function(){
+            isHovered = true;
+            card.style.transition = "transform 0.1s ease-out, border-color 0.3s, box-shadow 0.3s";
+        });
+
+        card.addEventListener("mousemove", function(e){
+            if(!isHovered) return;
+            const rect = card.getBoundingClientRect();
+            const relX = (e.clientX - rect.left) / rect.width;
+            const relY = (e.clientY - rect.top) / rect.height;
+
+            const rotX = (0.5 - relY) * 16; // Up/down tilt
+            const rotY = (relX - 0.5) * 16; // Left/right tilt
+
+            card.style.transform = `perspective(1100px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translateZ(12px) scale3d(1.025, 1.025, 1.025)`;
+
+            if(glare){
+                const gx = e.clientX - rect.left;
+                const gy = e.clientY - rect.top;
+                glare.style.background = `radial-gradient(circle 320px at ${gx}px ${gy}px, rgba(255,255,255,0.22), transparent 70%)`;
+            }
+        });
+
+        card.addEventListener("mouseleave", function(){
+            isHovered = false;
+            card.style.transition = "transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s, box-shadow 0.3s";
+            card.style.transform = "";
+        });
+    });
+
+    // Profile Area 3D Parallax Tracking
+    const profileArea3D = document.getElementById("profileArea3D") || document.querySelector(".profile-area");
+    if(profileArea3D){
+        const floats = profileArea3D.querySelectorAll(".tech-float");
+
+        document.addEventListener("mousemove", function(e){
+            if(window.innerWidth < 950) return;
+            const rect = profileArea3D.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+
+            const diffX = (e.clientX - centerX) / (window.innerWidth / 2);
+            const diffY = (e.clientY - centerY) / (window.innerHeight / 2);
+
+            const rotX = -diffY * 18;
+            const rotY = diffX * 18;
+
+            profileArea3D.style.transform = `perspective(1000px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translateZ(15px)`;
+
+            floats.forEach(function(f){
+                const depth = parseFloat(f.getAttribute("data-depth") || "40");
+                const fx = diffX * depth * 0.4;
+                const fy = diffY * depth * 0.4;
+                f.style.transform = `translate3d(${fx.toFixed(1)}px, ${fy.toFixed(1)}px, ${depth}px)`;
+            });
+        }, { passive: true });
+
+        profileArea3D.addEventListener("mouseleave", function(){
+            profileArea3D.style.transition = "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)";
+            profileArea3D.style.transform = "";
+            floats.forEach(function(f){
+                f.style.transition = "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)";
+                f.style.transform = "";
+            });
+            setTimeout(function(){
+                profileArea3D.style.transition = "";
+                floats.forEach(f => f.style.transition = "");
+            }, 600);
+        });
+    }
+})();
+
+// =========================================================
+// 3D QUICK SCROLL TO TOP & RADIAL PROGRESS RING
+// =========================================================
+(function(){
+    const btn = document.getElementById("scrollTop3D");
+    const ring = document.getElementById("progressRingFill");
+    if(!btn || !ring) return;
+
+    const circumference = 2 * Math.PI * 19; // ~119.38
+    ring.style.strokeDasharray = circumference;
+    ring.style.strokeDashoffset = circumference;
+
+    let ticking = false;
+    window.addEventListener("scroll", function(){
+        if(!ticking){
+            ticking = true;
+            requestAnimationFrame(function(){
+                const scrollY = window.scrollY;
+                const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+
+                if(scrollY > 320){
+                    btn.classList.add("visible");
+                } else {
+                    btn.classList.remove("visible");
+                }
+
+                if(maxScroll > 0){
+                    const progress = Math.min(Math.max(scrollY / maxScroll, 0), 1);
+                    const offset = circumference - (progress * circumference);
+                    ring.style.strokeDashoffset = offset;
+                }
+                ticking = false;
+            });
+        }
+    }, { passive: true });
+
+    btn.addEventListener("click", function(){
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+})();
+
 </script>
+
+
+
 
 </body>
 </html>
