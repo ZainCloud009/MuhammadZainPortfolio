@@ -1,0 +1,193 @@
+# Muhammad Zain
+
+> Muhammad Zain is an AWS Cloud & DevOps Engineer and Computer Science graduate from the University of Engineering and Technology (UET), Lahore. He specializes in production AWS cloud infrastructure (ECS, EC2, ALB, RDS MySQL SSL, S3, Route 53, CloudFront), Docker container orchestration, Terraform Infrastructure as Code (IaC), Linux server administration (Amazon Linux, Ubuntu), Bash automation, and automated CI/CD pipelines with GitHub Actions and Jenkins.
+
+- Full Name: Muhammad Zain
+- Role: AWS Cloud & DevOps Engineer
+- Nationality: Pakistan
+- Location: Faisalabad / Lahore, Punjab, Pakistan
+- Education: Bachelor of Computer Science, University of Engineering and Technology (UET), Lahore (2022 – 2026, CGPA: 3.07)
+- Email: muhammadzain8489@gmail.com
+- Phone / WhatsApp: +92 324 7474009
+- Website: https://zaincloud009.github.io/MuhammadZainPortfolio/
+- LinkedIn: https://www.linkedin.com/in/muhammadzaindevops/
+- GitHub: https://github.com/ZainCloud009
+- DevOps GitHub: https://github.com/zaindevops009
+- Docker Hub: https://hub.docker.com/r/zaindevops009
+- Fiverr: https://www.fiverr.com/users/zain1238/
+- Resume / CV: https://drive.google.com/file/d/100W0Yy_I06woXztVn3gAwPJDVft_xlY1/view?usp=drive_link
+
+## Core Services & Capabilities
+
+- AWS Cloud Infrastructure & Architecture: Production provisioning and administration across AWS EC2, Elastic Container Service (ECS), Application Load Balancers (ALB), Amazon S3, Amazon RDS MySQL, Route 53, CloudFront CDN, AWS Certificate Manager (ACM), Virtual Private Clouds (VPC), Subnets, and IAM least-privilege security policies.
+- Container Orchestration & Docker Deployments: Authoring optimized multi-stage Dockerfiles, managing container images on Docker Hub, provisioning ECS clusters with EC2 self-managed capacity, configuring Task Definitions with Dynamic Port Mapping (`hostPort: 0`), and setting up ECS Services with Auto Scaling across Availability Zones.
+- Infrastructure as Code (IaC): Writing modular, reusable Terraform configurations and AWS CloudFormation templates for automated provisioning of VPC networks, security groups, compute clusters, managed databases, and storage with zero configuration drift.
+- CI/CD Pipelines & Automation: Building lightning-fast continuous integration and continuous deployment pipelines using GitHub Actions and Jenkins. Incorporating parallel test runs, dependency caching, automated Docker builds, Amazon ECR/Docker Hub pushes, and zero-downtime rolling ECS deployments.
+- Linux Server Administration & Scripting: System administration on Amazon Linux and Ubuntu Server environments, Apache HTTP Server, systemd daemon supervision, SSH key hardening, automated cron jobs for database backups, log archiving, and automated Amazon S3 synchronization.
+- Database & SSL Security: Securing transport-level database connections between application containers and AWS RDS MySQL using the official AWS RDS CA certificate bundle (`rds-ca-bundle.pem`), SSL/TLS enforcement, and strict VPC security isolation.
+- Full-Stack Digital & Client Commerce Solutions: Delivering end-to-end web applications and digital commerce solutions for retail and wholesale clients using React JS, Firebase Hosting, JavaScript, Tailwind CSS, FastAPI, and Laravel 12.
+
+## Selected Projects
+
+- Dockerized FastAPI Todo-List Application on AWS ECS:
+  - Overview: Containerized and deployed a FastAPI Todo REST API from a local development environment to an AWS ECS Cluster with self-managed EC2 capacity.
+  - Architecture: Tested locally with 13 automated pytest tests in Docker Desktop, published to Docker Hub, provisioned an Auto Scaling Group across multiple Availability Zones, registered tasks using an ECS Task Definition, and maintained 2 desired tasks on an ECS Service.
+  - Technologies: FastAPI, Python, Docker, Docker Desktop, Docker Hub, AWS ECS, AWS EC2, Auto Scaling Group, Availability Zones.
+  - Docker Hub Image: https://hub.docker.com/r/zaindevops009/todo-api
+  - GitHub Repository: https://github.com/zaindevops009/todo-api
+  - Case Study: https://zaincloud009.github.io/MuhammadZainPortfolio/project-todo-api.html
+
+- Laravel 12 Cloud Architecture: AWS ECS, ALB & CI/CD:
+  - Overview: Production-tested migration of a modern Laravel 12 (PHP 8.2) application to AWS Elastic Container Service (ECS) with EC2 Launch Type, Application Load Balancer (ALB), secure AWS RDS MySQL, and sub-4-minute GitHub Actions CI/CD.
+  - Architecture: 3-stage multi-stage Dockerfile (Node 22 Vite frontend build, Composer 2 dependency builder, lightweight PHP 8.2-FPM Alpine runtime with Nginx and Supervisord). Resolved container port conflict via Dynamic Port Mapping (`hostPort: 0`) and ephemeral port range (32768–65535). Enforced SSL CA bundle encryption to RDS MySQL.
+  - Technologies: Laravel 12, PHP 8.2, AWS ECS, Amazon EC2, Application Load Balancer, AWS RDS MySQL SSL, Docker, Supervisord, GitHub Actions.
+  - GitHub Repository: https://github.com/ZainCloud009/IdeaProj.git
+  - Case Study: https://zaincloud009.github.io/MuhammadZainPortfolio/project-laravel-aws.html
+  - Technical Guide: https://zaincloud009.github.io/MuhammadZainPortfolio/blog-laravel-ecs-deployment.html
+
+- Awais General Store — Grocery & Daily Essentials Web App:
+  - Overview: Designed, developed, and deployed an end-to-end digital grocery e-commerce solution for a retail store client.
+  - Features: Interactive product catalog covering groceries, dairy, household essentials, and beverages; instant search & category filtering; dynamic shopping cart; automated Cash on Delivery (COD) checkout; 30–45 minute local delivery routing; and Firebase cloud hosting.
+  - Technologies: React JS, Firebase Hosting, JavaScript, Tailwind CSS, E-Commerce.
+  - Live Store: https://awaisgeneralstore.web.app/
+
+- Zuri Fashion — Premium Wholesale Clothing & Unstitched Suits:
+  - Overview: Engineered a production B2B wholesale clothing platform for an apparel manufacturer and replica retailer.
+  - Features: Catalogs for 3-piece luxury lawn, digital printed 2-piece sets, organza festive collections, tiered volume wholesale pricing (30% discount on 7+ pieces, low MOQ from 1 pc), master carton bulk bundles, nationwide cargo dispatch tracking, and CDN acceleration.
+  - Technologies: React JS, Firebase Hosting, JavaScript, Tailwind CSS, B2B E-Commerce.
+  - Live Platform: https://zurifashion.web.app/
+
+- Enterprise DevOps Deployment: Terraform IaC & Jenkins CI/CD:
+  - Overview: Modular AWS infrastructure provisioning and automated deployment pipeline.
+  - Architecture: Production AWS VPC, Subnets, EC2 instances, Application Load Balancer, RDS database, Jenkins automated build/test/rollback pipeline, and S3 disaster recovery automation.
+  - Technologies: Terraform, AWS EC2, ALB, RDS, Jenkins, Docker, Bash.
+  - GitHub Repository: https://github.com/zain5103/devops-assessments.git
+  - Case Study: https://zaincloud009.github.io/MuhammadZainPortfolio/project-enterprise-devops.html
+
+- Qira'a — AI-Driven Arabic Qirat Learning Platform (UET Final Year Project):
+  - Overview: Final Year Project at UET Lahore developing an AI-driven educational web platform for Quran recitation and Tajweed improvement.
+  - Architecture: Combines React frontend, Firebase backend, and speech recognition models powered by OpenAI Whisper to give users personalized real-time Tajweed feedback.
+  - Technologies: React JS, Firebase, JavaScript, Whisper AI, Speech Recognition.
+  - Live Demo: https://qiraa-h.web.app/
+  - GitHub Repository: https://github.com/ZainCloud009/Qiraa-h.git
+  - Case Study: https://zaincloud009.github.io/MuhammadZainPortfolio/project-qiraa-ai.html
+
+- Linux Server Administration & Bash Automation:
+  - Overview: Automated system administration workflows for web hosting and enterprise database maintenance on Amazon Linux.
+  - Architecture: Shell scripts for automated daily MySQL dumps, log archiving, system health telemetry, cron job scheduling, and secure off-site sync to Amazon S3.
+  - Technologies: Amazon Linux, Bash Scripting, Apache HTTP Server, systemd, Cron, Amazon S3, MySQL.
+  - Case Study: https://zaincloud009.github.io/MuhammadZainPortfolio/project-linux-automation.html
+
+## Professional Experience
+
+- Cloud & DevOps Intern, Codomax Digital Solutions (September 2026)
+  - Deployed and managed production web applications on AWS using EC2, ECS, Docker Desktop, RDS, Route 53, IAM, CloudFront, ALB, and ACM.
+  - Configured and administered Linux (Amazon Linux) servers, Apache HTTP Server, SSL/TLS certificates, and web hosting environments.
+  - Provisioned AWS ECS clusters, created multi-container task definitions, and managed ECS services for high availability.
+  - Collaborated with engineering teams using Git, GitHub, and GitHub Actions for continuous automated deployment.
+
+- Junior DevOps Intern, Xelent Solutions (April 2026 – July 2026)
+  - Deployed and managed Laravel web applications on AWS using EC2, RDS, Route 53, IAM, CloudFront, ALB, and ACM.
+  - Administered Amazon Linux server instances, Apache HTTP Server, SSL certificates, and security groups.
+  - Monitored, troubleshot, and optimized cloud infrastructure to maintain system uptime and performance.
+  - Built automated deployment workflows using Git, GitHub, and shell scripts.
+
+- SEO Intern, Alpha-IT Software House (2025 · 2 Months)
+  - Performed technical on-page SEO including meta tag optimization, keyword research, site hierarchy, and content structuring.
+  - Executed off-page link-building strategies and competitor search ranking audits.
+
+- Database Intern, Sitara Textile Limited (2024 · 6 Weeks)
+  - Maintained corporate databases, ensured schema consistency and production data integrity.
+  - Authored and optimized SQL queries for daily inventory tracking, sales reporting, and data validation.
+
+## Technical Skills
+
+- Cloud Platforms: Amazon Web Services (AWS) — ECS, EC2, ALB, S3, RDS MySQL, Route 53, CloudFront CDN, ACM, IAM, VPC, Auto Scaling
+- Containers & Orchestration: Docker, Docker Desktop, Docker Hub, Multi-Stage Builds, Amazon ECS (EC2 launch type), Dynamic Port Mapping (hostPort: 0)
+- Infrastructure as Code (IaC): Terraform (modular configs, state management), AWS CloudFormation
+- CI/CD & Automation: GitHub Actions (workflows, secrets, parallel jobs, caching), Jenkins, AWS CodePipeline, AWS CodeDeploy, Bash Scripting, Cron Automation
+- Operating Systems & Servers: Linux (Amazon Linux, Ubuntu), Windows Server, Apache HTTP Server, Nginx, Supervisord, systemd, SSH
+- Programming & Scripting: Python (FastAPI, Pytest, Boto3), PHP (Laravel 12, Composer), Bash / Shell, JavaScript (ES6+, React JS, Node.js), HTML5, CSS3, Tailwind CSS
+- Databases & Graphs: MySQL, AWS RDS MySQL, Neo4j Graph Database, Cypher Query Language
+- Security & Networking: AWS VPC Architecture, Public/Private Subnets, Security Groups, Network ACLs, IAM Least-Privilege Policies, SSL/TLS Certificates, RDS CA Bundle Validation
+- Version Control & Tools: Git, GitHub, Docker Hub, VS Code, Postman, Linux CLI
+
+## Education
+
+- Bachelor of Computer Science (BS CS), University of Engineering and Technology (UET), Lahore (2022 – 2026, CGPA: 3.07)
+- FSc. Pre-Engineering, KIPS College, Faisalabad (2020 – 2022, Percentage: 89.54%)
+- Matriculation (Computer Science), Govt. M.C. Higher Secondary School, Faisalabad (2018 – 2020, Percentage: 88.45%)
+
+## Certifications
+
+- Cloud & DevOps Engineer Certificate — Codomax Digital Solutions (September 2026)
+  - Verification: https://www.linkedin.com/posts/muhammadzaindevops_cloud-devops-internship-completion-certificate-activity-7510764886033870849-Ee8y
+- Junior DevOps Certificate — Xelent Solutions (April 2026)
+  - Verification: https://www.linkedin.com/posts/muhammadzaindevops_devops-cloudcomputing-devopsengineer-activity-7503033416657969152-4eFc
+- Neo4j Fundamentals — Neo4j GraphAcademy (February 2025)
+  - Certificate: https://graphacademy.neo4j.com/c/4593b0d9-9f89-4786-a80f-7d5168b3b43f
+- Cypher Fundamentals — Neo4j GraphAcademy (February 2025)
+  - Certificate: https://graphacademy.neo4j.com/c/70ae1450-7b9f-4e06-8997-e86728f82718
+
+## Published Technical Articles & Guides
+
+- [Migrating Laravel 12 to AWS ECS: Dynamic Port Mapping, ALB & CI/CD](https://zaincloud009.github.io/MuhammadZainPortfolio/blog-laravel-ecs-deployment.html): Step-by-step production architecture guide for deploying zero-downtime containerized Laravel 12 on AWS ECS with ephemeral ports, ALB routing, RDS SSL transport security, and sub-4-minute GitHub Actions pipelines.
+- [Software Development Internship Roadmap 2026](https://zaincloud009.github.io/MuhammadZainPortfolio/blog-software-internship-guide-2026.html): Practical guide for college students covering cloud technologies, resume building, open-source projects, and interview preparation.
+- [What is Cloud Computing? Practical AWS Exploration](https://zaincloud009.github.io/MuhammadZainPortfolio/blog-cloud-fundamentals.html): Introduction to AWS cloud service models (IaaS, PaaS, SaaS) and foundational infrastructure deployment.
+- [Simple Bash Scripts That Save Hours Every Week](https://zaincloud009.github.io/MuhammadZainPortfolio/blog-bash-automation.html): Practical shell scripts for automated Linux system backups, log rotation, and server administration.
+- [Designing a CI/CD Pipeline Your Team Can Trust](https://zaincloud009.github.io/MuhammadZainPortfolio/blog-cicd-pipeline.html): Best practices for automated testing gates, Docker image caching, and zero-downtime deployment rollbacks.
+
+## Frequently Asked Questions (FAQ)
+
+### Who is Muhammad Zain?
+Muhammad Zain is an AWS Cloud & DevOps Engineer based in Pakistan with a Bachelor of Computer Science degree from the University of Engineering and Technology (UET), Lahore. He specializes in designing, deploying, and automating production cloud infrastructure using AWS services (ECS, EC2, ALB, RDS, S3), Docker containerization, Terraform Infrastructure as Code, and GitHub Actions CI/CD pipelines.
+
+### What are Muhammad Zain's core technical skills in Cloud and DevOps?
+Muhammad Zain's core technical skills include:
+1. AWS Cloud Architecture: ECS (EC2 launch type), Dynamic Port Mapping (hostPort: 0), Application Load Balancers, Route 53 DNS, CloudFront CDN, and RDS MySQL with SSL encryption.
+2. Container Orchestration: Docker, Docker Desktop, multi-stage Docker builds, Docker Hub publishing, and ECS Auto Scaling Groups.
+3. Infrastructure as Code: Terraform modular configurations and AWS CloudFormation.
+4. CI/CD & Automation: GitHub Actions workflows, Jenkins pipelines, Bash automation scripts, and cron jobs.
+5. Server Administration: Linux (Amazon Linux, Ubuntu), Apache HTTP Server, Nginx, and systemd supervision.
+
+### Where can I connect with Muhammad Zain on LinkedIn and GitHub?
+- LinkedIn Profile: https://www.linkedin.com/in/muhammadzaindevops/
+- GitHub Profile: https://github.com/ZainCloud009
+- DevOps GitHub: https://github.com/zaindevops009
+- Docker Hub Profile: https://hub.docker.com/r/zaindevops009
+
+### What notable DevOps and cloud projects has Muhammad Zain deployed?
+Muhammad Zain has deployed:
+1. Dockerized FastAPI Todo-List Application on AWS ECS with multi-container Auto Scaling across Availability Zones.
+2. Zero-Downtime Laravel 12 Deployment on AWS ECS using Dynamic Port Mapping (`hostPort: 0`), ALB routing, and automated GitHub Actions CI/CD under 4 minutes.
+3. Enterprise DevOps Deployment using modular Terraform IaC, Jenkins CI/CD, and S3 disaster recovery automation.
+4. Linux Server Automation with daily automated MySQL dumps, log archiving, and off-site S3 synchronization.
+5. Qira'a AI Quran Recitation Platform using OpenAI Whisper and speech recognition models.
+
+### Does Muhammad Zain build full-stack applications for clients?
+Yes. Muhammad Zain delivers full-stack digital solutions and cloud-hosted web applications for business clients. Featured examples include:
+- Awais General Store (https://awaisgeneralstore.web.app/): Full-stack digital grocery e-commerce web app with real-time catalog, cart, and delivery routing.
+- Zuri Fashion (https://zurifashion.web.app/): Production B2B wholesale clothing platform with tiered bulk discounts and nationwide dispatch estimation.
+
+### How does Muhammad Zain achieve zero-downtime container deployments on AWS ECS?
+Muhammad Zain uses Dynamic Port Mapping by setting `"hostPort": 0` in the ECS Task Definition. When new container tasks spin up, Docker assigns ephemeral ports (between 32768 and 65535). The Application Load Balancer registers the new task port, performs health checks, and shifts traffic seamlessly before the old container is stopped, avoiding port 80 binding conflicts (`CannotStartContainerError`).
+
+### How can I hire or contact Muhammad Zain?
+You can reach Muhammad Zain via:
+- Email: muhammadzain8489@gmail.com
+- Phone / WhatsApp: +92 324 7474009
+- LinkedIn Message: https://www.linkedin.com/in/muhammadzaindevops/
+- Fiverr Profile: https://www.fiverr.com/users/zain1238/
+- Direct Portfolio: https://zaincloud009.github.io/MuhammadZainPortfolio/
+
+## Verified Links
+
+- [Official Portfolio](https://zaincloud009.github.io/MuhammadZainPortfolio/)
+- [LinkedIn Profile](https://www.linkedin.com/in/muhammadzaindevops/)
+- [GitHub Repositories](https://github.com/ZainCloud009)
+- [Docker Hub Repositories](https://hub.docker.com/r/zaindevops009)
+- [Fiverr Freelance Profile](https://www.fiverr.com/users/zain1238/)
+- [Download Resume / CV](https://drive.google.com/file/d/100W0Yy_I06woXztVn3gAwPJDVft_xlY1/view?usp=drive_link)
+- [Awais General Store (Client Store)](https://awaisgeneralstore.web.app/)
+- [Zuri Fashion (Client Platform)](https://zurifashion.web.app/)
+- [Qira'a AI Platform (UET Project)](https://qiraa-h.web.app/)

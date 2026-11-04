@@ -1,11 +1,31 @@
 User-agent: *
 Allow: /
+Allow: /llms.txt
 
+# Google Crawlers & Gemini AI Overview
 User-agent: Googlebot
 Allow: /
+Allow: /llms.txt
+
+User-agent: Google-Extended
+Allow: /
+Allow: /llms.txt
 
 User-agent: Googlebot-Image
 Allow: /
 Allow: /images/
+
+# AI Search & LLM Engines
+User-agent: GPTBot
+Allow: /
+Allow: /llms.txt
+
+User-agent: ClaudeBot
+Allow: /
+Allow: /llms.txt
+
+User-agent: PerplexityBot
+Allow: /
+Allow: /llms.txt
 
 Sitemap: https://zaincloud009.github.io/MuhammadZainPortfolio/sitemap.xml
